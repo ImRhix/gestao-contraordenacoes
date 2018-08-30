@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.AutoResumoPage"
+             xmlns:local="clr-namespace:GeCO.CustomRenderers"
+             Title="Finalização"
+             BackgroundColor="{StaticResource ContentBackgroundColor}" >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Guardar Localmente"
+                     Icon=      "save_24.png" />
+        <ToolbarItem Text=      "Descartar"
+                     Icon=      "delete_24.png" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions=           "FillAndExpand">
+                <StackLayout Padding=               "10,15,10,10" >
+                  <local:StepRenderer StepColor=    "{StaticResource SecondaryColor}"
+                                      Steps=        "7"
+                                      StepSelected= "7"
+                                      x:Name=       "stepBar"/>
+                </StackLayout>
+                
+
+                <!-- ~~~~~~ Botões ~~~~~~ -->
+                <Button Text=           "Guardar Online"
+                        Image=          "cloud_upload_24.png"
+                        Style=          "{StaticResource FormFinalButton}"/>
+                                        
+                <Button Text=           "Guardar Localmente"
+                        Image=          "save_24.png"
+                        Style=          "{StaticResource FormFinalButton}"/>
+                                        
+                <Button Text=           "Página Anterior"
+                        Image=          "chevron_left_orange_24.png"
+                        Style=          "{StaticResource FormFinalBackButton}"
+                        Clicked=        "OnAnteriorClicked"/>
+                                        
+                <Button Text=           "Apagar Auto"
+                        Image=          "close_red_24.png"
+                        Style=          "{StaticResource FormFinalCancelButton}"
+                        VerticalOptions="EndAndExpand"
+                        Clicked=        "OnDeleteClicked"/>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

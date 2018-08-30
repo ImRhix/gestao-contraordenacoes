@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr:namespace:GeCO"
+             x:Class="GeCO.App">
+
+    <!-- Nota: as cores da NavigationBar/ActionBar, status bar e tint do widgets no android 
+            são alteradas diretamente em: GeCO.Droid > Resources > values > styles.xml -->
+    
+	<Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryDarkColor">                #003478</Color>     <!-- Azul Escuro -->
+            <Color x:Key="PrimaryColor">                    #005da8</Color>     <!-- Azul -->
+                                                            
+            <Color x:Key="SecondaryDarkColor">              #c06900</Color>     <!-- Laranja Escuro -->
+            <Color x:Key="SecondaryColor">                  #f89824</Color>     <!-- Laranja -->
+            <Color x:Key="SecondaryLightColor">             #fec958</Color>     <!-- Laranja Claro -->
+                                                            
+            <Color x:Key="BackgroundColor">                 #f0f0f0</Color>     <!-- Cinza quase branco -->
+            <Color x:Key="ContentBackgroundColor">          #fafafa</Color>     <!-- Branco -->
+            <Color x:Key="PrimaryTextColor">                #fafafa</Color>     <!-- Branco -->
+            <Color x:Key="NormalDarkTextColor">             #282828</Color>     <!-- Cinza Escuro -->
+            <Color x:Key="NormalTextColor">                 #787878</Color>     <!-- Cinza -->
+            <Color x:Key="NormalLightTextColor">            #c3c3c3</Color>     <!-- Cinza Claro -->
+                                                            
+                                                            
+            <Color x:Key="WarningColor">                    #bc0000</Color>     <!-- Vermelho -->
+            <Color x:Key="DarkListColor">                   #282828</Color>     <!-- Cinza-Quase-Preto-Mas-Não-É-Bem-Preto -->
+
+            
+
+            <!-- Horizontal / Vertical Orientation -->
+            <Style x:Key="CenterOptionStyle"                TargetType="View">
+                <Setter Property="HorizontalOptions"        Value="Center" />
+                <Setter Property="VerticalOptions"          Value="Center" />
+            </Style>                                        
+                                                            
+            <Style x:Key="TitleStyle"                       TargetType="Label" BasedOn="{StaticResource CenterOptionStyle}">
+                <Setter Property="TextColor"                Value="{StaticResource PrimaryColor}" />
+                <Setter Property="FontAttributes"           Value="Bold"/>
+                <Setter Property="FontSize"                 Value="18" />
+            </Style>
+
+
+
+
+            
+            <!-- ~~~~~~~~ Master Detail Page - Menu ~~~~~~~~ -->
+            <!-- ~~~~~~~~ Master Detail Page - Menu ~~~~~~~~ -->
+            <!-- StackLayout -->
+
+            <Style x:Key="LogoStackLayout"                  TargetType="StackLayout">
+                <Setter Property="BackgroundColor"          Value="{StaticResource ContentBackgroundColor}" />
+                <Setter Property="Padding"                  Value="25,35" />
+            </Style>                                       
+                                                           
+            <Style x:Key="MenuStackLayoutStyle"             TargetType="StackLayout">
+                <Setter Property="Orientation"              Value="Horizontal" />
+                <Setter Property="HorizontalOptions"        Value="FillAndExpand" />
+                <Setter Property="VerticalOptions"          Value="CenterAndExpand" />
+                <Setter Property="Margin"                   Value="15,10,15,0" />
+            </Style>                                       
+                                                           
+            <Style x:Key="SubMenuStackLayoutStyle"          TargetType="StackLayout">
+                <Setter Property="Margin"                   Value="65,0,0,12" />
+            </Style>
+
+            <!-- Label -->
+            <Style x:Key="MenuLabelStyle"                   TargetType="Label">
+                <Setter Property="TextColor"                Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="FontSize"                 Value="18" />
+                <Setter Property="HorizontalOptions"        Value="FillAndExpand" />
+                <Setter Property="Margin"                   Value="10,0,0,0" />
+            </Style>
+
+
+            
+            <!-- ~~~~~~~~ DashBoard ~~~~~~~~ -->
+            <!-- ~~~~~~~~ DashBoard ~~~~~~~~ -->
+            <Style x:Key="CardHeading"                      TargetType="Label" BasedOn="{StaticResource TitleStyle}">
+                <Setter Property="HorizontalTextAlignment"  Value="Center" />
+                <Setter Property="Margin"                   Value="10" />
+            </Style>
+
+            <Style x:Key="RedCardHeading"                   TargetType="Label" BasedOn="{StaticResource CardHeading}" >
+                <Setter Property="TextColor"                Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="BackgroundColor"          Value="{StaticResource WarningColor}"/>
+                <Setter Property="Margin"                   Value="0" />
+                <Setter Property="HorizontalOptions"        Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions"          Value="FillAndExpand"/>
+            </Style>
+
+            <Style x:Key="OrangeCardText"                   TargetType="Label" >
+                <Setter Property="TextColor"                Value="{StaticResource SecondaryColor}" />
+                <Setter Property="FontSize"                 Value="50"/>
+                <Setter Property="HorizontalOptions"        Value="Center"/>
+                <Setter Property="HorizontalTextAlignment"  Value="Center"/>
+                <Setter Property="VerticalOptions"          Value="CenterAndExpand"/>
+            </Style>
+
+            <Style x:Key="DetailCardText"                   TargetType="Label" >
+                <Setter Property="TextColor"                Value="{StaticResource NormalLightTextColor}" />
+                <Setter Property="FontSize"                 Value="28"/>
+                <Setter Property="HorizontalOptions"        Value="Center"/>
+                <Setter Property="HorizontalTextAlignment"  Value="Center"/>
+                <Setter Property="VerticalOptions"          Value="CenterAndExpand"/>
+            </Style>
+
+            <!-- legenda do gráfico -->
+            <Style x:Key="LegendaStackLayout"               TargetType="StackLayout" >
+                <Setter Property="Orientation"              Value="Horizontal" />
+                <Setter Property="Padding"                  Value="5,0,0,0" />
+            </Style>
+            
+            <Style x:Key="LegendaBoxView"                   TargetType="BoxView" >
+                <Setter Property="WidthRequest"             Value="18" />
+                <Setter Property="HeightRequest"            Value="18" />
+                <Setter Property="Margin"                   Value="5" />
+            </Style>
+
+            <Style x:Key="LegendaLabel"                     TargetType="Label" >
+                <Setter Property="HorizontalOptions"        Value="StartAndExpand" />
+                <Setter Property="VerticalOptions"          Value="Center" />
+            </Style>
+
+
+
+            <!-- ~~~~~~~~ Meus Autos ~~~~~~~~ -->
+            <!-- ~~~~~~~~ Meus Autos ~~~~~~~~ -->
+            <Style x:Key="ListHeaderOne"                    TargetType="Label" BasedOn="{StaticResource TitleStyle}">
+                <Setter Property="HorizontalOptions"        Value="Start" />
+            </Style>                                        
+                                                            
+            <Style x:Key="ListHeaderTwo"                    TargetType="Label" BasedOn="{StaticResource ListHeaderOne}">
+                <Setter Property="TextColor"                Value="{StaticResource SecondaryColor}" />
+            </Style>                                        
+                                                            
+            <Style x:Key="ListLabel"                        TargetType="Label">
+                <Setter Property="TextColor"                Value="{StaticResource NormalDarkTextColor}" />
+                <Setter Property="FontSize"                 Value="18" />
+            </Style>                                        
+                                                            
+            <Style x:Key="ListDetailLabel"                  TargetType="Label">
+                <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />
+                <Setter Property="FontSize"                 Value="16" />
+            </Style>                                        
+                                                            
+                                                            
+                                                            
+            <!-- ~~~~~~~~ Form Autos ~~~~~~~~ -->           
+            <!-- ~~~~~~~~ Form Autos ~~~~~~~~ -->           
+            <Style x:Key="FormFrame"                        TargetType="Frame" >
+                <Setter Property="CornerRadius"             Value="1" />
+                <Setter Property="Margin"                   Value="0,0,0,-4" />
+                <Setter Property="Padding"                  Value="0" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormHeader"                       TargetType="StackLayout">
+                <Setter Property="BackgroundColor"          Value="{StaticResource BackgroundColor}" />
+                <Setter Property="Orientation"              Value="Horizontal" />
+                <Setter Property="Padding"                  Value="20,10,15,10" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormSectionLabel"                  TargetType="Label" BasedOn="{StaticResource TitleStyle}">
+                <Setter Property="HorizontalOptions"         Value="StartAndExpand" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormTitleLabel"                   TargetType="Label">
+                <Setter Property="TextColor"                Value="{StaticResource NormalDarkTextColor}" />
+                <Setter Property="FontSize"                 Value="16" />
+                <Setter Property="Margin"                   Value="4,5,0,-8" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormSubtitleLabel"                TargetType="Label" BasedOn="{StaticResource FormTitleLabel}">
+                <Setter Property="TextColor"                Value="{StaticResource PrimaryColor}" />
+                <Setter Property="Margin"                   Value="5,15,0,5" />
+            </Style>                                        
+                                                            
+                                                            
+                                                            
+            <Style x:Key="FormEntry"                        TargetType="Entry">
+                <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />
+                <Setter Property="FontSize"                 Value="Medium" />
+                <Setter Property="Margin"                   Value="0,5,0,10" />
+            </Style>                                        
+            <Style x:Key="FormPicker"                       TargetType="Picker">
+                <Setter Property="Title"                    Value="Selecionar" />
+                <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />
+                <Setter Property="FontSize"                 Value="Medium" />
+                <Setter Property="Margin"                   Value="0,-3,0,10" />
+            </Style>                                        
+            <Style x:Key="FormDatePicker"                   TargetType="DatePicker">
+                <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />
+                <Setter Property="FontSize"                 Value="Medium" />
+                <Setter Property="Margin"                   Value="0,-3,0,10" />
+            </Style>                                        
+            <Style x:Key="FormTimePicker"                   TargetType="TimePicker">
+                <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />
+                <Setter Property="FontSize"                 Value="Medium" />
+                <Setter Property="Margin"                   Value="0,-3,0,10" />
+            </Style>                                        
+                                                            
+                                                            
+                                                            
+                                                            
+            <Style x:Key="FormLeftButton"                   TargetType="Button">
+                <Setter Property="TextColor"                Value="{StaticResource SecondaryColor}" />
+                <Setter Property="BackgroundColor"          Value="Transparent" />
+                <Setter Property="FontAttributes"           Value="Bold" />
+                <Setter Property="BorderWidth"              Value="1" />
+                <Setter Property="BorderColor"              Value="{StaticResource SecondaryColor}" />
+                <Setter Property="Margin"                   Value="15,15,5,10" />
+                <Setter Property="HorizontalOptions"        Value="FillAndExpand" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormRightButton"                  TargetType="Button">
+                <Setter Property="TextColor"                Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="BackgroundColor"          Value="{StaticResource SecondaryColor}" />
+                <Setter Property="FontAttributes"           Value="Bold" />
+                <Setter Property="BorderWidth"              Value="1" />
+                <Setter Property="BorderColor"              Value="{StaticResource SecondaryColor}" />
+                <Setter Property="Margin"                   Value="5,15,15,10" />
+                <Setter Property="HorizontalOptions"        Value="FillAndExpand" />
+                <Setter Property="ContentLayout"            Value="Right, 0" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormCancelButton"                 TargetType="Button" BasedOn="{StaticResource FormLeftButton}">
+                <Setter Property="TextColor"                Value="{StaticResource WarningColor}" />
+                <Setter Property="BorderColor"              Value="{StaticResource WarningColor}" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormLabel"                        TargetType="Label">
+                <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />               
+                <Setter Property="FontSize"                 Value="15" />
+                <Setter Property="VerticalOptions"          Value="CenterAndExpand" />
+                <Setter Property="Margin"                   Value="5,8,5,10" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormFinalButton"                  TargetType="Button" BasedOn="{StaticResource FormRightButton}">
+                <Setter Property="Margin"                   Value="20,10,20,0" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormFinalBackButton"              TargetType="Button" BasedOn="{StaticResource FormLeftButton}">
+                <Setter Property="Margin"                   Value="20,10,20,0" />
+            </Style>                                        
+                                                            
+            <Style x:Key="FormFinalCancelButton"            TargetType="Button" BasedOn="{StaticResource FormCancelButton}">
+                <Setter Property="FontSize"                 Value="Large" />
+                <Setter Property="Margin"                   Value="20,10,20,20" />
+            </Style>
+
+        </ResourceDictionary>
+	</Application.Resources>
+</Application>

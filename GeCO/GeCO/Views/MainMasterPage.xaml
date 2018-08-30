@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="GeCO.Views.MainMasterPage"
+                  Title="Master Page"
+                  MasterBehavior="Default">
+    
+    <MasterDetailPage.Master>
+        <ContentPage BackgroundColor="{StaticResource PrimaryColor}" Title="Menu">
+            <ContentPage.Content>
+                <StackLayout>
+                    
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~ Logo Funchal ~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <StackLayout Style="{StaticResource LogoStackLayout}">
+                        <Image Source=              "logo.png"
+                               VerticalOptions=     "CenterAndExpand"
+                               Aspect=              "AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDashboardTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+
+                    
+                    <ScrollView>
+                        <StackLayout>
+                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+                             ~~~~~~~~~~~~ Dashboard ~~~~~~~~~~~~
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> 
+                            <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
+                                <Image Source="eye_24.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDashboardTapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="Dashboard"
+                                       Style="{StaticResource MenuLabelStyle}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDashboardTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            
+                            
+
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <!-- ~~~~~~~~ Menu Item - Contraordenações  ~~~~~~~~ -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->                            
+                            <StackLayout x:Name="menuCO">
+                                <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnContraordenacoesTapped" />
+                                    </StackLayout.GestureRecognizers>
+
+                                    <Image Source=              "assignment_24.png" />
+                                    <Label Text=                "Contraordenações"
+                                           Style=               "{StaticResource MenuLabelStyle}" />
+                                    <Image Source=              "chevron_down_24.png"
+                                           HorizontalOptions=   "End" />
+                                </StackLayout>
+
+
+                                <!-- SUB-MENU -->
+                                <StackLayout x:Name=            "subMenuCO"
+                                             Spacing=           "0"
+                                             IsVisible=         "false">
+                                    
+                                    <StackLayout Style=         "{StaticResource SubMenuStackLayoutStyle}" >
+                                        <Label Text=            "Meus Autos"
+                                               Style=           "{StaticResource MenuLabelStyle}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnMeusAutosTapped" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+
+
+                                    <StackLayout Style=         "{StaticResource SubMenuStackLayoutStyle}" >
+                                        <Label Text=            "Pendente Despacho"
+                                               Style=           "{StaticResource MenuLabelStyle}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnPlaceholderTapped" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>  <!-- Fim dos SUB-MENUS -->
+                            </StackLayout>      <!-- Fim do MENU ITEM - Contraordenações -->
+
+
+
+                            
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <!-- ~~~~~~ Meus Autos ~~~~~~~ -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->  
+                            <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
+                                <Image Source="hand_24.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnMeusAutosTapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="Meus Autos"
+                                       Style="{StaticResource MenuLabelStyle}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnMeusAutosTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+
+
+                            
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <!-- ~~~~~~~~ CO G. Decisões  ~~~~~~~~ -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
+                                <Image Source="ac_unit_24.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPlaceholderTapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="CO - G. Decisões"
+                                       Style="{StaticResource MenuLabelStyle}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPlaceholderTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+
+                    
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+</MasterDetailPage>

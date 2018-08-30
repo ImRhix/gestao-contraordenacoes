@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.AutoLegislacaoPage"
+             xmlns:local="clr-namespace:GeCO.CustomRenderers"
+             Title="Legislação"
+             BackgroundColor="{StaticResource ContentBackgroundColor}" >
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Guardar Localmente"
+                     Clicked=   "GuardarClicked"
+                     Icon=      "save_24.png" />
+        <ToolbarItem Text=      "Descartar" 
+                     Clicked=   "OnApagar"
+                     Icon=      "delete_24.png" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+<!--        <ScrollView>-->
+            <StackLayout>
+                <StackLayout Padding="10,15,10,10" >
+                  <local:StepRenderer StepColor="{StaticResource SecondaryColor}" Steps="7" StepSelected="2" x:Name="stepBar"/>
+                </StackLayout>
+
+
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Legislação / Lei ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <StackLayout Style=            "{StaticResource FormHeader}">
+                            <Label Text=               "Lei"
+                                   Style=              "{StaticResource FormSectionLabel}" />
+                            <Image x:Name=             "leiArrow"
+                                   Source=             "chevron_down_blue_24.png"
+                                   HorizontalOptions = "End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLeiTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout x:Name="leiStack"
+                                     IsVisible=         "true">
+                            <Grid  Padding=             "15,5,15,10"
+                                   RowSpacing=          "0"
+                                   ColumnSpacing=       "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                    <RowDefinition Height="Auto" /> <!-- 05 -->
+                                    <RowDefinition Height="Auto" /> <!-- 06 -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />  <!-- 04 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Título -->
+                                <Label Text=            "Título"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3" />
+                                <Picker x:Name="titulo"
+                                        ItemsSource=    "{Binding Titulo}"
+                                        SelectedItem=   "{Binding Lei.Titulo, Mode=TwoWay}"
+                                        SelectedIndexChanged="OnIndexChanged"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "1"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="3" />                               
+                                <!-- Pontos Subtraídos -->
+                                <Label Text=            "Pontos"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "3" />
+<!-- Binding -->                <Label x:Name="pontos"
+                                       Text=            "{Binding Lei.Pontos, Mode=TwoWay}"
+                                       Style=           "{StaticResource FormLabel}"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "3" />
+
+                                <!-- Descrição Lei -->
+                                <Label Text=            "Descrição da Lei"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4"/>
+<!-- Binding -->                <Label x:Name="descricao"
+                                       Text=            "{Binding Lei.Descricao, Mode=TwoWay}"
+                                       Style=           "{StaticResource FormLabel}"
+                                       Grid.Row=        "3"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4"/>
+
+                            
+                                
+                                <!-- Coimas -->
+                                <Label Text=            "Coimas"
+                                       Style=           "{StaticResource FormSubtitleLabel}"
+                                       Grid.Row=        "4"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4"/>
+                                
+                                <!-- Coima Mínima -->
+                                <Label Text=            "Mínimo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       VerticalOptions= "CenterAndExpand"
+                                       Grid.Row=        "5"
+                                       Grid.Column=     "0" />
+<!-- Binding -->                <Label x:Name="min"
+                                       Text=            "{Binding Lei.Min, Mode=TwoWay}"
+                                       Style=           "{StaticResource FormLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "0" />
+                                
+                                <!-- Coima Máxima -->    
+                                <Label Text=            "Máximo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       VerticalOptions= "CenterAndExpand"
+                                       Grid.Row=        "5"
+                                       Grid.Column=     "1" />
+<!-- Binding -->                <Label x:Name="max"
+                                       Text=            "{Binding Lei.Max, Mode=TwoWay}"
+                                       Style=           "{StaticResource FormLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "1" />
+                                
+                                <!-- Prazo -->
+                                <Label Text=            "Prazo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       VerticalOptions= "CenterAndExpand"
+                                       Grid.Row=        "5"
+                                       Grid.Column=     "2" />
+<!-- Binding -->                <Label x:Name="prazo"
+                                       Text=            "{Binding Lei.Prazo, Mode=TwoWay}"
+                                       Style=           "{StaticResource FormLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "2" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>            
+
+                                
+
+                <!-- ~~~~~~ Botões ~~~~~~ -->
+                <StackLayout Orientation=   "Horizontal" >
+                    <Button Text=           "Anterior"
+                            Image=          "chevron_left_orange_24.png"
+                            Style=          "{StaticResource FormLeftButton}"
+                            Clicked=        "OnAnteriorClicked"/>
+                    
+                    <Button Text=           "Próximo"
+                            Image=          "chevron_right_24.png"
+                            Style=          "{StaticResource FormRightButton}"
+                            Clicked=        "OnProximoClicked"/>
+                </StackLayout>
+            </StackLayout>
+<!--        </ScrollView>-->
+
+    </ContentPage.Content>
+</ContentPage>

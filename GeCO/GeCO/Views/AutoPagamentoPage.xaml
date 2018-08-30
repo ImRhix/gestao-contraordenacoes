@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.AutoPagamentoPage"
+              xmlns:local="clr-namespace:GeCO.CustomRenderers"
+             Title="Pagamentos"
+             BackgroundColor="{StaticResource ContentBackgroundColor}" >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Guardar Localmente"
+                     Icon=      "save_24.png" />
+        <ToolbarItem Text=      "Descartar" 
+                     Clicked=   "OnApagar"
+                     Icon=      "delete_24.png" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Padding="10,15,10,10" >
+                  <local:StepRenderer StepColor="{StaticResource SecondaryColor}" Steps="7" StepSelected="5" x:Name="stepBar"/>
+                </StackLayout>
+
+
+
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Pagamento ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <StackLayout Style=         "{StaticResource FormHeader}">
+                            <Label Text=            "Pagamento"
+                                   Style=           "{StaticResource FormSectionLabel}" />
+                            <Image x:Name="pagamentoArrow"
+                                   Source=          "chevron_down_blue_24.png"
+                                   HorizontalOptions="End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPagamentoTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+<!-- x:Name -->         <StackLayout x:Name="pagamentoStack"
+                                     IsVisible=  "false">
+                            <Grid Padding=       "15,5,15,10"
+                                  RowSpacing=    "0"
+                                  ColumnSpacing= "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                    <RowDefinition Height="Auto" /> <!-- 05 -->
+                                    <RowDefinition Height="Auto" /> <!-- 06 -->
+                                    <RowDefinition Height="Auto" /> <!-- 07 -->
+                                    <RowDefinition Height="Auto" /> <!-- 08 -->
+                                    <RowDefinition Height="Auto" /> <!-- 09 -->
+                                    <RowDefinition Height="Auto" /> <!-- 10 -->
+                                    <RowDefinition Height="Auto" /> <!-- 11 -->
+                                    <RowDefinition Height="Auto" /> <!-- 12 -->
+                                    <RowDefinition Height="Auto" /> <!-- 13 -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 00 -->
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- NIF -->
+                                <Label Text=                "NIF"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "0"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "2" />
+                                <Entry x:Name="nif"      
+                                       Text=                "{Binding Pagamento.NIF}"
+                                       Placeholder=         "Ex xxx xxx xxx"
+                                       Style=               "{StaticResource FormEntry}"
+                                       Keyboard=            "Numeric"
+                                       Grid.Row=            "1"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "2" />
+                                <!-- DUC -->                
+                                <Label Text=                "DUC"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "0"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2" />
+                                <Entry x:Name="duc"      
+                                       Text=                "{Binding Pagamento.DUC}"
+                                       Placeholder=         "Ex xxx xxx xxx"
+                                       Style=               "{StaticResource FormEntry}"
+                                       Keyboard=            "Numeric"
+                                       Grid.Row=            "1"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2" />
+                                
+                                <!-- Limite do Pagamento -->
+                                <Label Text=                "Limite de Pagamento"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "2"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "2"/>
+                                <DatePicker x:Name="dataLimite"
+                                            Date=           "{Binding Pagamento.DataLimite, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=         "dd/MM/yyyy"
+                                            Style=          "{StaticResource FormDatePicker}"
+                                            Grid.Row=       "3"
+                                            Grid.Column=    "0"
+                                            Grid.ColumnSpan="1"/>
+
+                                <!-- Hora -->
+                                <Label Text=                "Hora"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "2"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2"/>
+                                <TimePicker x:Name="horaPagamento"
+                                            Time=           "{Binding Pagamento.HoraPagamento}"
+                                            Style=          "{StaticResource FormTimePicker}"
+                                            Grid.Row=       "3"
+                                            Grid.Column=    "2"
+                                            Grid.ColumnSpan="1"/>
+
+                                <!-- Tipo de Pagamento -->
+                                <Label Text=                "Tipo de Pagamento"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "4"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "2" />
+<!-- x:Name -->                 <Picker x:Name="tipo"
+                                        ItemsSource=        "{Binding TipoPagamento}"
+                                        SelectedItem=       "{Binding Pagamento.TipoPagamento}"
+                                        Style=              "{StaticResource FormPicker}"
+                                        Grid.Row=           "5"
+                                        Grid.Column=        "0"
+                                        Grid.ColumnSpan=    "2" />
+                                <!-- Valor -->            
+                                <Label Text=                "Valor"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "4"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2" />
+                                <Entry x:Name="valor"
+                                       Text=                "{Binding Pagamento.Valor}"            
+                                       Placeholder=         "Ex xx€"
+                                       Style=               "{StaticResource FormEntry}"
+                                       Keyboard=            "Numeric"
+                                       Grid.Row=            "5"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2" />
+
+
+                                <!-- Periodo de Caução -->
+                                <Label Text=                "Periodo de Caução"
+                                       Style=               "{StaticResource FormSubtitleLabel}"
+                                       Grid.Row=            "6"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "4"/>
+                                
+                                <!-- Início do período de caução -->
+                                <Label Text=                "Inicio"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "7"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "1"/>
+                                <DatePicker x:Name="dataInicial"
+                                            Date=           "{Binding Pagamento.DataInicial, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=         "dd/MM/yyyy"
+                                            Style=          "{StaticResource FormDatePicker}"
+                                            Grid.Row=       "8"
+                                            Grid.Column=    "0"
+                                            Grid.ColumnSpan="1"/>
+                                <!-- Fim do período de caução -->
+                                <Label Text=                "Fim"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "7"
+                                       Grid.Column=         "1"
+                                       Grid.ColumnSpan=     "1"/>
+                                <DatePicker x:Name="dataFinal"
+                                            Date=           "{Binding Pagamento.DataFinal, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=         "dd/MM/yyyy"
+                                            Style=          "{StaticResource FormDatePicker}"
+                                            Grid.Row=       "8"
+                                            Grid.Column=    "1"
+                                            Grid.ColumnSpan="1"/>
+                                <!-- Data de Devoluçáo de caução -->
+                                <Label Text=                "Devolução"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "7"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "1"/>
+                                <DatePicker x:Name="dataDevolucao"
+                                            Date=           "{Binding Pagamento.DataDevolucao, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=         "dd/MM/yyyy"
+                                            Style=          "{StaticResource FormDatePicker}"
+                                            Grid.Row=       "8"
+                                            Grid.Column=    "2"
+                                            Grid.ColumnSpan="1"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>            
+
+
+
+                
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <!-- ~~~~~~~~ Custos Processuais ~~~~~~~~ -->
+                        <!-- ~~~~~~~~ Custos Processuais ~~~~~~~~ -->
+                        <StackLayout Style=             "{StaticResource FormHeader}">
+                            <Label Text=                "Custos Processuais"
+                                   Style=               "{StaticResource FormSectionLabel}" />
+                            <Image x:Name="custosArrow"
+                                   Source=              "chevron_down_blue_24.png"
+                                   HorizontalOptions=   "End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCustosTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+<!-- x:Name -->         <StackLayout x:Name="custosStack"
+                                     IsVisible=         "false">
+                            <Grid Padding=              "15,5,15,10"
+                                  RowSpacing=           "0"
+                                  ColumnSpacing=        "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 00 -->
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                </Grid.ColumnDefinitions>
+
+
+                                <!-- Tipo de Pagamento -->
+                                <Label Text=            "Tipo de Custo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+<!-- x:Name -->                 <Picker x:Name="tipoCusto"
+                                        ItemsSource=    "{Binding TipoCusto}"
+                                        SelectedItem=   "{Binding CustosProcessuais.TipoCusto}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "1"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" />
+                                <!-- Valor -->
+                                <Label Text=            "Valor"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="valorCusto"
+                                       Placeholder=     "Ex xx€"
+                                       Text=            "{Binding CustosProcessuais.Valor}"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>            
+
+                <!-- ~~~~~~ Botões ~~~~~~ -->
+                <StackLayout Orientation=   "Horizontal" >
+                    <Button Text=           "Anterior"
+                            Image=          "chevron_left_orange_24.png"
+                            Style=          "{StaticResource FormLeftButton}"
+                            Clicked=        "OnAnteriorClicked"/>
+                    
+                    <Button Text=           "Próximo"
+                            Image=          "chevron_right_24.png"
+                            Style=          "{StaticResource FormRightButton}"
+                            Clicked=        "OnProximoClicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

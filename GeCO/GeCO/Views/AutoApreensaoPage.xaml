@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.AutoApreensaoPage"
+             xmlns:local="clr-namespace:GeCO.CustomRenderers"
+             Title="Apreensão"
+             BackgroundColor="{StaticResource ContentBackgroundColor}" >
+
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Guardar Localmente"
+                     Clicked=   "GuardarClicked"
+                     Icon=      "save_24.png" />
+        <ToolbarItem Text=      "Descartar" 
+                     Icon=      "delete_24.png"
+                     Clicked=   "OnApagar" />
+    </ContentPage.ToolbarItems>
+
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Padding="10,15,10,10" >
+                  <local:StepRenderer StepColor="{StaticResource SecondaryColor}" Steps="7" StepSelected="4" x:Name="stepBar"/>
+                </StackLayout>
+
+
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Apreensão de Objetos ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <StackLayout Style=         "{StaticResource FormHeader}">
+                            <Label Text=            "Apreensão de Objetos"
+                                   Style=           "{StaticResource FormSectionLabel}" />
+                            <Image x:Name="apreensaoArrow"
+                                   Source=          "chevron_down_blue_24.png"
+                                   HorizontalOptions="End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnApreensaoTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+<!-- x:Name -->         <StackLayout x:Name="apreensaoStack"
+                                     IsVisible=     "false">
+                            <Grid Padding=          "15,5,15,10"
+                                  RowSpacing=       "0"
+                                  ColumnSpacing=    "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                    <RowDefinition Height="Auto" /> <!-- 05 -->
+                                    <RowDefinition Height="Auto" /> <!-- 06 -->
+                                    <RowDefinition Height="Auto" /> <!-- 07 -->
+                                    <RowDefinition Height="Auto" /> <!-- 08 -->
+                                    <RowDefinition Height="Auto" /> <!-- 09 -->
+                                    <RowDefinition Height="Auto" /> <!-- 10 -->
+                                    <RowDefinition Height="Auto" /> <!-- 11 -->
+                                    <RowDefinition Height="Auto" /> <!-- 12 -->
+                                    <RowDefinition Height="Auto" /> <!-- 13 -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 00 -->
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Objecto -->
+                                <Label Text=                "Objeto"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "0"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "3" />
+<!-- x:Name -->                 <Picker x:Name="objeto"
+                                        ItemsSource=        "{Binding Objeto}"
+                                        SelectedItem=       "{Binding Apreensao.Objeto, Mode=TwoWay}"
+                                        Style=              "{StaticResource FormPicker}"
+                                        Grid.Row=           "1"
+                                        Grid.Column=        "0"
+                                        Grid.ColumnSpan=    "3" />
+
+                                <!-- Data da Apreensão -->
+                                <Label Text=                "Data"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "2"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "2"/>
+<!-- x:Name -->                 <DatePicker x:Name="data"
+                                            Date=           "{Binding Apreensao.DataApreensao, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=         "dd/MM/yyyy"
+                                            Style=          "{StaticResource FormDatePicker}"
+                                            Grid.Row=       "3"
+                                            Grid.Column=    "0"
+                                            Grid.ColumnSpan="1"/>
+
+                                <!-- Hora da Apreensão -->
+                                <Label Text=                "Hora"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "2"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2"/>
+<!-- x:Name -->                 <TimePicker x:Name="hora"
+                                            Time=           "{Binding Apreensao.HoraApreensao, Mode=TwoWay}"
+                                            Style=          "{StaticResource FormTimePicker}"
+                                            Grid.Row=       "3"
+                                            Grid.Column=    "2"
+                                            Grid.ColumnSpan="1"/>
+
+                                <!-- Lei -->
+                                <Label Text=                "Lei"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "4"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "4" />
+<!-- x:Name -->                 <Picker x:Name="lei"
+                                        ItemsSource=        "{Binding Lei}"
+                                        SelectedItem=       "Não Definido"
+                                        SelectedIndex=      "{Binding Apreensao.LeiApreensao}"
+                                        SelectedIndexChanged="OnSelectedndexChanged"
+                                        Style=              "{StaticResource FormPicker}"
+                                        Grid.Row=           "5"
+                                        Grid.Column=        "0"
+                                        Grid.ColumnSpan=    "4" />
+                                
+                                <!-- Tipo -->
+                                <Label Text=                "Tipo"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "6"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "2" />
+<!-- x:Name -->                 <Picker x:Name="tipo"
+                                        ItemsSource=        "{Binding Tipo}"
+                                        SelectedItem=       "{Binding Apreensao.TipoApreensao}"
+                                        Style=              "{StaticResource FormPicker}"
+                                        Grid.Row=           "7"
+                                        Grid.Column=        "0"
+                                        Grid.ColumnSpan=    "2" />
+                                    
+                                <!-- Coima -->
+                                <Label Text=                "Coima"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "6"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2" />
+ <!-- x:Name -->                <Entry x:Name="coima"
+                                       Text=                "{Binding Apreensao.Coima}"
+                                       Style=               "{StaticResource FormEntry}"
+                                       Keyboard=            "Numeric"
+                                       Grid.Row=            "7"
+                                       Grid.Column=         "2"
+                                       Grid.ColumnSpan=     "2" />                                      
+                               
+                                <!-- Motivo -->
+                                <Label Text=                "Motivo"
+                                       Style=               "{StaticResource FormTitleLabel}"
+                                       Grid.Row=            "8"
+                                       Grid.Column=         "0"
+                                       Grid.ColumnSpan=     "4" />
+<!-- x:Name -->                 <Editor x:Name="editor"
+                                        Text=               "{Binding Apreensao.Motivo}"
+                                        FontSize=           "15"
+                                        TextColor=          "{StaticResource NormalTextColor}"
+                                        VerticalOptions=    "FillAndExpand"
+                                        Margin=             "0,0,0,10"
+                                        HeightRequest=      "70"
+                                        Grid.Row=           "9"
+                                        Grid.Column=        "0"
+                                        Grid.ColumnSpan=    "4" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>            
+
+
+
+                <!-- ~~~~~~ Botões ~~~~~~ -->
+                <StackLayout Orientation=   "Horizontal" >
+                    <Button Text=           "Anterior"
+                            Image=          "chevron_left_orange_24.png"
+                            Style=          "{StaticResource FormLeftButton}"
+                            Clicked=        "OnAnteriorClicked"/>
+                    
+                    <Button Text=           "Próximo"
+                            Image=          "chevron_right_24.png"
+                            Style=          "{StaticResource FormRightButton}"
+                            Clicked=        "OnProximoClicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

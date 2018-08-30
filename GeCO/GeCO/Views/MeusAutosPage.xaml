@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.MeusAutosPage"
+             Title="Meus Autos"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=          "Novo Auto"
+                     Icon=          "add_24.png"
+                     Clicked=       "OnAddClicked"/>
+        <ToolbarItem Text=          "Atualizar Online"
+                     Icon=          "refresh_24.png" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar TextChanged=         "OnTextChanged" 
+                       Placeholder=         "Pesquisar por nº de processo ou denunciante..."
+                       HeightRequest=       "40"
+                       VerticalOptions=     "Center"
+                       Margin="0,5,0,5"/>
+                      
+
+            <ListView x:Name="autosListView"
+                      ItemSelected=         "OnAutoSelected"
+                      BackgroundColor=      "{StaticResource ContentBackgroundColor}"
+                      HasUnevenRows=        "true"
+                      CachingStrategy=      "RecycleElement"> <!-- CachingStrategy="RecycleElement" é uma propriedade da tag ListView e é equivalente ao DequeueReusableCell no iOS --> 
+                <!-- HEADER -->
+                <ListView.Header>
+                    <Grid RowSpacing=       "0"
+                          ColumnSpacing=    "10"
+                          Padding=          "5,10,5,5"
+                          Margin=           "10,5,10,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>  
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.8*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text=        "Nº Processo / Data"
+                               Style=       "{StaticResource ListHeaderOne}"
+                               Grid.Row=    "0"
+                               Grid.Column= "0" />
+                               
+                        <Label Text=        "Denunciante"
+                               Style=       "{StaticResource ListHeaderTwo}"
+                               Grid.Row=    "0"
+                               Grid.Column= "1" />
+                    </Grid>
+                </ListView.Header>
+                <!-- BODY -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing=       "3"
+                                  ColumnSpacing=    "10"
+                                  Padding=          "5,10,5,5"
+                                  Margin=           "10,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>  
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="1.8*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text=        "{Binding CodProcesso}"
+                                       Style=       "{StaticResource ListLabel}"
+                                       Grid.Row=    "0"
+                                       Grid.Column= "0" />
+
+                                <Label Text=        "{Binding DataAuto, StringFormat='{0:dd/MM/yyyy}'}"
+                                       Style=       "{StaticResource ListDetailLabel}"
+                                       Grid.Row=    "1"
+                                       Grid.Column= "0" />
+                                
+                                <Label Text=        "{Binding Nome}"
+                                       Style=       "{StaticResource ListLabel}"
+                                       Grid.Row=    "0"
+                                       Grid.Column= "1"
+                                       Grid.RowSpan="2"/>
+                            </Grid>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Text=     "Editar"
+                                          Clicked=  "OnEditClicked"
+                                          CommandParameter="{Binding .}"
+                                          Icon=     "edit_24.png" />
+                                <MenuItem Text=     "Apagar"
+                                          Icon=     "delete_24.png"
+                                          IsDestructive="true" />
+                                <MenuItem Text=     "Upload"
+                                          Icon=     "cloud_upload_24.png" />
+                                <MenuItem Text=     "PDF" />                              
+                            </ViewCell.ContextActions>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>  
+    </ContentPage.Content>
+</ContentPage>

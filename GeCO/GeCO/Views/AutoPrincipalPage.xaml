@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns=       "http://xamarin.com/schemas/2014/forms" 
+             xmlns:x=     "http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class=     "GeCO.Views.AutoPrincipalPage"
+             xmlns:local= "clr-namespace:GeCO.CustomRenderers"
+             Title=       "Novo Auto"
+             BackgroundColor="{StaticResource ContentBackgroundColor}">
+    
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Guardar Localmente"
+                     Clicked=   "GuardarClicked"
+                     Icon=      "save_24.png" />
+        <ToolbarItem Text=      "Descartar"
+                     Clicked=   "OnApagar"
+                     Icon=      "delete_24.png" />
+        <ToolbarItem Text=      "Reset"
+                     Clicked=   "OnReset"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Padding="10,15,10,10" >
+                    <local:StepRenderer StepColor=      "{StaticResource SecondaryColor}"
+                                        Steps=          "7"
+                                        StepSelected=   "1"
+                                        x:Name=         "stepBar" />
+                </StackLayout>
+
+
+
+                
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Geral ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}">
+                    <StackLayout >
+                        <StackLayout Style=         "{StaticResource FormHeader}">
+                            <Label Text=            "Geral"
+                                   Style=           "{StaticResource FormSectionLabel}" />
+                            <Image x:Name="geralArrow"
+                                   Source=          "chevron_down_blue_24.png"
+                                   HorizontalOptions="End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGeralTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        
+                        <StackLayout x:Name="geralStack"
+                                     IsVisible=     "false">
+                            <Grid  Padding=         "15,5,15,10"
+                                   RowSpacing=      "0"
+                                   ColumnSpacing=   "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                    <RowDefinition Height="Auto" /> <!-- 05 -->
+                                    <RowDefinition Height="Auto" /> <!-- 06 -->
+                                    <RowDefinition Height="Auto" /> <!-- 07 -->
+                                    <RowDefinition Height="Auto" /> <!-- 08 -->
+                                    <RowDefinition Height="Auto" /> <!-- 09 -->
+                                    <RowDefinition Height="Auto" /> <!-- 10 -->
+                                    <RowDefinition Height="Auto" /> <!-- 11 -->
+                                    <RowDefinition Height="Auto" /> <!-- 12 -->
+                                    <RowDefinition Height="Auto" /> <!-- 13 -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />  <!-- 04 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Numero de Processo (Código Processo) -->
+                                <Label Text=            "Número de Processo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="codProcesso"
+                                       Text=            "{Binding Geral.CodProcesso, Mode=TwoWay}"
+                                       Placeholder=     "Automático"
+                                       IsEnabled=       "false"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <!-- Pasta Física -->
+                                <Label Text=            "Pasta Física"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="pastaFisica"
+                                       Text=            "{Binding Geral.PastaFisica, Mode=TwoWay}"
+                                       Placeholder=     "Ex xxxx/B/2018"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Data -->
+                                <Label Text=            "Data"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2"/>
+                                <DatePicker x:Name="data"
+                                            Date=       "{Binding Geral.DataAuto, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=     "dd/MM/yyyy"
+                                            Style=      "{StaticResource FormDatePicker}"
+                                            Grid.Row=   "3"
+                                            Grid.Column="0" />
+                                <!-- Hora -->
+                                <Label Text=            "Hora"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2"/>
+                                <TimePicker x:Name="hora"
+                                            Time=       "{Binding Geral.HoraAuto, Mode=TwoWay}"
+                                            Style=      "{StaticResource FormTimePicker}"
+                                            Grid.Row=   "3"
+                                            Grid.Column="2" />
+
+                                <!-- Acidente de Viação --> 
+                                <Label Text=            "Acidente de Viação"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "4"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2"/>
+                                <StackLayout Orientation=     "Horizontal"
+                                             Margin=          "5,10,0,15"
+                                             Grid.Row=        "5"
+                                             Grid.Column=     "0"
+                                             Grid.ColumnSpan= "2" >
+                                    <Label  Text=             "Não"
+                                            VerticalOptions=  "Center" />
+                                    <Switch x:Name="isAcidente"
+                                            IsToggled=        "{Binding Geral.IsAcidenteViacao, Mode=TwoWay}"
+                                            HorizontalOptions="CenterAndExpand" />
+                                    <Label  Text=             "Sim"
+                                            VerticalOptions=  "Center" />
+                                </StackLayout>
+
+                                <!-- Entidade Decisora -->
+                                <Label Text=            "Entidade Decisora"                                      
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="entDecisora"
+                                        ItemsSource=    "{Binding Entidades}"
+                                        SelectedItem=   "{Binding Geral.EntDecisora}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "7"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" >
+                                </Picker>
+
+                                <!-- Entidade Autuante -->
+                                <Label Text=            "Entidade Autuante"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="entAutuante"
+                                        ItemsSource=    "{Binding Entidades}"
+                                        SelectedItem=   "{Binding Geral.EntidadeAutuante, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "7"
+                                        Grid.Column=    "2"
+                                        Grid.ColumnSpan="2" />
+
+                                <!-- Entidade Responsável -->
+                                <Label Text=            "Entidade Responsável"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "8"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="entResp"
+                                        ItemsSource=    "{Binding Entidades}"
+                                        SelectedItem=   "{Binding Geral.EntResponsavel, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "9" 
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" />
+
+                                <!-- Código de Infração -->
+                                <Label Text=            "Código da Infração"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "10"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="codInfracao"
+                                       Text=            "{Binding Geral.CodigoInfracao, Mode=TwoWay}"
+                                       Placeholder=     "Ex xxx/Artigo xxx"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "11"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <!-- Tipo de Infração -->
+                                <Label Text=            "Tipo de Infração"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "10"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="tipoInfracao"
+                                        ItemsSource=    "{Binding Placeholders}"
+                                        SelectedItem=   "{Binding Geral.TipoInfracao, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "11"
+                                        Grid.Column=    "2"
+                                        Grid.ColumnSpan="2" />
+                                
+                                <!-- Categoria de Infração -->
+                                <Label Text=            "Categoria de Infração"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "12"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="catInfracao"
+                                        ItemsSource=    "{Binding Placeholders}"
+                                        SelectedItem=   "{Binding Geral.CategoriaInfracao, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "13"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                
+
+
+                
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Localização ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout >
+                        <StackLayout Style=         "{StaticResource FormHeader}">
+                            <Label Text=            "Localização"
+                                   Style=           "{StaticResource FormSectionLabel}"/>
+                            <Image x:Name="localizacaoArrow"
+                                   Source=          "chevron_down_blue_24.png"
+                                   HorizontalOptions="End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLocalizacaoTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        
+                        <StackLayout x:Name="localizacaoStack"
+                                     IsVisible=     "false">
+                            <Grid  Padding=         "15,5,15,10"
+                                   RowSpacing=      "0"
+                                   ColumnSpacing=   "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                    <RowDefinition Height="Auto" /> <!-- 05 -->
+                                    <RowDefinition Height="Auto" /> <!-- 06 -->
+                                    <RowDefinition Height="Auto" /> <!-- 07 -->
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />  <!-- 04 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Rua -->
+                                <Label Text=            "Rua"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                                <Entry x:Name="rua"
+                                       Text=            "{Binding Localizacao.Rua, Mode=TwoWay}"
+                                       Placeholder=     "Ex Rua 5 de Outubro"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+
+                                <!-- Edifício e Porta -->
+                                <Label Text=            "Edifício e Porta"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3"/>
+                                <Entry x:Name="edificoPorta"
+                                       Text=            "{Binding Localizacao.EdificioPorta, Mode=TwoWay}"
+                                       Placeholder=     "Ex Vva Faustino, n23"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "3"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3" />
+
+                                <!-- Localidade -->
+                                <Label Text=            "Localidade"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "4"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3"/>
+                                <Entry x:Name="localidade" 
+                                       Text=            "{Binding Localizacao.Localidade, Mode=TwoWay}"
+                                       Placeholder=     "Ex Santa Luzia"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "5"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3" />
+
+                                <!-- Cidade -->
+                                <Label Text=            "Cidade"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3"/>
+                                <Entry x:Name="cidade"
+                                       Text=            "{Binding Localizacao.Cidade, Mode=TwoWay}"
+                                       Placeholder=     "Ex Funchal"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "7"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "3" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+
+                
+                    
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Denunciante ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <StackLayout Style=         "{StaticResource FormHeader}">
+                            <Label Text=            "Denunciante"
+                                   Style=           "{StaticResource FormSectionLabel}" />
+                            <Image x:Name=          "denuncianteArrow"
+                                   Source=          "chevron_down_blue_24.png"
+                                   HorizontalOptions="End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDenuncianteTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        
+                        <StackLayout x:Name="denuncianteStack"
+                                     IsVisible=     "false">
+                            
+                                <SearchBar x:Name="searchBox"
+                                           TextChanged=             "OnTextChanged"
+                                           Placeholder=             "Pesquisar por nome..."
+                                           Margin=                  "0,0,15,10"
+                                           HeightRequest=           "40" />
+
+                                <ListView x:Name="pessoaListView"
+                                          ItemSelected=             "OnPessoaSelected"
+                                          BackgroundColor=          "{StaticResource SecondaryLightColor}"
+                                          RowHeight=                "45"
+                                          IsVisible=                "false"
+                                          Margin=                   "0,0,0,15"
+                                          CachingStrategy=          "RecycleElement"> 
+                                    <!-- BODY -->
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextCell Text=         "{Binding Nome}"
+                                                      Detail=       "{Binding NIF}"
+                                                      TextColor=    "{StaticResource NormalDarkTextColor}"
+                                                      DetailColor=  "{StaticResource NormalTextColor}"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView> 
+
+
+                            <Grid  Padding=         "15,0,15,10"
+                                   RowSpacing=      "0"
+                                   ColumnSpacing=   "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 00 -->
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                    <RowDefinition Height="Auto" /> <!-- 05 -->
+                                    <RowDefinition Height="Auto" /> <!-- 06 -->
+                                    <RowDefinition Height="Auto" /> <!-- 07 -->
+                                    <RowDefinition Height="Auto" /> <!-- 08 -->
+                                    <RowDefinition Height="Auto" /> <!-- 09 -->
+                                    <RowDefinition Height="Auto" /> <!-- 10 -->
+                                    <RowDefinition Height="Auto" /> <!-- 11 -->
+                                    <RowDefinition Height="Auto" /> <!-- 12 -->
+                                    <RowDefinition Height="Auto" /> <!-- 13 -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />  <!-- 04 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Nome Completo -->
+                                <Label Text=            "Nome Completo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                                <Entry x:Name="nome"
+                                       Text=            "{Binding Pessoa.Nome, Mode=TwoWay}"
+                                       Placeholder=     "Nome"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+
+                                <!-- Data de Nascimento -->
+                                <Label Text=            "Data de Nascimento"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2"/>
+                                <DatePicker x:Name="dataNasc"
+                                            Date=       "{Binding Pessoa.DataNascimento, Mode=TwoWay, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=     "dd/MM/yyyy"
+                                            Style=      "{StaticResource FormDatePicker}"
+                                            Grid.Row=   "3"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="1"/>
+
+                                <!-- Género -->
+                                <Label Text=            "Género"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="genero"
+                                        ItemsSource=    "{Binding Genero}"
+                                        SelectedItem=   "{Binding Pessoa.Genero, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "3"
+                                        Grid.Column=    "2"
+                                        Grid.ColumnSpan="2" >
+                                </Picker>
+                                
+                                <!-- Estado Civil -->
+                                <Label Text=            "Estado Civil"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "4"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="estadoCiv"
+                                        ItemsSource=    "{Binding EstadoCivil}"
+                                        SelectedItem=   "{Binding Pessoa.EstadoCivil, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "5"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" >
+                                </Picker>
+
+                                <!-- Nacionalidade -->  
+                                <Label Text=            "Nacionalidade"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="nacionalidade"
+                                       Text=            "{Binding Pessoa.Nacionalidade, Mode=TwoWay}"
+                                       Placeholder=     "Ex Portugal"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "7"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <!-- Naturalidade -->   <!-- No website é um picker, mas uma entry parece mais correto -->
+                                <Label Text=            "Naturalidade"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="naturalidade"
+                                       Text=            "{Binding Pessoa.Naturalidade, Mode=TwoWay}"
+                                       Placeholder=     "Ex Lisboa"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "7"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- NIF -->
+                                <Label Text=            "NIF"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "8"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="nif"
+                                       Text=            "{Binding Pessoa.NIF, Mode=TwoWay}"
+                                       Placeholder=     "Ex 000 000 000"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "9"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Contacto -->
+                                <Label Text=            "Contacto"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "10"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="contacto1"
+                                       Text=            "{Binding Pessoa.Contacto1, Mode=TwoWay}"
+                                       Placeholder=     "Ex 000 000 000"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "11"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Contacto 2 -->
+                                <Label Text=            "Contacto 2"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "10"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="contacto2"
+                                       Text=            "{Binding Pessoa.Contacto2, Mode=TwoWay}"
+                                       Placeholder=     "Ex 000 000 000"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "11"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Email -->
+                                <Label Text=            "Email"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "12"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                                <Entry x:Name="email"
+                                       Text=            "{Binding Pessoa.Email, Mode=TwoWay}"
+                                       Placeholder=     "exemplo@email.com"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Email"
+                                       Grid.Row=        "13"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+
+                
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~ Autuantes e Equipamentos ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <StackLayout Style=         "{StaticResource FormHeader}">
+                            <Label Text=            "Autuantes / Equipamentos"
+                                   Style=           "{StaticResource FormSectionLabel}" />
+                            <Image x:Name="autuanteArrow"
+                                   Source=          "chevron_down_blue_24.png"
+                                   HorizontalOptions="End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAutuantesTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        
+                        <StackLayout x:Name="autuanteStack"
+                                     IsVisible=     "false">
+                            <Grid  Padding=         "15,5,15,10"
+                                   RowSpacing=      "0"
+                                   ColumnSpacing=   "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> <!-- 02 -->
+                                    <RowDefinition Height="Auto" /> <!-- 03 -->
+                                    <RowDefinition Height="Auto" /> <!-- 04 -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />  <!-- 01 -->
+                                    <ColumnDefinition Width="*" />  <!-- 02 -->
+                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />  <!-- 04 -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Autuante -->
+                                <Label Text=                    "Autuante"
+                                       Style=                   "{StaticResource FormTitleLabel}"
+                                       Grid.Row=                "0"
+                                       Grid.Column=             "0"
+                                       Grid.ColumnSpan=         "2" />
+                                <Picker x:Name="autuante"
+                                        ItemsSource=            "{Binding Entidades}"
+                                        SelectedItem=           "{Binding Autuante.EntidadeAutuante}"
+                                        Style=                  "{StaticResource FormPicker}"
+                                        Grid.Row=               "1"
+                                        Grid.Column=            "0"
+                                        Grid.ColumnSpan=        "2" >
+                                </Picker>
+                                <!-- Presenciado -->
+                                <Label Text=                    "Presenciado?"
+                                       Style=                   "{StaticResource FormTitleLabel}"
+                                       Grid.Row=                "0"
+                                       Grid.Column=             "2"
+                                       Grid.ColumnSpan=         "2" />
+                                <StackLayout Orientation=       "Horizontal"
+                                             Margin=            "5,10,0,15"
+                                             Grid.Row=          "1"
+                                             Grid.Column=       "2"
+                                             Grid.ColumnSpan=   "2" >
+                                    <Label  Text=               "Não"
+                                            VerticalOptions=    "Center" />
+                                    <Switch x:Name="isPresenciado"
+                                            IsToggled=          "{Binding Autuante.IsPresenciado, Mode=TwoWay}"
+                                            HorizontalOptions=  "CenterAndExpand" />
+                                    <Label  Text=               "Sim"
+                                            VerticalOptions=    "Center" />
+                                </StackLayout>
+
+                                <!-- Equipamentos -->
+                                <Label Text=            "Equipamentos"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="equipamentos"
+                                        ItemsSource=    "{Binding Equipamentos}"
+                                        SelectedItem=   "{Binding Autuante.Equipamento, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "3"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" >
+                                </Picker>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+                <!-- ~~~~~~ Botões ~~~~~~ -->
+                <StackLayout Orientation=   "Horizontal" >
+                    <Button Text=           "Cancelar"
+                            Image=          "close_red_24.png"
+                            Style=          "{StaticResource FormCancelButton}"
+                            Clicked=        "OnCancelarClicked" />
+                                            
+                    <Button Text=           "Próximo"
+                            Image=          "chevron_right_24.png"
+                            Style=          "{StaticResource FormRightButton}"
+                            Clicked=        "OnProximoClicked"/>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

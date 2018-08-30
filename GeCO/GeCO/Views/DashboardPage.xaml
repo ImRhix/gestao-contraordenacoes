@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.DashboardPage"
+             Title="Dashboard"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Novo Auto"
+                     Icon=      "add_24.png"
+                     Clicked=   "OnAddClicked" />
+        <ToolbarItem Text=      "Atualizar Online"
+                     Icon=      "refresh_24.png" />
+    </ContentPage.ToolbarItems>
+
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="7" BackgroundColor="{StaticResource BackgroundColor}" RowSpacing="7" ColumnSpacing="7" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" /> <!-- 188 -->
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>  
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                ~~~~~~~ Contraordenações de Sistema ~~~~~~~
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame CornerRadius=    "2"
+                       Padding=         "5,10,5,10"
+                       Grid.Row=        "0"
+                       Grid.Column=     "0"
+                       Grid.ColumnSpan= "2" >
+                    <StackLayout >
+                        <Label Text=    "Contraordenações em Sistema"
+                               Style=   "{StaticResource CardHeading}"/>
+                        <Image Source=  "barchart.png"
+                               Aspect=  "AspectFit"
+                               Margin=  "5"/>
+                        <StackLayout Style=             "{StaticResource LegendaStackLayout}">
+                            <BoxView Style=             "{StaticResource LegendaBoxView}"
+                                     BackgroundColor=   "Gray"/>
+                            <Label Style=               "{StaticResource LegendaLabel}"
+                                   Text=                "UWP" />
+                            <BoxView Style=             "{StaticResource LegendaBoxView}"
+                                     BackgroundColor=   "Green"/>
+                            <Label Style=               "{StaticResource LegendaLabel}"
+                                   Text=                "Android" />
+                        </StackLayout>
+                        <StackLayout Style=             "{StaticResource LegendaStackLayout}">
+                            <BoxView Style=             "{StaticResource LegendaBoxView}"
+                                     BackgroundColor=   "Purple"/>
+                            <Label Style=               "{StaticResource LegendaLabel}"
+                                   Text=                "iOS" />
+                            <BoxView Style=             "{StaticResource LegendaBoxView}"
+                                     BackgroundColor=   "Blue"/>
+                            <Label Style=               "{StaticResource LegendaLabel}"
+                                   Text=                "Shared" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+                
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                ~~~~~~~~~~ Inibições de Conduzir ~~~~~~~~~~
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame CornerRadius="2"
+                       Padding=     "5,10,5,10"
+                       Grid.Row=    "1"
+                       Grid.Column= "0"
+                       MinimumHeightRequest="300">
+                    <StackLayout >
+                        <Label Text=        "Inibições de Conduzir"
+                               Style=       "{StaticResource CardHeading}" />
+                        <StackLayout >
+                            <Label Text=    "29"
+                                   Style=   "{StaticResource OrangeCardText}" />
+                            <Label Text=    "(14%)"
+                                   Style=   "{StaticResource DetailCardText}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                ~~~~~~~ Contraordenações Atribuídas ~~~~~~~
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> <!--  HeightRequest="168" -->
+                <Frame CornerRadius="2"
+                       Padding=     "5,10,5,10"
+                       Grid.Row=    "2"
+                       Grid.Column= "0"
+                       MinimumHeightRequest="300">
+                    <StackLayout >
+                        <Label Text=        "COs Atribuídas"
+                               Style=       "{StaticResource CardHeading}" />
+                        <StackLayout > 
+                            <Label Text=    "265"
+                                   Style=   "{StaticResource OrangeCardText}" />
+                            <Label Text=    "(67%)"
+                                   Style=   "{StaticResource DetailCardText}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                ~~~~~~~~ Contraordenações a Expirar ~~~~~~~
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame CornerRadius=    "2"
+                       Padding=         "0,20,0,0"
+                       BorderColor=     "{StaticResource WarningColor}"
+                       BackgroundColor= "{StaticResource WarningColor}"
+                       Grid.Row=        "1"
+                       Grid.Column=     "1"
+                       Grid.RowSpan=    "2"
+                       MinimumHeightRequest="500">
+                    <StackLayout>
+                        <!-- ~~~~~~ ListView ~~~~~~ -->
+                        <ListView x:Name=               "expirarListView"
+                                  SeparatorVisibility=  "Default"
+                                  SeparatorColor=       "{StaticResource SecondaryColor}"
+                                  BackgroundColor=      "{StaticResource DarkListColor}" >
+
+                            <!-- HEADER -->
+                            <ListView.Header>
+                                <StackLayout >
+                                    <Label Text=                "Contraordenações a Expirar"
+                                           Style=               "{StaticResource RedCardHeading}" />
+                                    <BoxView BackgroundColor=   "{StaticResource WarningColor}"
+                                             HeightRequest=     "15"
+                                             Margin=            "0,-6,0,5" />
+                                </StackLayout>
+                            </ListView.Header>
+
+                            <!-- BODY -->
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text=         "{Binding ProcessoId, StringFormat='Nº Auto: {0}'}"
+                                              Detail=       "{Binding DataLimite, StringFormat='Expira a {0}'}"
+                                              TextColor=    "{StaticResource PrimaryTextColor}"
+                                              DetailColor=  "{StaticResource NormalLightTextColor}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <!-- FOOTER -->
+                            <ListView.Footer>
+                                <StackLayout>
+                                    <StackLayout BackgroundColor=   "{StaticResource ContentBackgroundColor}"
+                                             VerticalOptions=   "EndAndExpand"
+                                             Orientation=       "Horizontal"
+                                             Padding=           "0,17,0,17" >
+                                        <Label Text=            "Ver Todas"
+                                           Style=           "{StaticResource RedCardHeading}"
+                                           TextColor=       "{StaticResource WarningColor}"
+                                           BackgroundColor= "Transparent"/>
+                                        <Image Source=          "chevron_right_red_24.png"
+                                           Margin=          "0,0,15,0" />
+                                    </StackLayout>
+                                        <BoxView BackgroundColor=   "{StaticResource ContentBackgroundColor}"
+                                             HeightRequest=     "15"
+                                             Margin=            "0,-6,0,5" />
+                                </StackLayout>
+                            </ListView.Footer>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+
+
+                
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                ~~~~~~~ Decisões Contraordenatórias ~~~~~~~
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame CornerRadius=    "2"
+                       Padding=         "5,10,5,10"
+                       Grid.Row=        "3"
+                       Grid.Column=     "0"
+                       Grid.ColumnSpan= "2" >
+                    <StackLayout>
+                        <Label Text=    "Decisões Condenatórias"
+                               Style=   "{StaticResource CardHeading}"/>
+                        <Image Source=  "barchart.png"
+                               Aspect=  "AspectFit"
+                               Margin=  "5"/>
+                        <StackLayout Orientation=       "Horizontal"
+                                     HorizontalOptions= "Center">
+                            <BoxView WidthRequest=      "18"
+                                     Margin=            "5"/>
+                            <Label Text=                "Condenatórias"
+                                   VerticalOptions=     "Center"/>
+                            <BoxView WidthRequest=      "18"
+                                     Margin=            "10,5,5,5"/>
+                            <Label Text=                "Não Condenatórias"
+                                   VerticalOptions=     "Center"/> 
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
