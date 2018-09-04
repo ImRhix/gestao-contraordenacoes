@@ -1,12 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GeCO.Views.PessoasListPage">
+             x:Class="GeCO.Views.PessoasListPage"
+             Title="Pessoas"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=          "Nova Pessoa"
+                     Icon=          "add_24.png"
+                     Clicked=       "OnAddClicked"/>
+        <ToolbarItem Text=          "Atualizar Online"
+                     Icon=          "refresh_24.png" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <SearchBar TextChanged=         "OnTextChanged" 
+                       Placeholder=         "Pesquisar por nome ou contribuinte..."
+                       HeightRequest=       "40"
+                       VerticalOptions=     "Center"
+                       Margin=              "0,5,0,5"/>
+
+
+            <ListView x:Name="pessoasListView"
+                      ItemSelected=         "OnPessoaSelected"
+                      BackgroundColor=      "{StaticResource ContentBackgroundColor}"
+                      HasUnevenRows=        "true"
+                      CachingStrategy=      "RecycleElement">
+                <!-- HEADER -->
+                <ListView.Header>
+                    <Grid RowSpacing=       "0"
+                          ColumnSpacing=    "10"
+                          Padding=          "5,10,5,5"
+                          Margin=           "10,5,10,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.8*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text=        "Contribuinte / Data Nascimento"
+                               Style=       "{StaticResource ListHeaderOne}"
+                               Grid.Row=    "0"
+                               Grid.Column= "0" />
+
+                        <Label Text=        "Nome"
+                               Style=       "{StaticResource ListHeaderTwo}"
+                               Grid.Row=    "0"
+                               Grid.Column= "1" />
+                    </Grid>
+                </ListView.Header>
+                <!-- BODY -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing=       "3"
+                                  ColumnSpacing=    "10"
+                                  Padding=          "5,10,5,5"
+                                  Margin=           "10,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="1.8*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text=        "{Binding NIF}"
+                                       Style=       "{StaticResource ListLabel}"
+                                       Grid.Row=    "0"
+                                       Grid.Column= "0" />
+
+                                <Label Text=        "{Binding DataNasc, StringFormat='{0:dd/MM/yyyy}'}"
+                                       Style=       "{StaticResource ListDetailLabel}"
+                                       Grid.Row=    "1"
+                                       Grid.Column= "0" />
+
+                                <Label Text=        "{Binding Nome}"
+                                       Style=       "{StaticResource ListLabel}"
+                                       Grid.Row=    "0"
+                                       Grid.Column= "1"
+                                       Grid.RowSpan="2"/>
+                            </Grid>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Text=     "Editar"
+                                          Clicked=  "OnEditClicked"
+                                          CommandParameter="{Binding .}"
+                                          Icon=     "edit_24.png" />
+                                <MenuItem Text=     "Apagar"
+                                          Icon=     "delete_24.png"
+                                          IsDestructive="true" />
+                                <MenuItem Text=     "Upload"
+                                          Icon=     "cloud_upload_24.png" />
+                                <MenuItem Text=     "PDF" />
+                            </ViewCell.ContextActions>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
