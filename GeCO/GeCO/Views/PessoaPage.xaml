@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeCO.Views.PessoaPage"
+             Title="Pessoa"
+             BackgroundColor="{StaticResource ContentBackgroundColor}" >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=      "Guardar Localmente"
+                     Icon=      "save_24.png"
+                     Clicked=   "OnGuardarClicked"/>
+        <ToolbarItem Text=      "Descartar" 
+                     Clicked=   "OnApagarClicked"
+                     Icon=      "delete_24.png" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~ Pessoa ~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <Frame Style="{StaticResource FormFrame}" >
+                    <StackLayout>
+                        <StackLayout Style=           "{StaticResource FormHeader}">
+                            <Label Text=              "Pessoa"
+                                   Style=             "{StaticResource FormSectionLabel}" />
+                            <Image x:Name="pessoaArrow"
+                                   Source=            "chevron_down_blue_24.png"
+                                   HorizontalOptions= "End" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPessoaTapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout x:Name="pessoaStack"
+                                     IsVisible=     "false">
+
+                            <Grid Padding=          "15,5,15,10"
+                                  RowSpacing=       "0"
+                                  ColumnSpacing=    "5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Nome Completo -->
+                                <Label 
+                                       Text=            "Nome Completo"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "0"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                                <Entry x:Name="nome"
+                                       Text=            "{Binding Pessoa.Nome}"
+                                       Placeholder=     "Nome"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "1"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+
+                                <!-- Data de Nascimento -->
+                                <Label Text=            "Data de Nascimento"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2"/>
+                                <DatePicker x:Name="dataNasc"
+                                            Date=       "{Binding Pessoa.DataNascimento, StringFormat='{0:dd/MM/yyyy}'}"
+                                            Format=     "dd/MM/yyyy"
+                                            Style=      "{StaticResource FormDatePicker}"
+                                            Grid.Row=   "3"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="1"/>
+
+                                <!-- Género -->
+                                <Label Text=            "Género"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "2"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="genero"
+                                        ItemsSource=    "{Binding Genero}"
+                                        SelectedItem=   "{Binding Pessoa.Genero, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "3"
+                                        Grid.Column=    "2"
+                                        Grid.ColumnSpan="2" >
+                                </Picker>
+
+                                <!-- Estado Civil -->
+                                <Label Text=            "Estado Civil"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "4"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Picker x:Name="estadoCiv"
+                                        ItemsSource=    "{Binding EstadoCivil}"
+                                        SelectedItem=   "{Binding Pessoa.EstadoCivil, Mode=TwoWay}"
+                                        Style=          "{StaticResource FormPicker}"
+                                        Grid.Row=       "5"
+                                        Grid.Column=    "0"
+                                        Grid.ColumnSpan="2" >
+                                </Picker>
+
+                                <!-- Nacionalidade -->
+                                <Label
+                                       Text=            "Nacionalidade"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="nacionalidade"
+                                       Text=            "{Binding Pessoa.Nacionalidade, Mode=TwoWay}"
+                                       Placeholder=     "Ex Portugal"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "7"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <!-- Naturalidade -->
+                                
+                                <Label 
+                                       Text=            "Naturalidade"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "6"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name ="naturalidade"
+                                       Text=            "{Binding Pessoa.Naturalidade, Mode=TwoWay}"
+                                       Placeholder=     "Ex Lisboa"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Grid.Row=        "7"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- NIF -->
+                                <Label Text="NIF"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "8"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="nif"
+                                      Text=            "{Binding Pessoa.NIF, Mode=TwoWay}"
+                                       Placeholder=     "Ex 000 000 000"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "9"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Contacto -->
+                                <Label Text=            "Contacto"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "10"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="contacto1"
+                                       Text=            "{Binding Pessoa.Contacto1, Mode=TwoWay}"
+                                       Placeholder=     "Ex 000 000 000"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "11"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Contacto 2 -->
+                                <Label Text=            "Contacto 2"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "10"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+                                <Entry x:Name="contacto2"
+                                       Text=            "{Binding Pessoa.Contacto2, Mode=TwoWay}"
+                                       Placeholder=     "Ex 000 000 000"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Numeric"
+                                       Grid.Row=        "11"
+                                       Grid.Column=     "2"
+                                       Grid.ColumnSpan= "2" />
+
+                                <!-- Email -->
+                                <Label Text=            "Email"
+                                       Style=           "{StaticResource FormTitleLabel}"
+                                       Grid.Row=        "12"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                                <Entry x:Name="email"
+                                       Text=            "{Binding Pessoa.Email, Mode=TwoWay}"
+                                       Placeholder=     "exemplo@email.com"
+                                       Style=           "{StaticResource FormEntry}"
+                                       Keyboard=        "Email"
+                                       Grid.Row=        "13"
+                                       Grid.Column=     "0"
+                                       Grid.ColumnSpan= "4" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+                <!-- ~~~~~~ Botões ~~~~~~ -->
+                <StackLayout Orientation=   "Horizontal" >
+                    <Button Text=           "Apagar"
+                            Image=          "delete_24.png"
+                            Style=          "{StaticResource FormLeftButton}"
+                            Clicked=        "OnApagarClicked"/>
+
+                    <Button Text=           "Guardar"
+                            Image=          "save_24.png"
+                            Style=          "{StaticResource FormRightButton}"
+                            Clicked=        "OnGuardarClicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
