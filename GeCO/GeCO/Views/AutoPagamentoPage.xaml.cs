@@ -10,8 +10,6 @@ namespace GeCO.Views {
     public partial class AutoPagamentoPage : ContentPage {
         
         private int currentAutoId, currentPagamentoId;
-        private Pagamento _pagamento;
-        //private CustosProcessuais -_custosProcessuais;
 
         public AutoPagamentoPage(int id) {
             InitializeComponent();

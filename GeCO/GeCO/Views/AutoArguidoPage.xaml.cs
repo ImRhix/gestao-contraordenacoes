@@ -22,6 +22,7 @@ namespace GeCO.Views {
 
         protected override async void OnAppearing() {
             var geral = await (BindingContext as AutoArguidoVM).GetGeral(currentAutoId);
+            Debug.WriteLine($"\nArgId {geral.ArguidoId}\nDenId {geral.DenuncianteId}\nTesId {geral.TestemunhaId}\n");
             currentArguidoId = geral.ArguidoId;
 
             if (currentArguidoId != 0) {

@@ -27,8 +27,13 @@ namespace GeCO.ViewModels {
             meuAutoOC.Clear();
             var lista = await GetGeralList();
             foreach (var item in lista) {
-                var pessoa = await GetPessoa(item.DenuncianteId);
-                meuAutoOC.Add(new MeuAuto { AutoId = item.AutoId, CodProcesso = item.CodProcesso, DataAuto = item.DataAuto, Nome = pessoa.Nome, PessoaId = pessoa.PessoaId, LocalId = item.LocalId });
+                if (item.DenuncianteId != 0) {
+                    var pessoa = await GetPessoa(item.DenuncianteId);
+                    meuAutoOC.Add(new MeuAuto { AutoId = item.AutoId, CodProcesso = item.CodProcesso, DataAuto = item.DataAuto, Nome = pessoa.Nome, PessoaId = pessoa.PessoaId, LocalId = item.LocalId });
+                }
+                else {
+                    meuAutoOC.Add(new MeuAuto { AutoId = item.AutoId, CodProcesso = item.CodProcesso, DataAuto = item.DataAuto, Nome = "Sem Denunciante", PessoaId = 0, LocalId = item.LocalId });
+                }
             }
             return meuAutoOC;
         }

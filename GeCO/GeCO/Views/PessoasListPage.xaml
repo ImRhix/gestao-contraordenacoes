@@ -41,7 +41,7 @@
                             <ColumnDefinition Width="1.8*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Text=        "Contribuinte / Data Nascimento"
+                        <Label Text=        "NIF / Data Nascimento"
                                Style=       "{StaticResource ListHeaderOne}"
                                Grid.Row=    "0"
                                Grid.Column= "0" />
@@ -74,7 +74,7 @@
                                        Grid.Row=    "0"
                                        Grid.Column= "0" />
 
-                                <Label Text=        "{Binding DataNasc, StringFormat='{0:dd/MM/yyyy}'}"
+                                <Label Text=        "{Binding DataNascimento, StringFormat='{0:dd/MM/yyyy}'}"
                                        Style=       "{StaticResource ListDetailLabel}"
                                        Grid.Row=    "1"
                                        Grid.Column= "0" />

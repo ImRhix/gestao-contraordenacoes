@@ -25,10 +25,7 @@ namespace GeCO.Models {
 
         [PrimaryKey, AutoIncrement]
         public int PessoaId { get; set; }
-        //public int IdProcesso { get; set; }
-
-        // Poderá uma pessoa ter 2 ou mais tipos ao mesmo tempo?
-        // Ex. Denunciante e Arguido = true ?
+        
         public bool IsDenunciante { get; set; }
         public bool IsArguido { get; set; }
         public bool IsTestemunha { get; set; }
