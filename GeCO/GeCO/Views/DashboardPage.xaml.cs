@@ -214,6 +214,7 @@ namespace GeCO.Views
                     Email =             "falexsilva@gmail.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Ricardo Brito",
                     DataNascimento =    new DateTime(1991, 03, 09),
@@ -227,6 +228,7 @@ namespace GeCO.Views
                     Email =             "ric.brito@gmail.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Aníbal Pascoal de Melo",
                     DataNascimento =    new DateTime(1954, 06, 15),
@@ -240,6 +242,7 @@ namespace GeCO.Views
                     Email =             "aniba.pasmelo@yahoo.br"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Manuel Santigao Ortega",
                     DataNascimento =    new DateTime(1984, 04, 03),
@@ -253,6 +256,7 @@ namespace GeCO.Views
                     Email =             "manorte1984@hotmail.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "José Pinheiro Douglas",
                     DataNascimento =    new DateTime(1985, 04, 25),
@@ -266,6 +270,7 @@ namespace GeCO.Views
                     Email =             "josepinh@hotmail.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Teresa Maria Lopes",
                     DataNascimento =    new DateTime(1953, 09, 11),
@@ -279,6 +284,7 @@ namespace GeCO.Views
                     Email =             "temalo@gmail.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Joana Filipa Albuquerque Brito",
                     DataNascimento =    new DateTime(1991, 08, 04),
@@ -292,6 +298,7 @@ namespace GeCO.Views
                     Email =             "jofialb@gmail.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Norberto Leonel Santos",
                     DataNascimento =    new DateTime(1966, 07, 23),
@@ -305,6 +312,7 @@ namespace GeCO.Views
                     Email =             "noberto_santos@yahoo.com"
                 };
                 await App.Database._PHInsert_Pess(Pessoa);
+                new Random().Next(100000000, 299999999);
                 Pessoa = new Pessoa {
                     Nome =              "Filipe Faria Maria",
                     DataNascimento =    new DateTime(1948, 02, 28),

@@ -194,7 +194,6 @@ namespace GeCO.Views {
 
             if (isNewAuto) {
                 await (BindingContext as AutoPrincipalVM).ApagarGeral(Geral as Geral);
-                Debug.WriteLine(currentAutoId);
                 await (BindingContext as AutoPrincipalVM).ApagarPessoa(Pessoa as Pessoa);
                 await (BindingContext as AutoPrincipalVM).ApagarLocalizacao(Localizacao as Localizacao);
                 await (BindingContext as AutoPrincipalVM).ApagarAutuante(Autuante as Autuante);

@@ -23,21 +23,9 @@
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <Frame Style="{StaticResource FormFrame}" >
                     <StackLayout>
-                        <StackLayout Style=           "{StaticResource FormHeader}">
-                            <Label Text=              "Pessoa"
-                                   Style=             "{StaticResource FormSectionLabel}" />
-                            <Image x:Name="pessoaArrow"
-                                   Source=            "chevron_down_blue_24.png"
-                                   HorizontalOptions= "End" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnPessoaTapped" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                        <StackLayout x:Name="pessoaStack" >
 
-                        <StackLayout x:Name="pessoaStack"
-                                     IsVisible=     "false">
-
-                            <Grid Padding=          "15,5,15,10"
+                            <Grid Padding=          "15,15,15,10"
                                   RowSpacing=       "0"
                                   ColumnSpacing=    "5">
                                 <Grid.RowDefinitions>
@@ -213,22 +201,24 @@
                                        Grid.ColumnSpan= "4" />
                             </Grid>
                         </StackLayout>
+
+
+
+                        <!-- ~~~~~~ Botões ~~~~~~ -->
+                        <StackLayout Orientation=   "Horizontal" >
+                            <Button Text=           "Apagar"
+                                    Image=          "delete_24.png"
+                                    Style=          "{StaticResource FormLeftButton}"
+                                    Clicked=        "OnApagarClicked"/>
+
+                            <Button Text=           "Guardar"
+                                    Image=          "save_24.png"
+                                    Style=          "{StaticResource FormRightButton}"
+                                    Clicked=        "OnGuardarClicked"/>
+                        </StackLayout>
                     </StackLayout>
                 </Frame>
-
-
-                <!-- ~~~~~~ Botões ~~~~~~ -->
-                <StackLayout Orientation=   "Horizontal" >
-                    <Button Text=           "Apagar"
-                            Image=          "delete_24.png"
-                            Style=          "{StaticResource FormLeftButton}"
-                            Clicked=        "OnApagarClicked"/>
-
-                    <Button Text=           "Guardar"
-                            Image=          "save_24.png"
-                            Style=          "{StaticResource FormRightButton}"
-                            Clicked=        "OnGuardarClicked"/>
-                </StackLayout>
+                
             </StackLayout>
         </ScrollView>
 

@@ -2,6 +2,7 @@
 using GeCO.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ using Xamarin.Forms.Xaml;
 namespace GeCO.Views {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PessoasListPage : ContentPage {
-        
+
+       
         private Pessoa _pessoa;
 
         public PessoasListPage() {
@@ -53,7 +55,7 @@ namespace GeCO.Views {
         /// </summary>
         async void OnEditClicked(object sender, System.EventArgs e) {
             var item = ((MenuItem)sender);
-            await EditPessoa();
+            await EditPessoa(item.CommandParameter as Pessoa);
         }
 
 
@@ -61,7 +63,7 @@ namespace GeCO.Views {
         /// Abre a página PessoaPage onde se pode adicionar um novo auto.
         /// </summary>
         async void OnAddClicked(object sender, System.EventArgs e) {
-            var page = new PessoaPage();
+            var page = new PessoaPage(0);
             await Navigation.PushAsync(page);
         }
 
@@ -80,7 +82,7 @@ namespace GeCO.Views {
         /// Abre a PessoaPage mas preenchida com a informação do auto selecionado.
         /// </summary>
         async Task EditPessoa(Pessoa pessoa) {
-            var page = new PessoaPage();
+            var page = new PessoaPage(pessoa.PessoaId);
             await Navigation.PushAsync(page);
         }
 

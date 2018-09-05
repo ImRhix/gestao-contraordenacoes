@@ -44,6 +44,14 @@ namespace GeCO.Views {
 
 
         /// <summary>
+        /// Side-menu. Tap no botão Pessoas.
+        /// </summary>
+        void OnPessoasTapped(object sender, System.EventArgs e) {
+            Detail = new NavigationPage(new PessoasListPage());
+            IsPresented = false;
+        }
+
+        /// <summary>
         /// Side-menu (Sub-item de Contraordenações). Redireciona para a pagina MeusAutos, onde se encontra a lista de Autos em sistema.
         /// </summary>
         void OnMeusAutosTapped(object sender, System.EventArgs e) {

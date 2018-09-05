@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,9 +46,9 @@ namespace GeCO.ViewModels {
         /// <summary>
         /// Guardars the pessoa.
         /// </summary>
-        public async Task<ObservableCollection<Pessoa>> GetListaPessoas() {
+        public async Task<ObservableCollection<Pessoa>> GetPessoas() {
             pessoasOC.Clear();
-            var lista = await App.Database.GetPessoaList();
+            var lista = await App.Database.GetPessoaListOrdered();
             foreach (var item in lista)
                 pessoasOC.Add(new Pessoa { PessoaId = item.PessoaId, Nome = item.Nome, DataNascimento = item.DataNascimento, Genero = item.Genero, EstadoCivil = item.EstadoCivil, Nacionalidade = item.Nacionalidade, Naturalidade = item.Naturalidade, NIF = item.NIF, Contacto1 = item.Contacto1, Contacto2 = item.Contacto2, Email = item.Email });
 
@@ -58,7 +59,7 @@ namespace GeCO.ViewModels {
         /// <summary>
         ///  Filtra os items da ObservableCollection pessoasOC de acordo com o texto inserido na SearchBox e cria outra ObservableCollection com a nova informação filtrada.
         ///  Fazendo incialmente o load da lista de pessoas e usando uma outra collection para guardar os resultados filtrados
-        /// evita-se a necessidade de estar sempre a aceder ao servidor/BD
+        ///  evita-se a necessidade de estar sempre a aceder ao servidor/BD
         /// </summary>
         public ObservableCollection<Pessoa> Filtered(string text) {
             newPessoasOC.Clear();
@@ -76,7 +77,7 @@ namespace GeCO.ViewModels {
         /// <summary>
         /// Guarda um novo objeto Pessoa, ou se o NIF já existir na BD atualiza esse objeto com a nova informação.
         /// </summary>
-        public async Task<Pessoa> GuardarPessoa(Pessoa pessoa, int autoId) {
+        public async Task<Pessoa> GuardarPessoa(Pessoa pessoa) {
             if (pessoa.PessoaId != 0) {
                 bool pessoaExists = await App.Database.CheckPessoa(pessoa.NIF);
                 if (pessoaExists) {
@@ -100,10 +101,12 @@ namespace GeCO.ViewModels {
 
         #region REGION -> Deletes
         /// <summary>
-        /// Remove (atualiza) o valor da FK TestemunhaId na tabela Geral para 0
+        /// Apaga a Pessoa da BD e atualiza os Autos que a estavam a utilizar
         /// </summary>
         public async Task ApagarPessoa(Pessoa pessoa) {
+            var id = pessoa.PessoaId;
             await App.Database.ApagarPessoa(pessoa);
+            await App.Database.UpdateDeletedPessoa(id);
         }
         #endregion
 

@@ -90,6 +90,26 @@
 
 
 
+
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+                             ~~~~~~~~~~~~ Pessoas ~~~~~~~~~~~~
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
+                                <Image Source="person_24.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPessoasTapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="Pessoas"
+                                       Style="{StaticResource MenuLabelStyle}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPessoasTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+
+                            
                             
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- ~~~~~~ Meus Autos ~~~~~~~ -->

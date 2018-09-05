@@ -2,6 +2,7 @@
 using GeCO.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,8 @@ namespace GeCO.Views {
         /// </summary>
         async void OnApagarClicked(object sender, System.EventArgs e) {
             IsEnabled = false;
-            await (BindingContext as PessoasVM).ApagarPessoa(Pessoa);
+            loadObjetos();
+            await (BindingContext as PessoasVM).ApagarPessoa(Pessoa as Pessoa);
             await Navigation.PopAsync();
             IsEnabled = true;
         }
@@ -66,6 +68,7 @@ namespace GeCO.Views {
         async void OnGuardarClicked(object sender, System.EventArgs e) {
             IsEnabled = false;
             await loadAndSave();
+            await DisplayAlert("Info", "Pessoa guardada com sucesso.", "Ok");
             IsEnabled = true;
         }
 
@@ -131,17 +134,6 @@ namespace GeCO.Views {
                 _pessoa = value;
                 OnPropertyChanged();
             }
-        }
-        #endregion
-
-        #region REGION -> tap nos separadores 
-        void OnPessoaTapped(object sender, System.EventArgs e) {
-            pessoaStack.IsVisible = !pessoaStack.IsVisible;
-
-            if (pessoaStack.Rotation == 0)
-                pessoaStack.RotateTo(-180, 225);
-            else
-                pessoaStack.RotateTo(0, 225);
         }
         #endregion
     }

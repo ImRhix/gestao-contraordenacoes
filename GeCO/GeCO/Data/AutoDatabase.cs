@@ -127,7 +127,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Geral>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetGeral()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetGeral()\n");
                 return null;
             }
         }
@@ -139,7 +139,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Localizacao>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetLocalizacao()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetLocalizacao()\n");
                 return null;
             }
         }
@@ -151,7 +151,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Pessoa>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetPessoa()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetPessoa()\n");
                 return null;
             }
         }
@@ -163,7 +163,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Autuante>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetAutuante()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetAutuante()\n");
                 return null;
             }
         }
@@ -175,7 +175,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Lei>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetLei()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetLei()\n");
                 return null;
             }
         }
@@ -187,7 +187,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Apreensao>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetApreensao()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetApreensao()\n");
                 return null;
             }
         }
@@ -200,7 +200,7 @@ namespace GeCO.Data {
             try {
                 return await database.GetAsync<Pagamento>(id);
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetPagamento()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetPagamento()\n");
                 return null;
             }
         }
@@ -218,7 +218,7 @@ namespace GeCO.Data {
                 }
                 return false;
             } catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: CheckPessoa(). Returned false.");
+                Debug.WriteLine("\nError in AutoDatabase.cs: CheckPessoa(). Returned false.\n");
                 return false;
             }
         }
@@ -234,7 +234,7 @@ namespace GeCO.Data {
                 return await database.QueryAsync<Geral>(queryGeral);
             }
             catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetGeralList()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetGeralList()\n");
                 return null;
             }
         }
@@ -245,7 +245,18 @@ namespace GeCO.Data {
                 return await database.QueryAsync<Pessoa>(queryGeral);
             }
             catch {
-                Debug.WriteLine("Error in AutoDatabase.cs: GetPessoaList()");
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetPessoaList()\n");
+                return null;
+            }
+        }
+
+        public async Task<List<Pessoa>> GetPessoaListOrdered() {
+            string queryGeral = "SELECT * FROM Pessoa ORDER BY Nome COLLATE NOCASE";
+            try {
+                return await database.QueryAsync<Pessoa>(queryGeral);
+            }
+            catch {
+                Debug.WriteLine("\nError in AutoDatabase.cs: GetPessoaListOrdered()\n");
                 return null;
             }
         }
@@ -424,6 +435,45 @@ namespace GeCO.Data {
             } catch {
                 Debug.WriteLine("\nError in AutoDatabase.cs: UpdatePessoa().\n");
             }
+        }
+
+
+        public async Task UpdateDeletedPessoa(int pessoaId) {
+            var lista = await GetGeralList();
+            foreach (var item in lista) {
+                if (item.DenuncianteId == pessoaId) {
+                    await UpdateDenunciante(0, item.AutoId);
+                }
+                if (item.ArguidoId == pessoaId) {
+                    await UpdateArguido(0, item.AutoId);
+                }
+                if (item.TestemunhaId == pessoaId) {
+                    await UpdateTestemunha(0, item.AutoId);
+                }
+            }
+            //try
+            //{
+            //    var query = $"UPDATE Geral SET DenuncianteId = '0' WHERE DenuncianteId = {pessoaId}";
+            //    await database.QueryAsync<Geral>(query);
+            //    Debug.WriteLine("\n1 [Denunciante].\n");
+            //}
+            //catch { Debug.WriteLine("\nError in AutoDatabase.cs: UpdateDeletedPessoa() [Denunciante].\n"); }
+
+            //try {
+            //    var query = $"UPDATE Geral SET TestemunhaId = '0' WHERE TestemunhaId = {pessoaId}";
+            //    await database.QueryAsync<Geral>(query);
+            //    Debug.WriteLine("\n2 [Testemunha].\n");
+
+            //}
+            //catch { Debug.WriteLine("\nError in AutoDatabase.cs: UpdateDeletedPessoa() [Testemunha].\n"); }
+
+            //try {
+            //    var query = $"UPDATE Geral SET ArguidoId = '0' WHERE TestemunhaId = {pessoaId}";
+            //    await database.QueryAsync<Geral>(query);
+            //    Debug.WriteLine("\n3 [Arguido].\n");
+
+            //}
+            //catch { Debug.WriteLine("\nError in AutoDatabase.cs: UpdateDeletedPessoa() [Arguido].\n"); }
         }
 
         public async Task UpdateDenunciante(int pessoaId, int autoId) {
