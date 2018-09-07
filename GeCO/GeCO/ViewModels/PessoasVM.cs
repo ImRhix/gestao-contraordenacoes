@@ -26,7 +26,7 @@ namespace GeCO.ViewModels {
 
 
 
-        #region REGION -> Gets
+        #region Gets
         /// <summary>
         /// Retorna o presente auto (Geral)
         /// </summary>
@@ -73,7 +73,7 @@ namespace GeCO.ViewModels {
         #endregion
 
 
-        #region REGION -> Saves
+        #region Saves
         /// <summary>
         /// Guarda um novo objeto Pessoa, ou se o NIF já existir na BD atualiza esse objeto com a nova informação.
         /// </summary>
@@ -99,7 +99,7 @@ namespace GeCO.ViewModels {
         #endregion
 
 
-        #region REGION -> Deletes
+        #region Deletes
         /// <summary>
         /// Apaga a Pessoa da BD e atualiza os Autos que a estavam a utilizar
         /// </summary>
@@ -111,7 +111,7 @@ namespace GeCO.ViewModels {
         #endregion
 
 
-        #region REGION -> gettets/setters
+        #region gettets/setters
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -121,6 +121,8 @@ namespace GeCO.ViewModels {
         }
         #endregion
 
+
+        #region Properties
         public void InicializacaoPropriedades() {
             Pessoa =                new Pessoa {
                 Nome =              "",
@@ -135,9 +137,10 @@ namespace GeCO.ViewModels {
                 Email =             ""
             };
         }
+        #endregion
 
 
-        #region REGION -> Lists
+        #region Lists
         List<String> genero = new List<string> {
             "Não Definido",
             "Feminino",
@@ -153,6 +156,5 @@ namespace GeCO.ViewModels {
             "Viúvo"
         };
         #endregion
-
     }
 }

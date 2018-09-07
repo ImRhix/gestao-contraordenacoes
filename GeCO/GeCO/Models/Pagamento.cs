@@ -18,8 +18,7 @@ namespace GeCO.Models {
         private DateTime _dataFinal;
         private DateTime _dataDevolucao;
 
-
-
+        
         [PrimaryKey, AutoIncrement]
         public int PagamentoId { get; set; }
 
@@ -100,7 +99,6 @@ namespace GeCO.Models {
 
     [Table("CustosProcessuais")]
     public class CustosProcessuais {
-        
         [PrimaryKey, AutoIncrement]
         public int CustoId { get; set; }
 

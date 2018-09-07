@@ -7,7 +7,6 @@ using System.Linq;
 using System.Diagnostics;
 
 namespace GeCO.ViewModels {
-    
     public class AutoArguidoVM : PropertyChangedVM {
 
         ObservableCollection<Pessoa> pessoasOC = new ObservableCollection<Pessoa>();
@@ -15,10 +14,8 @@ namespace GeCO.ViewModels {
 
         public List<String> Genero => genero;
         public List<String> EstadoCivil => estadoCivil;
-        public List<String> Qualidade => qualidade;
 
         private Pessoa _pessoa;
-        private QualidadeArguido _qualidadeArguido;
 
 
         public AutoArguidoVM() {
@@ -27,7 +24,7 @@ namespace GeCO.ViewModels {
 
 
 
-#region REGION -> Gets
+        #region Gets
         /// <summary>
         /// Retorna o presente auto (Geral)
         /// </summary>
@@ -70,10 +67,10 @@ namespace GeCO.ViewModels {
 
             return newPessoasOC;
         }
-#endregion
+        #endregion
 
 
-#region REGION -> Saves
+        #region Saves
         /// <summary>
         /// Guarda um novo objeto Pessoa, ou se o NIF já existir na BD atualiza esse objeto com a nova informação.
         /// </summary>
@@ -102,7 +99,7 @@ namespace GeCO.ViewModels {
 #endregion
 
 
-#region REGION -> Deletes
+        #region Deletes
         /// <summary>
         /// Remove (atualiza) o valor da FK ArguidoId na tabela Geral para 0
         /// </summary>
@@ -112,7 +109,7 @@ namespace GeCO.ViewModels {
 #endregion
 
 
-#region REGION -> gettets/setters
+        #region gettets/setters
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -120,16 +117,10 @@ namespace GeCO.ViewModels {
                 OnPropertyChanged();
             }
         }
+        #endregion
 
-        public QualidadeArguido QualidadeArguido {
-            get { return _qualidadeArguido; }
-            set {
-                _qualidadeArguido = value;
-                OnPropertyChanged();
-            }
-        }
-#endregion
 
+        #region Inicialização Propriedades
         public void InicializacaoPropriedades() {
             Pessoa = new Pessoa {
                 Nome =              "",
@@ -143,15 +134,11 @@ namespace GeCO.ViewModels {
                 Contacto2 =         0,
                 Email =             ""
             };
-
-            QualidadeArguido = new QualidadeArguido {
-                QualidadeTipo =     ""
-            };
-
         }
+        #endregion
 
 
-#region REGION -> Lists
+        #region Lists
         List<String> genero = new List<string> {
             "Não Definido",
             "Feminino",
@@ -166,12 +153,6 @@ namespace GeCO.ViewModels {
             "Divorciado",
             "Viúvo"
         };
-        List<String> qualidade = new List<string> {
-            "Não Definido",
-            "Sem Atecedentes",
-            "Reincidente"
-        };
-#endregion
-
+        #endregion
     }
 }

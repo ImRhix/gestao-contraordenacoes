@@ -19,13 +19,13 @@ namespace GeCO.Data {
 
             database.CreateTablesAsync<Geral, Localizacao, Autuante, Lei, Pessoa>().Wait();
             database.CreateTablesAsync<Coima, Apreensao>().Wait();
-            database.CreateTablesAsync<Pagamento, CustosProcessuais, QualidadeArguido>().Wait();
+            database.CreateTablesAsync<Pagamento, CustosProcessuais>().Wait();
             Debug.WriteLine("All tables created.\n");
         }
 
 
 
-#region REGION -> Get (IDs / PKs)
+        #region Get (IDs / PKs)
         /// <summary>
         /// Encontra a ultima linha da tabela Geral, incrementa uma unidade à PK (AutoId) e retorna o valor. 
         /// (NOTA: é suposto a PK ser auto-incrementada mas por algum motivo não está a acontecer e este é o walkaround.)
@@ -116,10 +116,10 @@ namespace GeCO.Data {
                 return nextId;
             }
         }
-#endregion
+        #endregion
 
 
-#region REGION -> Get (Objects)
+        #region Get (Objects / ObjectLists)
         /// <summary>
         /// Retorna um objeto (row) da tabela Geral baseado no id (PK)
         /// </summary>
@@ -282,11 +282,10 @@ namespace GeCO.Data {
                 return null;
             }
         }
+        #endregion
 
-#endregion
 
-
-#region REGION -> Saves (INSERTs)
+        #region Saves (INSERTs)
 
         /// <summary>
         /// Insere ou Atualiza um objecto (row) da tabela Geral
@@ -425,10 +424,10 @@ namespace GeCO.Data {
             }
             return lei;
         }
-#endregion
+        #endregion
 
 
-#region REGION -> UPDATES
+        #region UPDATES
         public async Task UpdatePessoa(Pessoa pessoa) {
             try {
                 int x = await database.UpdateAsync(pessoa);
@@ -451,30 +450,8 @@ namespace GeCO.Data {
                     await UpdateTestemunha(0, item.AutoId);
                 }
             }
-            //try
-            //{
-            //    var query = $"UPDATE Geral SET DenuncianteId = '0' WHERE DenuncianteId = {pessoaId}";
-            //    await database.QueryAsync<Geral>(query);
-            //    Debug.WriteLine("\n1 [Denunciante].\n");
-            //}
-            //catch { Debug.WriteLine("\nError in AutoDatabase.cs: UpdateDeletedPessoa() [Denunciante].\n"); }
-
-            //try {
-            //    var query = $"UPDATE Geral SET TestemunhaId = '0' WHERE TestemunhaId = {pessoaId}";
-            //    await database.QueryAsync<Geral>(query);
-            //    Debug.WriteLine("\n2 [Testemunha].\n");
-
-            //}
-            //catch { Debug.WriteLine("\nError in AutoDatabase.cs: UpdateDeletedPessoa() [Testemunha].\n"); }
-
-            //try {
-            //    var query = $"UPDATE Geral SET ArguidoId = '0' WHERE TestemunhaId = {pessoaId}";
-            //    await database.QueryAsync<Geral>(query);
-            //    Debug.WriteLine("\n3 [Arguido].\n");
-
-            //}
-            //catch { Debug.WriteLine("\nError in AutoDatabase.cs: UpdateDeletedPessoa() [Arguido].\n"); }
         }
+
 
         public async Task UpdateDenunciante(int pessoaId, int autoId) {
             try {
@@ -538,11 +515,10 @@ namespace GeCO.Data {
                 Debug.WriteLine("\nError in AutoDatabase.cs: UpdatePagamento().\n");
             }
         }
+        #endregion
 
-#endregion
 
-
-#region REGION -> Deletes
+        #region Deletes
         /// <summary>
         /// Apaga da tabela o atual objeto Geral
         /// </summary>
@@ -641,17 +617,12 @@ namespace GeCO.Data {
                 Debug.WriteLine("Error in AutoDatabase.cs: Vacuum().");
             }
         }
-#endregion
+        #endregion
 
 
 
 
-
-
-
-
-
-#region REGION -> apenas para os placeholders
+        #region Pre-load dos placeholders (autos e pessoas)
         public async Task<Geral> _PHInsert_Geral(Geral geral) {
             try {
                 await database.InsertAsync(geral);
@@ -728,7 +699,6 @@ namespace GeCO.Data {
         /// Ordem: autoId, localId, denuncianteId, arguidoId, testemunhaId, autuanteId, leiId, apreensaoId, pagamentoId
         /// </summary>
         public async Task _PHUpdate_Geral(int autoId, int localId, int denuncianteId, int arguidoId, int testemunhaId, int autuanteId, int leiId, int apreensaoId, int pagamentoId) {
-            //var query = $"UPDATE Geral SET LocalId = { localId }, DenuncianteId = {denuncianteId}, ArguidoId = {arguidoId}, TestemunhaId = {testemunhaId}, AutuanteId = {autuanteId}, LeiId = {leiId}, ApreensaoId = {apreensaoId}, PagamentoId = {pagamentoId} WHERE AutoId = {autoId}";
             try {
                 //await database.QueryAsync<Geral>(query);
                 var query = $"UPDATE Geral SET LocalId = { localId } WHERE AutoId = {autoId}";
@@ -751,6 +721,6 @@ namespace GeCO.Data {
                 Debug.WriteLine("\nError in AutoDatabase.cs: _PHUpdate_Geral().\n");
             }
         }
-#endregion
+        #endregion
     }
 }

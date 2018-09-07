@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns=       "http://xamarin.com/schemas/2014/forms" 
-             xmlns:x=     "http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class=     "GeCO.Views.AutoPrincipalPage"
-             xmlns:local= "clr-namespace:GeCO.CustomRenderers"
-             Title=       "Novo Auto"
+<ContentPage xmlns=          "http://xamarin.com/schemas/2014/forms" 
+             xmlns:x=        "http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class=        "GeCO.Views.AutoPrincipalPage"
+             xmlns:local=    "clr-namespace:GeCO.CustomRenderers"
+             Title=          "Auto"
              BackgroundColor="{StaticResource ContentBackgroundColor}">
     
     
@@ -359,7 +359,7 @@
 
                         
                         <StackLayout x:Name="denuncianteStack"
-                                     IsVisible=     "false">
+                                     IsVisible="false">
                             
                                 <SearchBar x:Name="searchBox"
                                            TextChanged=             "OnTextChanged"

@@ -10,7 +10,6 @@ namespace GeCO.Views {
     public partial class AutoArguidoPage : ContentPage {
         private int currentAutoId, currentArguidoId;
         private Pessoa _pessoa;
-        private QualidadeArguido _qualidadeArguido;
 
 
         public AutoArguidoPage(int id) {
@@ -160,10 +159,6 @@ namespace GeCO.Views {
                 Contacto2 =         Int32.Parse(contacto2.Text),
                 Email =             email.Text
             };
-
-            QualidadeArguido = new QualidadeArguido {
-                QualidadeTipo =     qualidade.ToString(),
-            };
         }
 
 
@@ -195,13 +190,11 @@ namespace GeCO.Views {
             contacto1.Text =            0.ToString();
             contacto2.Text =            0.ToString();
             email.Text =                "";
-
-            qualidade.SelectedItem =    "Não Definido";
         }
 
 
 
-#region REGION -> Properties
+        #region Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
             set
@@ -210,18 +203,9 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
+        #endregion
 
-        public QualidadeArguido QualidadeArguido {
-            get { return _qualidadeArguido; }
-            set
-            {
-                _qualidadeArguido = value;
-                OnPropertyChanged();
-            }
-        }
-#endregion
-
-#region REGION -> tap nos separadores
+        #region Tap Separadores
         void OnIdentificacaoTapped(object sender, System.EventArgs e) {
             identificacaoStack.IsVisible = !identificacaoStack.IsVisible;
 
@@ -230,15 +214,6 @@ namespace GeCO.Views {
             else
                 identificacaoArrow.RotateTo(0, 225);
         }
-
-        void OnQualidadeTapped(object sender, System.EventArgs e) {
-            qualidadeStack.IsVisible = !qualidadeStack.IsVisible;
-
-            if (qualidadeArrow.Rotation == 0)
-                qualidadeArrow.RotateTo(-180, 225);
-            else
-                qualidadeArrow.RotateTo(0, 225);
-        }
-#endregion
+        #endregion
     }
 }

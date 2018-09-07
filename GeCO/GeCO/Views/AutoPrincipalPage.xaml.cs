@@ -54,7 +54,7 @@ namespace GeCO.Views {
                 apreensaoFK =               ger.ApreensaoId;        // apreensaoId, arguidoId, testemunhaId, leiId e pagamentoId:
                 arguidoFK =                 ger.ArguidoId;          // estão aqui explícitos  para que  não se perca  o seu 
                 testemunhaFK =              ger.TestemunhaId;       // valor ao efetuar a gravação do auto.
-                leiFK =                     ger.LeiId;               
+                leiFK =                     ger.LeiId;
                 pagamentoFK =               ger.PagamentoId;
 
                 currentLocalId =            loc.LocalId;
@@ -80,6 +80,7 @@ namespace GeCO.Views {
                 isPresenciado.IsToggled =   aut.IsPresenciado;
                 equipamentos.SelectedItem = aut.Equipamento;
             }
+            else Title = "Auto";
 
             pessoaListView.ItemsSource = await (BindingContext as AutoPrincipalVM).GetListaPessoas();
          
@@ -132,6 +133,8 @@ namespace GeCO.Views {
             autuante.SelectedItem =         "Não Definido";
             isPresenciado.IsToggled =       false;
             equipamentos.SelectedItem =     "Não Definido";
+
+            Title =                         "Novo Auto";
         }
 
 
@@ -179,7 +182,7 @@ namespace GeCO.Views {
             email.Text =                pessSelecionada.Email;
                
             pessoaListView.IsVisible = false;
-            searchBox.Text = "";
+            searchBox.Text =            "";
 
         }
 
@@ -288,10 +291,12 @@ namespace GeCO.Views {
             currentLocalId =        geral.LocalId;
             currentDenuncianteId =  geral.DenuncianteId;
             currentAutuanteId =     geral.AutuanteId;
+
+            Title =                 geral.CodProcesso;
         }
 
 
-#region REGION -> Inicialização de propriedades
+        #region Properties
         public Geral Geral {
             get { return _geral; }
             set {
@@ -323,10 +328,10 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
-#endregion
+        #endregion
 
 
-#region REGION -> Taps nos Separadores
+        #region Taps nos Separadores
         void OnGeralTapped(object sender, System.EventArgs e) {
             geralStack.IsVisible = !geralStack.IsVisible;
 
@@ -362,7 +367,7 @@ namespace GeCO.Views {
             else
                 autuanteArrow.RotateTo(0, 225);
         }
-#endregion
+        #endregion
     }
 }
 

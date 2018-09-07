@@ -253,58 +253,6 @@
 
 
                 
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <!-- ~~~~~~~~ Qualidade do Testemunha ~~~~~~~~ -->
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <Frame Style="{StaticResource FormFrame}" >
-                    <StackLayout>
-                        <StackLayout Style=         "{StaticResource FormHeader}">
-                            <Label Text=            "Qualidade"
-                                   Style=           "{StaticResource FormSectionLabel}" />
-                            <Image x:Name="qualidadeArrow"
-                                   Source=          "chevron_down_blue_24.png"
-                                   HorizontalOptions="End" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnQualidadeTapped" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                        
-                        <StackLayout x:Name="qualidadeStack"
-                                     IsVisible=     "false">
-                            <Grid  Padding=         "15,5,15,10"
-                                   RowSpacing=      "0"
-                                   ColumnSpacing=   "5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" /> <!-- 00 -->
-                                    <RowDefinition Height="Auto" /> <!-- 01 -->
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />  <!-- 00 -->
-                                    <ColumnDefinition Width="*" />  <!-- 01 -->
-                                    <ColumnDefinition Width="*" />  <!-- 02 -->
-                                    <ColumnDefinition Width="*" />  <!-- 03 -->
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Qualidade -->
-                                <Label Text=            "Qualidade"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       Grid.Row=        "0"
-                                       Grid.Column=     "0"
-                                       Grid.ColumnSpan= "2" />
-                                <Picker x:Name="qualidade"
-                                        ItemsSource=    "{Binding Qualidade}"
-                                        Style=          "{StaticResource FormPicker}"
-                                        Grid.Row=       "1"
-                                        Grid.Column=    "0"
-                                        Grid.ColumnSpan="2" >
-                                </Picker>
-                            </Grid>
-                        </StackLayout>
-                    </StackLayout>
-                </Frame>
-
-
-                
                 <!-- ~~~~~~ Botões ~~~~~~ -->
                 <StackLayout Orientation=   "Horizontal" >
                     <Button Text=           "Anterior"

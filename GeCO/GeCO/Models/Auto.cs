@@ -4,9 +4,9 @@ using System;
 
 
 namespace GeCO.Models {
-    
+
     public class Auto : PropertyChangedVM {
-        [PrimaryKey, AutoIncrement] 
+        [PrimaryKey, AutoIncrement]
         public int trueId { get; set; }
         public string ProcessoId { get; set; }      // **
         public string Data { get; set; }            // **

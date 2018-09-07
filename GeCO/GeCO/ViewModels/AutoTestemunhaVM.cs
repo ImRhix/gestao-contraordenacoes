@@ -15,20 +15,17 @@ namespace GeCO.ViewModels {
 
         public List<String> Genero => genero;
         public List<String> EstadoCivil => estadoCivil;
-        public List<String> Qualidade => qualidade;
 
         private Pessoa _pessoa;
-        private QualidadeArguido _qualidadeArguido;
 
 
         public AutoTestemunhaVM() {
             InicializacaoPropriedades();
         }
 
+       
 
-
-
-#region REGION -> Gets
+        #region Gets
         /// <summary>
         /// Retorna o presente auto (Geral)
         /// </summary>
@@ -44,6 +41,8 @@ namespace GeCO.ViewModels {
         }
 
 
+
+
         /// <summary>
         /// Guardars the pessoa.
         /// </summary>
@@ -55,8 +54,7 @@ namespace GeCO.ViewModels {
             
             return pessoasOC;
         }
-
-
+        
         /// <summary>
         ///  Filtra os items da ObservableCollection pessoasOC de acordo com o texto inserido na SearchBox e cria outra ObservableCollection com a nova informação filtrada.
         ///  Fazendo incialmente o load da lista de pessoas e usando uma outra collection para guardar os resultados filtrados
@@ -71,10 +69,10 @@ namespace GeCO.ViewModels {
 
             return newPessoasOC;
         }
-#endregion
+        #endregion
 
 
-#region REGION -> Saves
+        #region Save
         /// <summary>
         /// Guarda um novo objeto Pessoa, ou se o NIF já existir na BD atualiza esse objeto com a nova informação.
         /// </summary>
@@ -101,10 +99,10 @@ namespace GeCO.ViewModels {
             }
             return pessoa;
         }
-#endregion
+        #endregion
 
 
-#region REGION -> Deletes
+        #region Delete
         /// <summary>
         /// Remove (atualiza) o valor da FK TestemunhaId na tabela Geral para 0
         /// </summary>
@@ -114,7 +112,7 @@ namespace GeCO.ViewModels {
 #endregion
 
 
-#region REGION -> gettets/setters
+        #region gettets/setters
         public Pessoa Pessoa {
             get { return _pessoa; }
             set { 
@@ -122,16 +120,10 @@ namespace GeCO.ViewModels {
                 OnPropertyChanged();
             }
         }
+        #endregion
 
-        public QualidadeArguido QualidadeArguido {
-            get { return _qualidadeArguido; }
-            set {
-                _qualidadeArguido = value;
-                OnPropertyChanged();
-            }
-        }
-#endregion
 
+        #region Properties
         public void InicializacaoPropriedades() {
             Pessoa = new Pessoa {
                 Nome = "",
@@ -145,15 +137,11 @@ namespace GeCO.ViewModels {
                 Contacto2 = 0,
                 Email = ""
             };
-
-            QualidadeArguido = new QualidadeArguido {
-                QualidadeTipo = ""
-            };
-
         }
+        #endregion
 
 
-#region REGION -> Lists
+        #region Lists (genero, estado civil)
         List<String> genero = new List<string> {
             "Não Definido",
             "Feminino",
@@ -168,12 +156,6 @@ namespace GeCO.ViewModels {
             "Divorciado",
             "Viúvo"
         };
-        List<String> qualidade = new List<string> {
-            "Não Definido",
-            "Sem Atecedentes",
-            "Reincidente"
-        };
-#endregion
-
+        #endregion
     }
 }

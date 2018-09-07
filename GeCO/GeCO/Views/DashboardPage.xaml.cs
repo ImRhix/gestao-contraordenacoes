@@ -53,14 +53,10 @@ namespace GeCO.Views
 
 
 
-
-
-
-
         // ******************************************************************** //
 
 
-#region REGION -> Criação de 4 Autos com informação hardcoded
+        #region Criacao automatica de Autos e Pessoas (placeholders)
         private async Task UnexpectedCreationism() {
             
             var id = await App.Database.GetNextGeralId();

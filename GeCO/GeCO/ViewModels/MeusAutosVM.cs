@@ -20,6 +20,9 @@ namespace GeCO.ViewModels {
         public MeusAutosVM() {
         }
 
+
+
+        #region Gets
         /// <summary>
         /// Retorna uma ObservableCollection com a seguinte informação: AutoId, CodProcesso, DataAuto, LocalId, Nome (do denunciante) e PessoaId.
         /// </summary>
@@ -63,12 +66,9 @@ namespace GeCO.ViewModels {
         public async Task<Pessoa> GetPessoa(int id){
             return await App.Database.GetPessoa(id);
         }
+        #endregion
         
-        
-
-
-
-
+      
         #region Region: gettets/setters (Geral, Localizacao, Pessoa)
         public Geral Geral {
             get { return _geral; }
