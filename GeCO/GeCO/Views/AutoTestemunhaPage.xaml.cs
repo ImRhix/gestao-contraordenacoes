@@ -10,8 +10,6 @@ namespace GeCO.Views {
         
         private int currentAutoId, currentTestemunhaId;
         private Pessoa _pessoa;
-        //private QualidadeArguido _qualidadeArguido;
-
 
          
         public AutoTestemunhaPage(int id) {
@@ -76,7 +74,7 @@ namespace GeCO.Views {
         void OnPessoaSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
             var pessSelecionada =       e.SelectedItem as Pessoa;
 
-            currentTestemunhaId =          pessSelecionada.PessoaId;
+            currentTestemunhaId =       pessSelecionada.PessoaId;
             nome.Text =                 pessSelecionada.Nome;
             dataNasc.Date =             pessSelecionada.DataNascimento;
             genero.SelectedItem =       pessSelecionada.Genero;
@@ -159,10 +157,6 @@ namespace GeCO.Views {
                 Contacto2 =         Int32.Parse(contacto2.Text),
                 Email =             email.Text
             };
-
-            //QualidadeArguido = new QualidadeArguido {
-            //    QualidadeTipo =     qualidade.ToString(),
-            //};
         }
 
         /// <summary>
@@ -192,15 +186,11 @@ namespace GeCO.Views {
             contacto1.Text =            0.ToString();
             contacto2.Text =            0.ToString();
             email.Text =                "";
-
-            qualidade.SelectedItem =    "Não Definido";
         }
 
 
 
-
-
-#region REGION -> Properties
+        #region Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -208,17 +198,9 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
+        #endregion
 
-        //public QualidadeArguido QualidadeArguido {
-        //    get { return _qualidadeArguido; }
-        //    set {
-        //        _qualidadeArguido = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-#endregion
-
-#region REGION -> tap nos separadores 
+        #region Taps Separadores
         void OnIdentificacaoTapped(object sender, System.EventArgs e) {
             identificacaoStack.IsVisible = !identificacaoStack.IsVisible;
 
@@ -227,15 +209,6 @@ namespace GeCO.Views {
             else
                 identificacaoArrow.RotateTo(0, 225);
         }
-
-        void OnQualidadeTapped(object sender, System.EventArgs e) {
-            qualidadeStack.IsVisible = !qualidadeStack.IsVisible;
-
-            if (qualidadeArrow.Rotation == 0)
-                qualidadeArrow.RotateTo(-180, 225);
-            else
-                qualidadeArrow.RotateTo(0, 225);
-        }
-#endregion
+        #endregion
     }
 }

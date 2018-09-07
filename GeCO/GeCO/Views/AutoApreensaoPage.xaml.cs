@@ -145,6 +145,7 @@ namespace GeCO.Views {
 
 
 
+        #region Properties
         public Apreensao Apreensao {
             get { return _apreensao; }
             set {
@@ -152,7 +153,9 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
+        #endregion
 
+        #region Taps Separadores
         void OnApreensaoTapped(object sender, System.EventArgs e) {
             apreensaoStack.IsVisible = !apreensaoStack.IsVisible;
             
@@ -161,5 +164,6 @@ namespace GeCO.Views {
             else
                 apreensaoArrow.RotateTo(0, 225);
         }
+        #endregion
     }
 }

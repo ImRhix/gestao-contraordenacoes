@@ -68,7 +68,6 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
-
         /// <summary>
         /// Grava e segue em frente
         /// </summary>
@@ -81,9 +80,8 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
-
-
-
+        
+        #region Taps Separadores
         void OnPagamentoTapped(object sender, System.EventArgs e) {
             pagamentoStack.IsVisible = !pagamentoStack.IsVisible;
 
@@ -101,6 +99,6 @@ namespace GeCO.Views {
             else
                 custosArrow.RotateTo(0, 225);
         }
-
+        #endregion
     }
 }

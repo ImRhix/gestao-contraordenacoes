@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using GeCO.Models;
 using System.Threading.Tasks;
 
-namespace GeCO.ViewModels
-{
-    public class AutoLegislacaoVM : PropertyChangedVM
-    {
+namespace GeCO.ViewModels {
+    public class AutoLegislacaoVM : PropertyChangedVM {
         public List<String> Titulo => titulos;
 
         private Lei _lei;
 
-        public AutoLegislacaoVM()
-        {
-            Lei = new Lei
-            {
+        public AutoLegislacaoVM() {
+            Lei = new Lei {
                 Titulo =    "",
                 Pontos =    0,
                 Descricao = "",
@@ -25,17 +21,18 @@ namespace GeCO.ViewModels
         }
 
 
-
-        public async Task<Geral> GetGeral(int id)
-        {
+        #region Gets
+        public async Task<Geral> GetGeral(int id) {
             return await App.Database.GetGeral(id);
         }
 
-        public async Task<Lei> GetLei(int id)
-        {
+        public async Task<Lei> GetLei(int id) {
             return await App.Database.GetLei(id);
         }
+        #endregion
 
+
+        #region Save
         /// <summary>
         /// Realiza um UPDATE na FK da row tabela Geral (caso haja alguma lei selecionada no dropdown).
         /// </summary>
@@ -45,27 +42,28 @@ namespace GeCO.ViewModels
 
             return lei;
         }
+        #endregion
 
+
+        #region Delete
         /// <summary>
         /// Na verdade não apaga lei nenhuma. Apenas altera a FK LeiId de uma certa row da tabela Geral para '0'
         /// </summary>
-        public async Task ApagarLei(int leiId, int autoId)
-        {
+        public async Task ApagarLei(int leiId, int autoId) {
             await App.Database.UpdateLei(leiId, autoId);
         }
+        #endregion
 
 
-
-
-
+        #region Propriedades
         public Lei Lei{
             get { return _lei; }
             set { _lei = value; OnPropertyChanged(); }
         }
+        #endregion
 
 
-
-        #region REGION -> Lists (títulos)
+        #region Lists (títulos)
         List<String> titulos = new List<string> {
             "Não Definido",
             "Legislação Geral, Artigo 1º",

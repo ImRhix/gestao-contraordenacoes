@@ -19,6 +19,7 @@ namespace GeCO.ViewModels {
         }
 
 
+        #region Gets
         public async Task<Geral>GetGeral(int id) {
             return await App.Database.GetGeral(id);
         }
@@ -26,13 +27,10 @@ namespace GeCO.ViewModels {
         public async Task<Pagamento>GetPagamento(int id) {
             return await App.Database.GetPagamento(id);
         }
+        #endregion
 
 
-
-
-
-
-#region REGION -> gettets/setters
+        #region gettets/setters
 
         public Pagamento Pagamento {
             get { return _pagamento; }
@@ -49,8 +47,10 @@ namespace GeCO.ViewModels {
                 OnPropertyChanged();
             }
         }
-#endregion
+        #endregion
 
+
+        #region Properties
         public void InicializacaoPropriedades() {
             Pagamento = new Pagamento {
                 NIF =           0,
@@ -69,9 +69,10 @@ namespace GeCO.ViewModels {
                 Valor =         0
             };
         }
+        #endregion
 
 
-#region REGION -> Lists (entidades, placeholders, genero, estado civil)
+        #region Lists (pagamentos, custos)
 
         List<String> pagamentos = new List<string> {
                 "Não Definido",
@@ -86,7 +87,6 @@ namespace GeCO.ViewModels {
                 "Tipo 2",
                 "Tipo 3"
             };
-#endregion
-
+        #endregion
     }
 }

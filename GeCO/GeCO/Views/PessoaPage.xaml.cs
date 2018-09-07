@@ -39,9 +39,12 @@ namespace GeCO.Views {
                 nif.Text =                  pess.NIF.ToString();
                 contacto1.Text =            pess.Contacto1.ToString();
                 contacto2.Text =            pess.Contacto2.ToString();
-                email.Text =                pess.Email;    
+                email.Text =                pess.Email;
+
+                Title =                     pess.Nome;
             }
             else {
+                Title = "Nova Pessoa";
                 clearInput();
             }
 
@@ -101,6 +104,7 @@ namespace GeCO.Views {
         private async Task loadAndSave() {
             loadObjetos();
             var pess = await (BindingContext as PessoasVM).GuardarPessoa(Pessoa as Pessoa);
+            Title = pess.Nome;
             currentPessoaId = pess.PessoaId;
         }
 
@@ -121,13 +125,13 @@ namespace GeCO.Views {
             contacto1.Text =            0.ToString();
             contacto2.Text =            0.ToString();
             email.Text =                "";
+
+            Title =                     "Pessoa";
         }
 
 
 
-
-
-        #region REGION -> Properties
+        #region Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
