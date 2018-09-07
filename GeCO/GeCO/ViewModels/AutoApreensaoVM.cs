@@ -19,6 +19,8 @@ namespace GeCO.ViewModels
         }
 
 
+
+        #region Gets
         public async Task<Geral> GetGeral(int id) {
             return await App.Database.GetGeral(id);
         }
@@ -27,15 +29,17 @@ namespace GeCO.ViewModels
             return await App.Database.GetApreensao(id);
         }
 
-        public async Task<Lei> GetLei(int id) {
+        public async Task<Lei> GetLei(int id)
+        {
             if (id != 0)
                 return await App.Database.GetLei(id);
-            
+
             return null;
         }
+        #endregion
 
 
-
+        #region Saves
         /// <summary>
         /// Insere (ou atualiza) a tabela Apreensao com o input das entries. Retornar o id da apreensao
         /// </summary>
@@ -43,8 +47,10 @@ namespace GeCO.ViewModels
             apreensao = await App.Database.SaveApreensao(apreensao, autoId);
             return apreensao.ApreensaoId;
         }
+        #endregion
 
 
+        #region Deletes
         /// <summary>
         /// Apaga a atual apreensao (row) da tabela Apreensao.
         /// </summary>
@@ -56,8 +62,29 @@ namespace GeCO.ViewModels
             catch { Debug.WriteLine("Erro ao apagar apreensao. AutoApreensaoVM.cs, ApagarApreensao()."); }
         }
 
+        /// <summary>
+        /// Apaga o Auto (Geral) da base de dados
+        /// </summary>
+        public async Task ApagarAuto(int id) {
+            var geral = await App.Database.GetGeral(id);
+
+            var aut = await App.Database.GetAutuante(geral.AutuanteId);
+            await App.Database.ApagarAutuante(aut);
+
+            var apr = await App.Database.GetApreensao(geral.ApreensaoId);
+            await App.Database.ApagarApreensao(apr);
+
+            var pag = await App.Database.GetPagamento(geral.PagamentoId);
+            await App.Database.ApagarPagamento(pag);
+
+            await App.Database.ApagarGeral(geral);
+        }
+        #endregion
 
 
+
+
+        #region getters/setters
         public Apreensao Apreensao {
             get { return _apreensao; }
             set {
@@ -65,7 +92,10 @@ namespace GeCO.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
 
+
+        #region Properties
         private void InicializacaoPropriedades() {
             Apreensao = new Apreensao {
                 Objeto =        "Não Definido",
@@ -77,8 +107,10 @@ namespace GeCO.ViewModels
                 Motivo =        ""
             };
         }
+        #endregion
 
-#region REGION -> Lists
+
+        #region Lists (objetos, leis, tipos)
         List<String> objetos = new List<string> {
             "Não Definido",
             "Objeto 1",
@@ -107,6 +139,6 @@ namespace GeCO.ViewModels
             "Definitiva",
             "Temporária"
         };
-#endregion
+        #endregion
     }
 }

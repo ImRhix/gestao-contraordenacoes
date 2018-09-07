@@ -9,13 +9,16 @@ namespace GeCO.Views {
     
     public partial class AutoArguidoPage : ContentPage {
         private int currentAutoId, currentArguidoId;
+        private bool isNewAuto;
         private Pessoa _pessoa;
 
 
-        public AutoArguidoPage(int id) {
+        public AutoArguidoPage(int id, bool state) {
             InitializeComponent();
 
             BindingContext = new AutoArguidoVM();
+            
+            isNewAuto = state;
             currentAutoId = id;
         }
 
@@ -134,12 +137,27 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoApreensaoPage(currentAutoId);
+            var page = new AutoApreensaoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
+
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
+
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoArguidoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         /// <summary>
@@ -160,7 +178,6 @@ namespace GeCO.Views {
                 Email =             email.Text
             };
         }
-
 
 
         /// <summary>

@@ -38,7 +38,7 @@
                         Style=          "{StaticResource FormFinalBackButton}"
                         Clicked=        "OnAnteriorClicked"/>
                                         
-                <Button Text=           "Apagar Auto"
+                <Button Text=           "Cancelar"
                         Image=          "close_red_24.png"
                         Style=          "{StaticResource FormFinalCancelButton}"
                         VerticalOptions="EndAndExpand"

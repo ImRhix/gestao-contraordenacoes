@@ -198,37 +198,41 @@
                 <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />
                 <Setter Property="FontSize"                 Value="Medium" />
                 <Setter Property="Margin"                   Value="0,-3,0,10" />
-            </Style>                                        
-                                                            
-                                                            
-                                                            
-                                                            
-            <Style x:Key="FormLeftButton"                   TargetType="Button">
-                <Setter Property="TextColor"                Value="{StaticResource SecondaryColor}" />
+            </Style>
+
+
+            <Style x:Key="FormBtn"                          TargetType="Button" >
                 <Setter Property="BackgroundColor"          Value="Transparent" />
                 <Setter Property="FontAttributes"           Value="Bold" />
                 <Setter Property="BorderWidth"              Value="1" />
-                <Setter Property="BorderColor"              Value="{StaticResource SecondaryColor}" />
-                <Setter Property="Margin"                   Value="15,15,5,10" />
                 <Setter Property="HorizontalOptions"        Value="FillAndExpand" />
-            </Style>                                        
+            </Style>                                  
                                                             
-            <Style x:Key="FormRightButton"                  TargetType="Button">
+            <Style x:Key="FormLeftButton"                   TargetType="Button" BasedOn="{StaticResource FormBtn}">
+                <Setter Property="TextColor"                Value="{StaticResource SecondaryColor}" />
+                <Setter Property="BorderColor"              Value="{StaticResource SecondaryColor}" />
+                <Setter Property="Margin"                   Value="15,15,5,0" />
+                
+            </Style>
+
+            <Style x:Key="FormRightButton"                  TargetType="Button" BasedOn="{StaticResource FormBtn}">
                 <Setter Property="TextColor"                Value="{StaticResource PrimaryTextColor}" />
                 <Setter Property="BackgroundColor"          Value="{StaticResource SecondaryColor}" />
-                <Setter Property="FontAttributes"           Value="Bold" />
-                <Setter Property="BorderWidth"              Value="1" />
-                <Setter Property="BorderColor"              Value="{StaticResource SecondaryColor}" />
-                <Setter Property="Margin"                   Value="5,15,15,10" />
-                <Setter Property="HorizontalOptions"        Value="FillAndExpand" />
+                <Setter Property="Margin"                   Value="5,15,15,0" />
                 <Setter Property="ContentLayout"            Value="Right, 0" />
-            </Style>                                        
-                                                            
-            <Style x:Key="FormCancelButton"                 TargetType="Button" BasedOn="{StaticResource FormLeftButton}">
+            </Style>
+
+            <Style x:Key="FormCancelButton"                 TargetType="Button" BasedOn="{StaticResource FormBtn}">
                 <Setter Property="TextColor"                Value="{StaticResource WarningColor}" />
                 <Setter Property="BorderColor"              Value="{StaticResource WarningColor}" />
-            </Style>                                        
-                                                            
+                <Setter Property="Margin"                   Value="15,5,15,-20" />
+            </Style>
+            
+            <Style x:Key="CancelBtnPrincPage"               TargetType="Button" BasedOn="{StaticResource FormLeftButton}">
+                <Setter Property="TextColor"                Value="{StaticResource WarningColor}" />
+                <Setter Property="BorderColor"              Value="{StaticResource WarningColor}" />
+            </Style>
+
             <Style x:Key="FormLabel"                        TargetType="Label">
                 <Setter Property="TextColor"                Value="{StaticResource NormalTextColor}" />               
                 <Setter Property="FontSize"                 Value="15" />

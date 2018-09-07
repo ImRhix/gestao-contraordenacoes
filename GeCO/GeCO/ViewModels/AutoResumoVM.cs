@@ -10,6 +10,8 @@ namespace GeCO.ViewModels {
         }
 
 
+
+        #region Delete
         /// <summary>
         /// Apaga o Auto (Geral) da base de dados
         /// </summary>
@@ -27,5 +29,6 @@ namespace GeCO.ViewModels {
 
             await App.Database.ApagarGeral(geral);
         }
+        #endregion
     }
 }

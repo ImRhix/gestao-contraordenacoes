@@ -13,13 +13,15 @@ namespace GeCO.Views {
     public partial class AutoApreensaoPage : ContentPage {
         private Apreensao _apreensao;
 
-        int currentAutoId, currentApreensaoId, currentLeiId;
+        private int currentAutoId, currentApreensaoId, currentLeiId;
+        private bool isNewAuto;
 
-        public AutoApreensaoPage(int id) {
+        public AutoApreensaoPage(int id, bool state) {
             InitializeComponent();
 
-            currentAutoId = id;
             BindingContext = new AutoApreensaoVM();
+            currentAutoId = id;
+            isNewAuto = state;
         }
 
 
@@ -93,13 +95,27 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoPagamentoPage(currentAutoId);
+            var page = new AutoPagamentoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
 
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
+
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoApreensaoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         /// <summary>
@@ -145,7 +161,7 @@ namespace GeCO.Views {
 
 
 
-        #region Properties
+        #region getters/setters
         public Apreensao Apreensao {
             get { return _apreensao; }
             set {
