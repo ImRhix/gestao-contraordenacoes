@@ -10,12 +10,14 @@ namespace GeCO.Views {
     public partial class AutoPagamentoPage : ContentPage {
         
         private int currentAutoId, currentPagamentoId;
+        bool isNewAuto;
 
-        public AutoPagamentoPage(int id) {
+        public AutoPagamentoPage(int id, bool state) {
             InitializeComponent();
 
-            currentAutoId = id;
             BindingContext = new AutoPagamentoVM();
+            currentAutoId = id;
+            isNewAuto = state;
         }
 
 
@@ -74,13 +76,28 @@ namespace GeCO.Views {
         async void OnProximoClicked(object sender, System.EventArgs e) {
             IsEnabled = false;
 
-            var page = new AutoTestemunhaPage(currentAutoId);
+            var page = new AutoTestemunhaPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
-        
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
+
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoPagamentoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
+
+
         #region Taps Separadores
         void OnPagamentoTapped(object sender, System.EventArgs e) {
             pagamentoStack.IsVisible = !pagamentoStack.IsVisible;

@@ -8,8 +8,9 @@ namespace GeCO.Views {
     
     public partial class AutoResumoPage : ContentPage {
         private int currentAutoId;
+        private bool isNewAuto;
 
-        public AutoResumoPage(int id) {
+        public AutoResumoPage(int id, bool state) {
             InitializeComponent();
 
             currentAutoId = id;

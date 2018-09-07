@@ -656,7 +656,7 @@
                 <StackLayout Orientation=   "Horizontal" >
                     <Button Text=           "Cancelar"
                             Image=          "close_red_24.png"
-                            Style=          "{StaticResource FormCancelButton}"
+                            Style=          "{StaticResource CancelBtnPrincPage}"
                             Clicked=        "OnCancelarClicked" />
                                             
                     <Button Text=           "Próximo"
