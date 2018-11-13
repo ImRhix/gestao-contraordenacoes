@@ -2,7 +2,7 @@
 
 Protótipo de uma aplicação cross-platform para gerir situações relacionadas com o trânsito e outras ocorrências na via pública, como acidentes, colisões etc.
 
-  A aplicação foi desenvolvida com Xamarin.Forms em C# e a informação é guardada localmente com SQLite. Numa versão posterior quaisquer alterações de informações (modificar, apagar ou inserir novos autos / pessoas, transações, legislações etc) terão de ser obtidas e sincronizadas com o servidor da entidade responsável, sendo indispensável uma conexão à internet para poder utilizar a app.
+  A aplicação foi desenvolvida com **Xamarin.Forms** em **C#** e a informação é guardada localmente com **SQLite**. Numa versão posterior quaisquer alterações de informações (modificar, apagar ou inserir novos autos / pessoas, transações, legislações etc) terão de ser obtidas e sincronizadas com o servidor da entidade responsável, sendo indispensável uma conexão à internet para poder utilizar a app.
 
 
 ## Getting Started
@@ -22,9 +22,9 @@ Alguns exemplos do aspeto atual da aplicação.
 Para correr o projeto será necessário:
 
 ```
-- Visual Studio (recomenda-se a versão 2017);
-- Ter o Xamarin instalado;
-- Dispositivo Android 4.4 ou superior (não é necessário mas é preferível ao emulador)
+ * Visual Studio (recomenda-se a versão 2017);
+ * Ter o Xamarin instalado;
+ * Dispositivo Android 4.4 ou superior (não é necessário mas é preferível ao emulador).
 ```
 
 ### Instalação
@@ -43,10 +43,11 @@ Estes passos serão suficientes para abrir o projeto e editar o código.
 Para correr a aplicação basta selecionar o projeto GeCO.Android e carregar F5. Se desejar correr a aplicação num dispositivo físico ou num emulador diferente do default é provável que seja necessário o download da SDK/API correspondente, por exemplo, para correr o Android 7.0 será necessária a API 24. Os próximos passos explicam o download da SDK correspondente ao Android 7.0 (o processo é o mesmo para qualquer outra versão):
 
 6. Na barra de menu selecionar: Tools > Android > Android SDK Manager.. ;
-7. Na nova janela, no separador 'Platforms' expandir a opção 'Android 7.0 - Nougat' (cujo API level é 24). Selecionar a checkbox 'Android SDK Platform 24' ;h
+7. Na nova janela, no separador 'Platforms' expandir a opção 'Android 7.0 - Nougat' (cujo API level é 24). Selecionar a checkbox 'Android SDK Platform 24' ;
 8. Repetir o procedimento para qualquer outra versão selecionando sempre a checkbox 'Android SDK Platform XX' (onde XX representa o nível da API desejada).
 
 ## License
 
+Empty.
 
 
