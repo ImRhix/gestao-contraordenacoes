@@ -2,7 +2,7 @@
 
 Protótipo de uma aplicação cross-platform para gerir situações relacionadas com o trânsito e outras ocorrências na via pública, como acidentes, colisões etc.
 
-  A aplicação foi desenvolvida com **Xamarin.Forms** em **C#** e a informação é guardada localmente com **SQLite**. Numa versão posterior quaisquer alterações de informações (modificar, apagar ou inserir novos autos / pessoas, transações, legislações etc) terão de ser obtidas e sincronizadas com o servidor da entidade responsável, sendo indispensável uma conexão à internet para poder utilizar a app.
+  A aplicação foi desenvolvida com **Xamarin.Forms** em **C#** e a informação é guardada localmente com **SQLite**. Numa versão posterior quaisquer alterações de informações (modificar, apagar ou inserir novos autos / pessoas, transações, legislações etc) terão de ser obtidas e sincronizadas com o servidor da entidade responsável, sendo indispensável uma conexão à internet para contactar os webservices e utilizar a app.
 
 
 ## Getting Started
