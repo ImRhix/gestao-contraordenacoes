@@ -54,7 +54,7 @@ namespace GeCO.Views {
 
 
 
-        public async Task OnSelectedndexChanged(object sender, System.EventArgs e) {
+        public async void OnSelectedndexChanged(object sender, System.EventArgs e) {
             var leg = await (BindingContext as AutoApreensaoVM).GetLei(lei.SelectedIndex);
             coima.Text = ((leg.Min + leg.Max) / 2).ToString();
         }
@@ -63,7 +63,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Insere ou atualiza a tabela Geral com o id da apreensao.
         /// </summary>
-        public async Task GuardarClicked(object sender, System.EventArgs e) {
+        public async void GuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 

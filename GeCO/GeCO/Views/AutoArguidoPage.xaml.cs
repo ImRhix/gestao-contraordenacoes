@@ -54,7 +54,7 @@ namespace GeCO.Views {
 
 
         /// <summary>
-        /// Colocar o VM.Filtered igual ao MeusAutosVM.Filterded..
+        /// Colocar o VM.Filtered igual ao MeusAutosVM.Filtered..
         /// </summary>
         async void OnTextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e) {
             if (!string.IsNullOrWhiteSpace(e.NewTextValue)) {
@@ -101,7 +101,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Guarda a pessoa e associa o id à FK TestemunhaId na tabela Geral
         /// </summary>
-        public async Task OnGuardarClicked(object sender, System.EventArgs e) {
+        public async void OnGuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 
@@ -214,8 +214,7 @@ namespace GeCO.Views {
         #region Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
-            set
-            {
+            set {
                 _pessoa = value;
                 OnPropertyChanged();
             }
