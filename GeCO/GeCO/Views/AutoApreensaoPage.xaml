@@ -26,7 +26,7 @@
 
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <!-- ~~~~~~~~ Apreensão de Objetos ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~ Apreensão de Objetos ~~~~~~~~~~ -->
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <Frame Style="{StaticResource FormFrame}" >
                     <StackLayout>

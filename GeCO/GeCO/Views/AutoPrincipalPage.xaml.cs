@@ -93,7 +93,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Guarda o input das entries nas respetivas tabelas da BD
         /// </summary>
-        public async Task GuardarClicked(object sender, System.EventArgs e) {
+        public async void GuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 

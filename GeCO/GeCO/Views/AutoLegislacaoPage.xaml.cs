@@ -68,7 +68,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Atualiza a tabela Geral com o id da lei selecionada.
         /// </summary>
-        public async Task GuardarClicked(object sender, System.EventArgs e) {
+        public async void GuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 
