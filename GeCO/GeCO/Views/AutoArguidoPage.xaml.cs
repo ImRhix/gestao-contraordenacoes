@@ -213,6 +213,7 @@ namespace GeCO.Views {
         }
 
 
+
 #region REGION -> Properties
         public Pessoa Pessoa {
             get { return _pessoa; }

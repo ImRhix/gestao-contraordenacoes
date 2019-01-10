@@ -69,12 +69,10 @@ namespace GeCO.Models {
             set { _nacionalidade = value; }
         }
 
-
         public string Naturalidade {
             get { return _naturalidade; }
             set { _naturalidade = value; }
         }
-
 
         [MaxLength(9)]
         public int NIF {
@@ -91,7 +89,6 @@ namespace GeCO.Models {
             }
         }
 
-
         [MaxLength(9)]
         public int Contacto1 {
             get { return _contacto1; }
@@ -106,7 +103,6 @@ namespace GeCO.Models {
             }
         }
 
-
         [MaxLength(9)]
         public int Contacto2 { 
             get { return _contacto2; }
@@ -120,7 +116,6 @@ namespace GeCO.Models {
                 }
             }
         }
-
 
         public string Email {
             get { return _email; }

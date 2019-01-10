@@ -18,7 +18,6 @@ namespace GeCO.ViewModels {
         private Pessoa _pessoa;
 
 
-
         public AutoTestemunhaVM() {
             InicializacaoPropriedades();
         }

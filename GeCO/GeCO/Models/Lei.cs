@@ -2,14 +2,14 @@
 using SQLite;
 using System;
 
-namespace GeCO.Models {
-
+namespace GeCO.Models
+{
     /// <summary>
     /// IdLei, Titulo, Pontos, IsCrime, Descricao, IdCoima
     /// </summary>
     [Table("Lei")]
-    public class Lei : PropertyChangedVM {
-
+    public class Lei : PropertyChangedVM
+    {
         private string _titulo;
         private int _pontos;
         private string _descricao;

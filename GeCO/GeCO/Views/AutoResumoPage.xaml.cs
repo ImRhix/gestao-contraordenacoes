@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using GeCO.ViewModels;
 
 namespace GeCO.Views {
+    
     public partial class AutoResumoPage : ContentPage {
 
         private int currentAutoId;

@@ -4,12 +4,12 @@
                   x:Class="GeCO.Views.MainMasterPage"
                   Title="Master Page"
                   MasterBehavior="Default">
-
+    
     <MasterDetailPage.Master>
         <ContentPage BackgroundColor="{StaticResource PrimaryColor}" Title="Menu">
             <ContentPage.Content>
                 <StackLayout>
-
+                    
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- ~~~~~~~~ Logo Funchal ~~~~~~~~ -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -23,12 +23,12 @@
                         </Image>
                     </StackLayout>
 
-
+                    
                     <ScrollView>
                         <StackLayout>
-                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
                              ~~~~~~~~~~~~ Dashboard ~~~~~~~~~~~~
-                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> 
                             <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
                                 <Image Source="eye_24.png">
                                     <Image.GestureRecognizers>
@@ -42,12 +42,12 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                             </StackLayout>
-
-
+                            
+                            
 
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- ~~~~~~~~ Menu Item - Contraordenações  ~~~~~~~~ -->
-                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->                            
                             <StackLayout x:Name="menuCO">
                                 <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
                                     <StackLayout.GestureRecognizers>
@@ -66,7 +66,7 @@
                                 <StackLayout x:Name=            "subMenuCO"
                                              Spacing=           "0"
                                              IsVisible=         "false">
-
+                                    
                                     <StackLayout Style=         "{StaticResource SubMenuStackLayoutStyle}" >
                                         <Label Text=            "Meus Autos"
                                                Style=           "{StaticResource MenuLabelStyle}">
@@ -85,10 +85,8 @@
                                             </Label.GestureRecognizers>
                                         </Label>
                                     </StackLayout>
-                                </StackLayout>
-                                <!-- Fim dos SUB-MENUS -->
-                            </StackLayout>
-                            <!-- Fim do MENU ITEM - Contraordenações -->
+                                </StackLayout>  <!-- Fim dos SUB-MENUS -->
+                            </StackLayout>      <!-- Fim do MENU ITEM - Contraordenações -->
 
 
 
@@ -111,11 +109,11 @@
                             </StackLayout>
 
 
-
-
+                            
+                            
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- ~~~~~~ Meus Autos ~~~~~~~ -->
-                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->  
                             <StackLayout Style="{StaticResource MenuStackLayoutStyle}" >
                                 <Image Source="hand_24.png">
                                     <Image.GestureRecognizers>
@@ -132,7 +130,7 @@
 
 
 
-
+                            
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- ~~~~~~~~ CO G. Decisões  ~~~~~~~~ -->
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -152,10 +150,10 @@
                         </StackLayout>
                     </ScrollView>
 
-
+                    
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>
-        
     </MasterDetailPage.Master>
+
 </MasterDetailPage>

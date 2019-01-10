@@ -10,12 +10,10 @@ namespace GeCO.ViewModels {
         }
 
 
-
         /// <summary>
         /// Apaga o Auto (Geral) da base de dados
         /// </summary>
         public async Task ApagarAuto(int id) {
-
             var geral = await App.Database.GetGeral(id);
 
             var aut = await App.Database.GetAutuante(geral.AutuanteId);

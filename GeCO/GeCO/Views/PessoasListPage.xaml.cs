@@ -14,6 +14,7 @@ namespace GeCO.Views {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PessoasListPage : ContentPage {
 
+       
         private Pessoa _pessoa;
 
         public PessoasListPage() {
@@ -87,7 +88,7 @@ namespace GeCO.Views {
 
 
 
-#region Inicialização de propriedades
+        #region Inicialização de propriedades
 
         public Pessoa Pessoa {
             get { return _pessoa; }
@@ -96,7 +97,7 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
-#endregion
+        #endregion
 
 
     }

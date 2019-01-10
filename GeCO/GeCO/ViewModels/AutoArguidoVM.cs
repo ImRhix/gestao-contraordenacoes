@@ -24,7 +24,6 @@ namespace GeCO.ViewModels {
 
 
 
-
 #region REGION -> Gets
   
         /// <summary>

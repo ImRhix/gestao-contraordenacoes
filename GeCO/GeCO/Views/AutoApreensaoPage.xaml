@@ -196,8 +196,6 @@
                             Style=          "{StaticResource FormCancelButton}"
                             Clicked=        "OnCancelClicked"/>
                 </StackLayout>
-
-
             </StackLayout>
         </ScrollView>
 
