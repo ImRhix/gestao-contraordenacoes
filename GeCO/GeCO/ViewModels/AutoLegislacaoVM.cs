@@ -64,6 +64,7 @@ namespace GeCO.ViewModels {
 
             var apr = await App.Database.GetApreensao(geral.ApreensaoId);
             await App.Database.ApagarApreensao(apr);
+        }
 
 
           
