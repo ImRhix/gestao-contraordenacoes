@@ -11,13 +11,7 @@ namespace GeCO.Views {
         private int currentAutoId, currentTestemunhaId;
         private bool isNewAuto;
         private Pessoa _pessoa;
-<<<<<<< HEAD
-      
-=======
-        //private QualidadeArguido _qualidadeArguido;
 
-        
->>>>>>> parent of 62eeb5a... bugfixing
          
         public AutoTestemunhaPage(int id, bool state) {
             InitializeComponent();

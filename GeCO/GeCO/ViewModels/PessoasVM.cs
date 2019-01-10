@@ -111,7 +111,7 @@ namespace GeCO.ViewModels {
         #endregion
 
 
-        #region gettets/setters
+#region gettets/setters
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -119,15 +119,10 @@ namespace GeCO.ViewModels {
                 OnPropertyChanged();
             }
         }
-<<<<<<< HEAD
 #endregion
 
 
 #region Properties
-=======
-        #endregion
-
->>>>>>> parent of 62eeb5a... bugfixing
         public void InicializacaoPropriedades() {
             Pessoa =                new Pessoa {
                 Nome =              "",
