@@ -75,7 +75,7 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoTestemunhaPage(currentAutoId);
+            var page = new AutoTestemunhaPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;

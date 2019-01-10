@@ -13,9 +13,9 @@ namespace GeCO.Views {
 
         private Apreensao _apreensao;
         int currentAutoId, currentApreensaoId, currentLeiId;
+        bool isNewAuto;
 
-
-        public AutoApreensaoPage(int id) {
+        public AutoApreensaoPage(int id, bool state) {
             InitializeComponent();
 
             BindingContext = new AutoApreensaoVM();

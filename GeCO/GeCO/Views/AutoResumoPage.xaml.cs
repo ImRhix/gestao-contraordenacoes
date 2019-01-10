@@ -14,6 +14,7 @@ namespace GeCO.Views {
             InitializeComponent();
 
             currentAutoId = id;
+            isNewAuto = state;
             BindingContext = new AutoResumoVM();
         }
 
