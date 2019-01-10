@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using Xamarin.Forms;
-using GeCO.ViewModels;
-using System.Threading.Tasks;
-using GeCO.Models;
-using System.Threading;
 using System.Diagnostics;
+using GeCO.Models;
+using GeCO.ViewModels;
+using System.Threading;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GeCO.Views {
     
     public partial class AutoApreensaoPage : ContentPage {
+
         private Apreensao _apreensao;
+        int currentAutoId, currentApreensaoId, currentLeiId;
 
-        private int currentAutoId, currentApreensaoId, currentLeiId;
-        private bool isNewAuto;
 
-        public AutoApreensaoPage(int id, bool state) {
+        public AutoApreensaoPage(int id) {
             InitializeComponent();
 
             BindingContext = new AutoApreensaoVM();
@@ -87,6 +86,8 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
+
+
         /// <summary>
         /// Grava e segue em frente
         /// </summary>
@@ -133,6 +134,8 @@ namespace GeCO.Views {
             };
         }
 
+
+
         /// <summary>
         /// Chama a funçao loadObjetos() e grava/atualiza a pessoa na BD
         /// </summary>
@@ -142,6 +145,7 @@ namespace GeCO.Views {
             var aprId = await (BindingContext as AutoApreensaoVM).GuardarApreensao(Apreensao as Apreensao, currentAutoId);
             currentApreensaoId = aprId;
         }
+
 
 
         /// <summary>
@@ -161,7 +165,7 @@ namespace GeCO.Views {
 
 
 
-        #region getters/setters
+#region getters/setters
         public Apreensao Apreensao {
             get { return _apreensao; }
             set {
@@ -169,9 +173,10 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
-        #endregion
+#endregion
 
-        #region Taps Separadores
+  
+#region Taps Separadores
         void OnApreensaoTapped(object sender, System.EventArgs e) {
             apreensaoStack.IsVisible = !apreensaoStack.IsVisible;
             
@@ -180,6 +185,6 @@ namespace GeCO.Views {
             else
                 apreensaoArrow.RotateTo(0, 225);
         }
-        #endregion
+#endregion
     }
 }

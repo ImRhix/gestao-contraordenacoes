@@ -12,8 +12,7 @@ namespace GeCO.Views{
             Init();
         }
 
-
-
+        
        void Init(){
             activityIndicator.IsVisible = false;
             logoImage.HeightRequest = Constants.logoHeight;

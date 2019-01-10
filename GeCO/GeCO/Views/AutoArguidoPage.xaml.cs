@@ -8,6 +8,7 @@ using System.Diagnostics;
 namespace GeCO.Views {
     
     public partial class AutoArguidoPage : ContentPage {
+
         private int currentAutoId, currentArguidoId;
         private bool isNewAuto;
         private Pessoa _pessoa;
@@ -22,9 +23,11 @@ namespace GeCO.Views {
             currentAutoId = id;
         }
 
+
+
         protected override async void OnAppearing() {
+
             var geral = await (BindingContext as AutoArguidoVM).GetGeral(currentAutoId);
-            Debug.WriteLine($"\nArgId {geral.ArguidoId}\nDenId {geral.DenuncianteId}\nTesId {geral.TestemunhaId}\n");
             currentArguidoId = geral.ArguidoId;
 
             if (currentArguidoId != 0) {
@@ -94,9 +97,7 @@ namespace GeCO.Views {
         }
 
 
-
-
-
+        
 
         /// <summary>
         /// Guarda a pessoa e associa o id à FK TestemunhaId na tabela Geral
@@ -128,6 +129,8 @@ namespace GeCO.Views {
 
             IsEnabled = true;
         }
+
+
 
         /// <summary>
         /// Grava informação e abre a próxima página.
@@ -210,8 +213,7 @@ namespace GeCO.Views {
         }
 
 
-
-        #region Properties
+#region REGION -> Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -219,9 +221,9 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
-        #endregion
+#endregion
 
-        #region Tap Separadores
+#region Tap Separadores
         void OnIdentificacaoTapped(object sender, System.EventArgs e) {
             identificacaoStack.IsVisible = !identificacaoStack.IsVisible;
 
@@ -230,6 +232,6 @@ namespace GeCO.Views {
             else
                 identificacaoArrow.RotateTo(0, 225);
         }
-        #endregion
+#endregion
     }
 }

@@ -1,8 +1,8 @@
 ﻿using GeCO.Models;
-using System;
-using Xamarin.Forms;
 using GeCO.ViewModels;
+using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GeCO.Views {
     
@@ -11,7 +11,7 @@ namespace GeCO.Views {
         private int currentAutoId, currentTestemunhaId;
         private bool isNewAuto;
         private Pessoa _pessoa;
-
+      
          
         public AutoTestemunhaPage(int id, bool state) {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace GeCO.Views {
 
         protected override async void OnAppearing() {
             var geral = await (BindingContext as AutoTestemunhaVM).GetGeral(currentAutoId);
-            currentTestemunhaId = geral.ArguidoId;
+            currentTestemunhaId = geral.TestemunhaId;
 
             if (currentTestemunhaId != 0) {
                 var pess = await (BindingContext as AutoTestemunhaVM).GetPessoa(currentTestemunhaId);
@@ -75,7 +75,7 @@ namespace GeCO.Views {
         /// </summary>
         void OnPessoaSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
             var pessSelecionada =       e.SelectedItem as Pessoa;
-
+          
             currentTestemunhaId =       pessSelecionada.PessoaId;
             nome.Text =                 pessSelecionada.Nome;
             dataNasc.Date =             pessSelecionada.DataNascimento;
@@ -125,6 +125,8 @@ namespace GeCO.Views {
 
             IsEnabled = true;
         }
+
+
 
         /// <summary>
         /// Grava informação e abre a próxima página.
@@ -176,6 +178,8 @@ namespace GeCO.Views {
             };
         }
 
+
+
         /// <summary>
         /// Chama a funçao loadObjetos() e grava/atualiza a pessoa na BD
         /// </summary>
@@ -207,7 +211,7 @@ namespace GeCO.Views {
 
 
 
-        #region Properties
+#region Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -215,9 +219,9 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
-        #endregion
+#endregion
 
-        #region Taps Separadores
+#region Taps Separadores
         void OnIdentificacaoTapped(object sender, System.EventArgs e) {
             identificacaoStack.IsVisible = !identificacaoStack.IsVisible;
 
@@ -226,6 +230,6 @@ namespace GeCO.Views {
             else
                 identificacaoArrow.RotateTo(0, 225);
         }
-        #endregion
+#endregion
     }
 }

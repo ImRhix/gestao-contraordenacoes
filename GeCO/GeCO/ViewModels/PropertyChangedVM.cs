@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace GeCO.ViewModels {
     public class PropertyChangedVM : INotifyPropertyChanged {
+      
         public PropertyChangedVM() {
         }
 

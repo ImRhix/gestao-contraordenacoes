@@ -13,23 +13,24 @@
                      Icon=      "refresh_24.png" />
     </ContentPage.ToolbarItems>
 
-    
+
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="7" BackgroundColor="{StaticResource BackgroundColor}" RowSpacing="7" ColumnSpacing="7" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" /> <!-- 188 -->
                     <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>  
+                    <!-- 188 -->
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
 
-                
+
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Contraordenações de Sistema ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -69,7 +70,6 @@
 
 
 
-
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~~~~ Inibições de Conduzir ~~~~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -100,6 +100,7 @@
                        Grid.Row=        "2"
                        Grid.Column=     "0"
                        HeightRequest=   "179">
+                  
                     <StackLayout>
                         <Label Text=        "COs Atribuídas"
                                Style=       "{StaticResource CardHeading}" />
@@ -110,6 +111,7 @@
                                    Style=   "{StaticResource DetailCardText}" />
                         </StackLayout>
                     </StackLayout>
+                  
                 </Frame>
 
 
@@ -166,12 +168,12 @@
                                 </StackLayout>
                             </ListView.Footer>
                         </ListView>
+                      
                     </StackLayout>
                 </Frame>
                 
 
-
-
+              
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Decisões Contraordenatórias ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -195,13 +197,13 @@
                             <BoxView WidthRequest=      "18"
                                      Margin=            "10,5,5,5"/>
                             <Label Text=                "Não Condenatórias"
-                                   VerticalOptions=     "Center"/> 
+                                   VerticalOptions=     "Center"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-                
+
             </Grid>
         </ScrollView>
-    </ContentPage.Content>
 
+    </ContentPage.Content>
 </ContentPage>

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using GeCO.Models;
 namespace GeCO.ViewModels
 {
-    public class AutoApreensaoVM : PropertyChangedVM
-    {
+    public class AutoApreensaoVM : PropertyChangedVM {
+
         public List<String> Objeto => objetos;
         public List<String> Lei => leis;
         public List<String> Tipo => tipos;
@@ -25,12 +25,13 @@ namespace GeCO.ViewModels
             return await App.Database.GetGeral(id);
         }
 
+
         public async Task<Apreensao> GetApreensao(int id) {
             return await App.Database.GetApreensao(id);
         }
 
-        public async Task<Lei> GetLei(int id)
-        {
+
+        public async Task<Lei> GetLei(int id) {
             if (id != 0)
                 return await App.Database.GetLei(id);
 
@@ -44,7 +45,9 @@ namespace GeCO.ViewModels
         /// Insere (ou atualiza) a tabela Apreensao com o input das entries. Retornar o id da apreensao
         /// </summary>
         public async Task<Int32> GuardarApreensao(Apreensao apreensao, int autoId) {
-            apreensao = await App.Database.SaveApreensao(apreensao, autoId);
+            apreensao = await App.Database.SaveApreensao(apreensao);
+            await App.Database.UpdateApreensao(apreensao.ApreensaoId, autoId);
+
             return apreensao.ApreensaoId;
         }
         #endregion

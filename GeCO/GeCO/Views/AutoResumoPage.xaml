@@ -25,14 +25,12 @@
                 
 
                 <!-- ~~~~~~ Botões ~~~~~~ -->
-                <Button Text=           "Guardar Online"
-                        Image=          "cloud_upload_24.png"
-                        Style=          "{StaticResource FormFinalButton}"/>
-                                        
-                <Button Text=           "Guardar Localmente"
+                <Button Text=           "Guardar e Sair"
                         Image=          "save_24.png"
-                        Style=          "{StaticResource FormFinalButton}"/>
-                                        
+                        Style=          "{StaticResource FormFinalButton}"
+                        Clicked=        "OnGuardarClicked"/>
+                
+
                 <Button Text=           "Página Anterior"
                         Image=          "chevron_left_orange_24.png"
                         Style=          "{StaticResource FormFinalBackButton}"

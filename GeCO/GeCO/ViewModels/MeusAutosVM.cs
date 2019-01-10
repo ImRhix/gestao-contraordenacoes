@@ -17,6 +17,7 @@ namespace GeCO.ViewModels {
         private Localizacao _localizacao;
         private Pessoa _pessoa;
 
+
         public MeusAutosVM() {
         }
 

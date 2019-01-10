@@ -16,7 +16,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-<!--        <ScrollView>-->
+
         <StackLayout>
             <StackLayout Padding="10,15,10,10" >
                 <local:StepRenderer StepColor="{StaticResource SecondaryColor}" Steps="7" StepSelected="2" x:Name="stepBar"/>
@@ -28,22 +28,22 @@
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <Frame Style="{StaticResource FormFrame}" >
                 <StackLayout>
-                    <StackLayout Style=            "{StaticResource FormHeader}">
-                        <Label Text=               "Lei"
-                                   Style=              "{StaticResource FormSectionLabel}" />
-                        <Image x:Name=             "leiArrow"
-                                   Source=             "chevron_down_blue_24.png"
-                                   HorizontalOptions = "End" />
+                    <StackLayout Style=             "{StaticResource FormHeader}">
+                        <Label Text=                "Lei"
+                                Style=              "{StaticResource FormSectionLabel}" />
+                        <Image x:Name="leiArrow"
+                                Source=             "chevron_down_blue_24.png"
+                                HorizontalOptions = "End" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnLeiTapped" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
                     <StackLayout x:Name="leiStack"
-                                     IsVisible=         "true">
-                        <Grid  Padding=             "15,5,15,10"
-                                   RowSpacing=          "0"
-                                   ColumnSpacing=       "5">
+                                 IsVisible=          "true">
+                        <Grid  Padding=              "15,5,15,10"
+                                RowSpacing=          "0"
+                                ColumnSpacing=       "5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <!-- 00 -->
@@ -73,91 +73,91 @@
 
                             <!-- Título -->
                             <Label Text=            "Título"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       Grid.Row=        "0"
-                                       Grid.Column=     "0"
-                                       Grid.ColumnSpan= "3" />
+                                   Style=           "{StaticResource FormTitleLabel}"
+                                   Grid.Row=        "0"
+                                   Grid.Column=     "0"
+                                   Grid.ColumnSpan= "3" />
                             <Picker x:Name="titulo"
-                                        ItemsSource=    "{Binding Titulo}"
-                                        SelectedItem=   "{Binding Lei.Titulo, Mode=TwoWay}"
-                                        SelectedIndexChanged="OnIndexChanged"
-                                        Style=          "{StaticResource FormPicker}"
-                                        Grid.Row=       "1"
-                                        Grid.Column=    "0"
-                                        Grid.ColumnSpan="3" />
+                                    ItemsSource=    "{Binding Titulo}"
+                                    SelectedItem=   "{Binding Lei.Titulo, Mode=TwoWay}"
+                                    SelectedIndexChanged="OnIndexChanged"
+                                    Style=          "{StaticResource FormPicker}"
+                                    Grid.Row=       "1"
+                                    Grid.Column=    "0"
+                                    Grid.ColumnSpan="3" />
                             <!-- Pontos Subtraídos -->
                             <Label Text=            "Pontos"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       Grid.Row=        "0"
-                                       Grid.Column=     "3" />
+                                   Style=           "{StaticResource FormTitleLabel}"
+                                   Grid.Row=        "0"
+                                   Grid.Column=     "3" />
                             <!-- Binding -->
                             <Label x:Name="pontos"
-                                       Text=            "{Binding Lei.Pontos, Mode=TwoWay}"
-                                       Style=           "{StaticResource FormLabel}"
-                                       Grid.Row=        "1"
-                                       Grid.Column=     "3" />
+                                   Text=            "{Binding Lei.Pontos, Mode=TwoWay}"
+                                   Style=           "{StaticResource FormLabel}"
+                                   Grid.Row=        "1"
+                                   Grid.Column=     "3" />
 
                             <!-- Descrição Lei -->
                             <Label Text=            "Descrição da Lei"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       Grid.Row=        "2"
-                                       Grid.Column=     "0"
-                                       Grid.ColumnSpan= "4"/>
+                                   Style=           "{StaticResource FormTitleLabel}"
+                                   Grid.Row=        "2"
+                                   Grid.Column=     "0"
+                                   Grid.ColumnSpan= "4"/>
                             <!-- Binding -->
                             <Label x:Name="descricao"
-                                       Text=            "{Binding Lei.Descricao, Mode=TwoWay}"
-                                       Style=           "{StaticResource FormLabel}"
-                                       Grid.Row=        "3"
-                                       Grid.Column=     "0"
-                                       Grid.ColumnSpan= "4"/>
+                                   Text=            "{Binding Lei.Descricao, Mode=TwoWay}"
+                                   Style=           "{StaticResource FormLabel}"
+                                   Grid.Row=        "3"
+                                   Grid.Column=     "0"
+                                   Grid.ColumnSpan= "4"/>
 
 
 
                             <!-- Coimas -->
                             <Label Text=            "Coimas"
-                                       Style=           "{StaticResource FormSubtitleLabel}"
-                                       Grid.Row=        "4"
-                                       Grid.Column=     "0"
-                                       Grid.ColumnSpan= "4"/>
+                                   Style=           "{StaticResource FormSubtitleLabel}"
+                                   Grid.Row=        "4"
+                                   Grid.Column=     "0"
+                                   Grid.ColumnSpan= "4"/>
 
                             <!-- Coima Mínima -->
                             <Label Text=            "Mínimo"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       VerticalOptions= "CenterAndExpand"
-                                       Grid.Row=        "5"
-                                       Grid.Column=     "0" />
+                                   Style=           "{StaticResource FormTitleLabel}"
+                                   VerticalOptions= "CenterAndExpand"
+                                   Grid.Row=        "5"
+                                   Grid.Column=     "0" />
                             <!-- Binding -->
                             <Label x:Name="min"
-                                       Text=            "{Binding Lei.Min, Mode=TwoWay}"
-                                       Style=           "{StaticResource FormLabel}"
-                                       Grid.Row=        "6"
-                                       Grid.Column=     "0" />
+                                   Text=            "{Binding Lei.Min, Mode=TwoWay}"
+                                   Style=           "{StaticResource FormLabel}"
+                                   Grid.Row=        "6"
+                                   Grid.Column=     "0" />
 
                             <!-- Coima Máxima -->
                             <Label Text=            "Máximo"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       VerticalOptions= "CenterAndExpand"
-                                       Grid.Row=        "5"
-                                       Grid.Column=     "1" />
+                                   Style=           "{StaticResource FormTitleLabel}"
+                                   VerticalOptions= "CenterAndExpand"
+                                   Grid.Row=        "5"
+                                   Grid.Column=     "1" />
                             <!-- Binding -->
                             <Label x:Name="max"
-                                       Text=            "{Binding Lei.Max, Mode=TwoWay}"
-                                       Style=           "{StaticResource FormLabel}"
-                                       Grid.Row=        "6"
-                                       Grid.Column=     "1" />
+                                   Text=            "{Binding Lei.Max, Mode=TwoWay}"
+                                   Style=           "{StaticResource FormLabel}"
+                                   Grid.Row=        "6"
+                                   Grid.Column=     "1" />
 
                             <!-- Prazo -->
                             <Label Text=            "Prazo"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       VerticalOptions= "CenterAndExpand"
-                                       Grid.Row=        "5"
-                                       Grid.Column=     "2" />
+                                   Style=           "{StaticResource FormTitleLabel}"
+                                   VerticalOptions= "CenterAndExpand"
+                                   Grid.Row=        "5"
+                                   Grid.Column=     "2" />
                             <!-- Binding -->
                             <Label x:Name="prazo"
-                                       Text=            "{Binding Lei.Prazo, Mode=TwoWay}"
-                                       Style=           "{StaticResource FormLabel}"
-                                       Grid.Row=        "6"
-                                       Grid.Column=     "2" />
+                                   Text=            "{Binding Lei.Prazo, Mode=TwoWay}"
+                                   Style=           "{StaticResource FormLabel}"
+                                   Grid.Row=        "6"
+                                   Grid.Column=     "2" />
                         </Grid>
                     </StackLayout>
                 </StackLayout>
@@ -166,26 +166,19 @@
 
 
             <!-- ~~~~~~ Botões ~~~~~~ -->
-            <StackLayout>
-                <StackLayout Orientation=   "Horizontal" >
-                    <Button Text=           "Anterior"
-                            Image=          "chevron_left_orange_24.png"
-                            Style=          "{StaticResource FormLeftButton}"
-                            Clicked=        "OnAnteriorClicked"/>
+            <StackLayout Orientation=   "Horizontal" >
+                <Button Text=           "Anterior"
+                        Image=          "chevron_left_orange_24.png"
+                        Style=          "{StaticResource FormLeftButton}"
+                        Clicked=        "OnAnteriorClicked"/>
 
-                    <Button Text=           "Próximo"
-                            Image=          "chevron_right_24.png"
-                            Style=          "{StaticResource FormRightButton}"
-                            Clicked=        "OnProximoClicked"/>
-
-                </StackLayout>
-                <Button Text=           "Cancelar"
-                        Image=          "close_red_24.png"
-                        Style=          "{StaticResource FormCancelButton}"
-                        Clicked=        "OnCancelClicked"/>
+                <Button Text=           "Próximo"
+                        Image=          "chevron_right_24.png"
+                        Style=          "{StaticResource FormRightButton}"
+                        Clicked=        "OnProximoClicked"/>
             </StackLayout>
         </StackLayout>
-        <!--        </ScrollView>-->
+      
 
     </ContentPage.Content>
 </ContentPage>

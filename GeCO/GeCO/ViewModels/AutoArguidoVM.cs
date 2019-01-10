@@ -24,7 +24,9 @@ namespace GeCO.ViewModels {
 
 
 
-        #region Gets
+
+#region REGION -> Gets
+  
         /// <summary>
         /// Retorna o presente auto (Geral)
         /// </summary>

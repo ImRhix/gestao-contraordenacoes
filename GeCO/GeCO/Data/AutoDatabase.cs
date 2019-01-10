@@ -25,7 +25,7 @@ namespace GeCO.Data {
 
 
 
-        #region Get (IDs / PKs)
+#region REGION -> Get (IDs / PKs)
         /// <summary>
         /// Encontra a ultima linha da tabela Geral, incrementa uma unidade à PK (AutoId) e retorna o valor. 
         /// (NOTA: é suposto a PK ser auto-incrementada mas por algum motivo não está a acontecer e este é o walkaround.)
@@ -45,6 +45,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Retorna o ultimo LocalId incrementado para não existir repetição nos inserts. Ex.: se ultimo id = 5, este metodo retorna 6.
         /// </summary>
@@ -62,6 +63,7 @@ namespace GeCO.Data {
                 return nextId;
             }
         }
+
 
         /// <summary>
         /// Retorna o ultimo PessoaId incrementado para não existir repetição nos inserts. Ex.: se ultimo id = 5, este methodo retorna 6.
@@ -81,6 +83,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Retorna o ultimo LeiId incrementado para não existir repetição nos inserts. Ex.: se ultimo id = 5, este methodo retorna 6.
         /// </summary>
@@ -99,6 +102,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Retorna o ultimo ApreensaoId incrementado para não existir repetição nos inserts. Ex.: se ultimo id = 5, este methodo retorna 6.
         /// </summary>
@@ -116,7 +120,28 @@ namespace GeCO.Data {
                 return nextId;
             }
         }
-        #endregion
+
+
+
+        /// <summary>
+        /// Retorna o ultimo PagamentoId incrementado para não existir repetição nos inserts. Ex.: se ultimo id = 5, o return será 6.
+        /// </summary>
+        public async Task<Int32> GetNexPagamentoId() {
+            int nextId = 0;
+            string query = $"SELECT * FROM Pagamento ORDER BY PagamentoId DESC LIMIT 1";
+
+            try {
+                var result = await database.QueryAsync<Pagamento>(query);
+                foreach (var id in result)
+                    nextId = ++id.PagamentoId;
+                return nextId;
+            }
+            catch {
+                Debug.WriteLine("Error in AutoDatabase.cs: GetNextPagamentoId()");
+                return nextId;
+            }
+        }
+#endregion
 
 
         #region Get (Objects / ObjectLists)
@@ -132,6 +157,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Retorna um objeto (row) da tabela Localizacao baseado no id (PK)
         /// </summary>
@@ -143,6 +169,7 @@ namespace GeCO.Data {
                 return null;
             }
         }
+
 
         /// <summary>
         /// Retorna um objeto (row) da tabela Pessoa baseado no id (PK)
@@ -156,6 +183,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Retorna um objeto (row) da tabela Autuante baseado no id (PK)
         /// </summary>
@@ -167,6 +195,7 @@ namespace GeCO.Data {
                 return null;
             }
         }
+
 
         /// <summary>
         /// Retorna um objeto (row) da tabela Lei baseado no id (PK)
@@ -180,8 +209,9 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
-        /// Retorna um objeto (row) da tabela Geral baseado no id (PK)
+        /// Retorna um objeto (row) da tabela Apreensao baseado no id (PK)
         /// </summary>
         public async Task<Apreensao> GetApreensao(int id) {
             try {
@@ -194,7 +224,7 @@ namespace GeCO.Data {
 
 
         /// <summary>
-        /// Retorna um objeto (row) da tabela Geral baseado no id (PK)
+        /// Retorna um objeto (row) da tabela Pagamento baseado no id (PK)
         /// </summary>
         public async Task<Pagamento> GetPagamento(int id) {
             try {
@@ -207,7 +237,7 @@ namespace GeCO.Data {
 
 
         /// <summary>
-        /// Retorna uma List com todos os objetos (rows da tabela) Geral
+        /// Retorna uma List com todos os objetos pessoa baseado num NIF
         /// </summary>
         public async Task<bool> CheckPessoa(int nif) {
             string query = $"SELECT * FROM Pessoa WHERE NIF = {nif}";
@@ -224,7 +254,6 @@ namespace GeCO.Data {
         }
 
 
-
         /// <summary>
         /// Retorna uma List com todos os objetos (rows da tabela) Geral
         /// </summary>
@@ -239,6 +268,7 @@ namespace GeCO.Data {
             }
         }
 
+
         public async Task<List<Pessoa>> GetPessoaList() {
             string queryGeral = "SELECT * FROM Pessoa";
             try {
@@ -249,6 +279,7 @@ namespace GeCO.Data {
                 return null;
             }
         }
+
 
         public async Task<List<Pessoa>> GetPessoaListOrdered() {
             string queryGeral = "SELECT * FROM Pessoa ORDER BY Nome COLLATE NOCASE";
@@ -261,6 +292,10 @@ namespace GeCO.Data {
             }
         }
 
+
+        /// <summary>
+        /// Retorna uma lista com todos os Pagamentos
+        /// </summary>
         public async Task<List<Pagamento>> GetPagamentoList() {
             string queryGeral = "SELECT * FROM Pagamento";
             try {
@@ -272,6 +307,10 @@ namespace GeCO.Data {
             }
         }
 
+
+        /// <summary>
+        /// Retorna uma lista com todas as Leis
+        /// </summary>
         public async Task<List<Lei>> GetLeiList() {
             string queryGeral = "SELECT * FROM Lei";
             try {
@@ -382,14 +421,14 @@ namespace GeCO.Data {
         }
 
 
-        public async Task<Apreensao> SaveApreensao(Apreensao apreensao, int autoId) {
+        /// <summary>
+        /// Atualiza um objecto na tabela Apreensao
+        /// </summary>
+        public async Task<Apreensao> SaveApreensao(Apreensao apreensao) {
             if (apreensao.ApreensaoId == 0) {
                 try {
                     apreensao.ApreensaoId = await GetNextApreensaoId();
                     await database.InsertAsync(apreensao);
-
-                    var query = $"UPDATE Geral SET ApreensaoId = { apreensao.ApreensaoId } WHERE AutoId = { autoId }";
-                    await database.QueryAsync<Geral>(query);
 
                     return apreensao;
                 }
@@ -400,14 +439,11 @@ namespace GeCO.Data {
             }
             await database.UpdateAsync(apreensao);
 
-            var query2 = $"UPDATE Geral SET ApreensaoId = { apreensao.ApreensaoId } WHERE AutoId = { autoId }";
-            await database.QueryAsync<Geral>(query2);
-
             return apreensao;
         }
 
         /// <summary>
-        /// Na verdade apenas realiza um UPDATE na FK da row tabela Geral.
+        /// Realiza um UPDATE na FK da row na tabela Geral.
         /// </summary>
         public async Task<Lei> SaveLei(Lei lei, int autoId) {
             if (lei.LeiId != 0) { 
@@ -424,10 +460,37 @@ namespace GeCO.Data {
             }
             return lei;
         }
-        #endregion
+     
 
 
-        #region UPDATES
+        /// <summary>
+        /// Insere ou atualiza um objeto na tabela Pagamento
+        /// </summary>
+        public async Task<Pagamento> SavePagamento(Pagamento pagamento) {
+            if (pagamento.PagamentoId == 0) {
+                try {
+                    pagamento.PagamentoId = await GetNexPagamentoId();
+                    await database.InsertAsync(pagamento);
+
+                    return pagamento;
+                }
+                catch {
+                    Debug.WriteLine("\nError in AutoDatabase.cs: SavePagamento().\n");
+                    return pagamento;
+                }
+            }
+            await database.UpdateAsync(pagamento);
+
+            return pagamento;
+        }
+#endregion
+
+
+#region REGION -> UPDATES
+
+        /// <summary>
+        /// Atualiza um objeto pessoa
+        /// </summary>
         public async Task UpdatePessoa(Pessoa pessoa) {
             try {
                 int x = await database.UpdateAsync(pessoa);
@@ -437,6 +500,9 @@ namespace GeCO.Data {
         }
 
 
+        /// <summary>
+        /// Corre a lista de autos e modifica todas as FKs da pessoa que se deseja dessassociar do auto para 0
+        /// </summary>
         public async Task UpdateDeletedPessoa(int pessoaId) {
             var lista = await GetGeralList();
             foreach (var item in lista) {
@@ -453,6 +519,10 @@ namespace GeCO.Data {
         }
 
 
+
+        /// <summary>
+        /// Atualiza a FK referente ao denunciante num determinado Auto
+        /// </summary>
         public async Task UpdateDenunciante(int pessoaId, int autoId) {
             try {
                 var query = $"UPDATE Geral SET DenuncianteId = { pessoaId } WHERE AutoId = { autoId }";
@@ -462,6 +532,10 @@ namespace GeCO.Data {
             }
         }
 
+
+        /// <summary>
+        /// Atualiza a FK referente ao arguido num determinado Auto
+        /// </summary>
         public async Task UpdateArguido(int pessoaId, int autoId) {
             try {
                 var query = $"UPDATE Geral SET ArguidoId = { pessoaId } WHERE AutoId = { autoId }";
@@ -471,6 +545,10 @@ namespace GeCO.Data {
             }
         }
 
+
+        /// <summary>
+        /// Atualiza a FK referente à testemunha num determinado Auto
+        /// </summary>
         public async Task UpdateTestemunha(int pessoaId, int autoId) {
             try {
                 var query = $"UPDATE Geral SET TestemunhaId = { pessoaId } WHERE AutoId = { autoId }";
@@ -480,6 +558,10 @@ namespace GeCO.Data {
             }
         }
 
+
+        /// <summary>
+        /// Atualiza o id da localização num determinado auto
+        /// </summary>
         public async Task UpdateLocalizacao(int localId, int autoId) {
             try {
                 var query = $"UPDATE Geral SET LocalId = { localId } WHERE AutoId = { autoId }";
@@ -489,15 +571,23 @@ namespace GeCO.Data {
             }
         }
 
+
+        /// <summary>
+        /// Atualiza o ApreensaoId para 0 num determinado auto
+        /// </summary>
         public async Task UpdateApreensao (int apreensaoId, int autoId) {
             try {
-                var query = $"UPDATE Geral SET ApreensaoId = 0 WHERE AutoId = { autoId }";
+                var query = $"UPDATE Geral SET ApreensaoId = { apreensaoId } WHERE AutoId = { autoId }";
                 await database.QueryAsync<Geral>(query);
             } catch {
                 Debug.WriteLine("\nError in AutoDatabase.cs: UpdateApreensao().\n");
             }
         }
 
+
+        /// <summary>
+        /// Atualiza a FK LeiId num determinado auto
+        /// </summary>
         public async Task UpdateLei(int leiId, int autoId) {
             try {
                 var query = $"UPDATE Geral SET LeiId = { leiId } WHERE AutoId = { autoId }";
@@ -507,18 +597,51 @@ namespace GeCO.Data {
             }
         }
 
-        public async Task UpdatePagamento(int pagamentoId, int autoId) {
+
+        /// <summary>
+        /// Atualiza um objeto Pagamento
+        /// </summary>
+        public async Task UpdatePagamento(Pagamento pagamento) {
+            try {
+                int x = await database.UpdateAsync(pagamento);
+            }
+            catch {
+                Debug.WriteLine("\nError in AutoDatabase.cs: UpdatePagamento().\n");
+            }
+        }
+
+
+        /// <summary>
+        /// Atualiza a FK PagamentoId num determinado Auto
+        /// </summary>
+        public async Task UpdateGeralPagamento(int pagamentoId, int autoId) {
             try {
                 var query = $"UPDATE Geral SET PagamentoId = { pagamentoId } WHERE AutoId = { autoId }";
                 await database.QueryAsync<Geral>(query);
             } catch {
-                Debug.WriteLine("\nError in AutoDatabase.cs: UpdatePagamento().\n");
+                Debug.WriteLine("\nError in AutoDatabase.cs: UpdateGeralPagamento().\n");
             }
         }
-        #endregion
 
 
-        #region Deletes
+
+        /// <summary>
+        /// Atualiza para 0 a FK PagamentoID de um determinado auto através da função UpdateGeralPagamento()
+        /// </summary>
+        public async Task UpdateDeletedPagamento(int pagamentoId) {
+
+            var lista = await GetGeralList();
+
+            foreach (var item in lista) {
+                if (item.PagamentoId == pagamentoId) {
+                    await UpdateGeralPagamento(0, item.AutoId);
+                }
+            }
+        }
+#endregion
+
+
+#region REGION -> Deletes
         /// <summary>
         /// Apaga da tabela o atual objeto Geral
         /// </summary>
@@ -529,6 +652,7 @@ namespace GeCO.Data {
                 Debug.WriteLine("\nError in AutoDatabase.cs: ApagarGeral()\n");
             }
         }
+
 
         /// <summary>
         /// Apaga da tabela o atual objeto Pessoa
@@ -541,6 +665,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Apaga da tabela o atual objeto Localizacao
         /// </summary>
@@ -552,6 +677,7 @@ namespace GeCO.Data {
             }
         }
 
+
         /// <summary>
         /// Apaga da tabela o atual objeto Lei
         /// </summary>
@@ -562,6 +688,7 @@ namespace GeCO.Data {
                 Debug.WriteLine("\nError in AutoDatabase.cs: ApagarLei)\n");
             }
         }
+
 
         /// <summary>
         /// Apaga da tabela o atual objeto Lei
@@ -617,12 +744,12 @@ namespace GeCO.Data {
                 Debug.WriteLine("Error in AutoDatabase.cs: Vacuum().");
             }
         }
-        #endregion
+#endregion
 
 
 
 
-        #region Pre-load dos placeholders (autos e pessoas)
+#region REGION -> apenas para os placeholders
         public async Task<Geral> _PHInsert_Geral(Geral geral) {
             try {
                 await database.InsertAsync(geral);
@@ -721,6 +848,6 @@ namespace GeCO.Data {
                 Debug.WriteLine("\nError in AutoDatabase.cs: _PHUpdate_Geral().\n");
             }
         }
-        #endregion
+#endregion
     }
 }

@@ -103,6 +103,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
