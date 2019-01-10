@@ -664,8 +664,8 @@ namespace GeCO.Data {
 
 #region REGION -> Deletes
         /// <summary>
-            /// Apaga da tabela o atual objeto Geral
-            /// </summary>
+        /// Apaga da tabela o atual objeto Geral
+        /// </summary>
         public async Task ApagarGeral(Geral geral) {
             try {
                 await database.DeleteAsync(geral);
