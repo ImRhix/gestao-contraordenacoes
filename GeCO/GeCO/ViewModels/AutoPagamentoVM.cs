@@ -1,6 +1,8 @@
-﻿using System;
+﻿using GeCO.Models;
+using System;
 using System.Collections.Generic;
-using GeCO.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GeCO.ViewModels {
@@ -9,6 +11,7 @@ namespace GeCO.ViewModels {
         
         public List<String> TipoPagamento => pagamentos;
         public List<String> TipoCusto => custos;
+
 
         private Pagamento _pagamento;
         private CustosProcessuais _custosProcessuais;
@@ -19,22 +22,59 @@ namespace GeCO.ViewModels {
         }
 
 
+
         public async Task<Geral>GetGeral(int id) {
             return await App.Database.GetGeral(id);
         }
 
+
+
+        /// <summary>
+        /// Executa a função GetPagamento em AutoDatabase.cs e retorna o seu resultado
+        /// </summary>
         public async Task<Pagamento>GetPagamento(int id) {
             return await App.Database.GetPagamento(id);
         }
 
 
 
+        /// <summary>
+        /// Grava o pagamento e associa-o ao Auto ou atualiza um já existente.
+        /// </summary>
+        public async Task<Pagamento>GuardarPagamento(Pagamento pagamento, int autoId) {
+
+            if (pagamento.PagamentoId != 0) {
+                await App.Database.UpdatePagamento(pagamento);
+                await App.Database.UpdateGeralPagamento(pagamento.PagamentoId, autoId);
+            }
+            else {
+                pagamento.PagamentoId = 0; // supostamente o id já é 0 (zero) mas ao menos com isto nunca terá numeros negativos. Mais vale prevenir do que remediar
+                pagamento = await App.Database.SavePagamento(pagamento);
+                await App.Database.UpdateGeralPagamento(pagamento.PagamentoId, autoId);
+            }
+
+            return pagamento;
+        }
+    
+
+
+        /// <summary>
+        /// Limpa a informação presente no ecrã e desassocia o pagamento do auto
+        /// </summary>
+        public async Task Desassociar_e_Apagar_Pagamento(int pagamentoId, int autoId) {
+
+            var pag = await App.Database.GetPagamento(pagamentoId);
+
+            await App.Database.ApagarPagamento(pag);
+            await App.Database.UpdateDeletedPagamento(pagamentoId);
+        }
+
 
 
 
 #region REGION -> gettets/setters
 
-        public Pagamento Pagamento {
+    public Pagamento Pagamento {
             get { return _pagamento; }
             set {
                 _pagamento = value;

@@ -1,7 +1,7 @@
 ﻿using GeCO.ViewModels;
 using SQLite;
 using System;
-
+using System.Linq;
 
 namespace GeCO.Models {
     
@@ -42,6 +42,9 @@ namespace GeCO.Models {
     /// </summary>
     [Table("Geral")]
     public class Geral : PropertyChangedVM {
+
+        private static Random random = new Random();
+
         private string _codProcesso;
         private string _pastaFisica;
         private DateTime _dataAuto;
@@ -61,14 +64,16 @@ namespace GeCO.Models {
         public string CodProcesso {
             get { return _codProcesso; }
             set {
-                if (value.Equals("") || value.Equals(AutoId.ToString()))
-                    _codProcesso = $"{DateTime.Today.Year}-rand-{AutoId}";
-                else
-                {
+                if (value.Equals("") || value.Equals(AutoId.ToString())) {
+                    string rand = randomString();
+                    _codProcesso = $"{DateTime.Today.Year}-{rand}/{AutoId}";
+                }
+                else {
                     _codProcesso = value;
                 }
             }
         }
+
 
         [MaxLength(30)]
         public string PastaFisica {
@@ -87,10 +92,7 @@ namespace GeCO.Models {
 
         public TimeSpan HoraAuto {
             get { return _horaAuto; }
-            set {
-                value = DateTime.Now.TimeOfDay;
-                _horaAuto = value;
-            }
+            set { _horaAuto = value; }
         }
 
 
@@ -164,6 +166,15 @@ namespace GeCO.Models {
         public int LeiId { get; set; }
         public int PagamentoId { get; set;}
         #endregion
+
+
+        /// <summary>
+        /// Gera 4 letras aleatoriamente
+        /// </summary>
+        private static String randomString() {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVXZ";
+            return new string(Enumerable.Repeat(chars, 4).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
     }
 
 

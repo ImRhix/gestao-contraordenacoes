@@ -85,6 +85,8 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
+
+
         /// <summary>
         /// Grava e segue em frente
         /// </summary>
@@ -117,6 +119,8 @@ namespace GeCO.Views {
             };
         }
 
+
+
         /// <summary>
         /// Chama a funçao loadObjetos() e grava/atualiza a pessoa na BD
         /// </summary>
@@ -126,6 +130,7 @@ namespace GeCO.Views {
             var aprId = await (BindingContext as AutoApreensaoVM).GuardarApreensao(Apreensao as Apreensao, currentAutoId);
             currentApreensaoId = aprId;
         }
+
 
 
         /// <summary>

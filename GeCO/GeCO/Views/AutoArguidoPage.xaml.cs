@@ -8,6 +8,7 @@ using System.Diagnostics;
 namespace GeCO.Views {
     
     public partial class AutoArguidoPage : ContentPage {
+
         private int currentAutoId, currentArguidoId;
         private Pessoa _pessoa;
         private QualidadeArguido _qualidadeArguido;
@@ -20,9 +21,11 @@ namespace GeCO.Views {
             currentAutoId = id;
         }
 
+
+
         protected override async void OnAppearing() {
+
             var geral = await (BindingContext as AutoArguidoVM).GetGeral(currentAutoId);
-            Debug.WriteLine($"\nArgId {geral.ArguidoId}\nDenId {geral.DenuncianteId}\nTesId {geral.TestemunhaId}\n");
             currentArguidoId = geral.ArguidoId;
 
             if (currentArguidoId != 0) {
@@ -92,9 +95,7 @@ namespace GeCO.Views {
         }
 
 
-
-
-
+        
 
         /// <summary>
         /// Guarda a pessoa e associa o id à FK TestemunhaId na tabela Geral
@@ -126,6 +127,8 @@ namespace GeCO.Views {
 
             IsEnabled = true;
         }
+
+
 
         /// <summary>
         /// Grava informação e abre a próxima página.

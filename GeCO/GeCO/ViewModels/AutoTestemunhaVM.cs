@@ -1,10 +1,9 @@
-﻿using System;
-using GeCO.Models;
-using System.Threading.Tasks;
+﻿using GeCO.Models;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GeCO.ViewModels {
     
@@ -83,20 +82,20 @@ namespace GeCO.ViewModels {
                 bool pessoaExists = await App.Database.CheckPessoa(pessoa.NIF);
                 if (pessoaExists) {
                     await App.Database.UpdatePessoa(pessoa);
-                    await App.Database.UpdateArguido(pessoa.PessoaId, autoId);
+                    await App.Database.UpdateTestemunha(pessoa.PessoaId, autoId);
                 }
                 else {
                     pessoa.PessoaId = 0;
                     pessoa = await App.Database.SavePessoa(pessoa);
-                    await App.Database.UpdateArguido(pessoa.PessoaId, autoId);
+                    await App.Database.UpdateTestemunha(pessoa.PessoaId, autoId);
                 }
             }
             else if (!pessoa.Nome.Equals("") && pessoa.NIF != 0) {
                 pessoa = await App.Database.SavePessoa(pessoa);
-                await App.Database.UpdateArguido(pessoa.PessoaId, autoId);
+                await App.Database.UpdateTestemunha(pessoa.PessoaId, autoId);
             }
             else {
-                await App.Database.UpdateArguido(0, autoId);
+                await App.Database.UpdateTestemunha(0, autoId);
                 pessoa.PessoaId = 0;
             }
             return pessoa;

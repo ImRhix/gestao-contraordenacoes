@@ -1,8 +1,8 @@
 ﻿using GeCO.Models;
-using System;
-using Xamarin.Forms;
 using GeCO.ViewModels;
+using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GeCO.Views {
     
@@ -12,7 +12,7 @@ namespace GeCO.Views {
         private Pessoa _pessoa;
         //private QualidadeArguido _qualidadeArguido;
 
-
+        
          
         public AutoTestemunhaPage(int id) {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace GeCO.Views {
 
         protected override async void OnAppearing() {
             var geral = await (BindingContext as AutoTestemunhaVM).GetGeral(currentAutoId);
-            currentTestemunhaId = geral.ArguidoId;
+            currentTestemunhaId = geral.TestemunhaId;
 
             if (currentTestemunhaId != 0) {
                 var pess = await (BindingContext as AutoTestemunhaVM).GetPessoa(currentTestemunhaId);
@@ -75,8 +75,8 @@ namespace GeCO.Views {
         /// </summary>
         void OnPessoaSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
             var pessSelecionada =       e.SelectedItem as Pessoa;
-
-            currentTestemunhaId =          pessSelecionada.PessoaId;
+            
+            currentTestemunhaId =       pessSelecionada.PessoaId;
             nome.Text =                 pessSelecionada.Nome;
             dataNasc.Date =             pessSelecionada.DataNascimento;
             genero.SelectedItem =       pessSelecionada.Genero;
@@ -126,6 +126,8 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
+
+
         /// <summary>
         /// Grava informação e abre a próxima página.
         /// </summary>
@@ -165,6 +167,8 @@ namespace GeCO.Views {
             //};
         }
 
+
+
         /// <summary>
         /// Chama a funçao loadObjetos() e grava/atualiza a pessoa na BD
         /// </summary>
@@ -193,7 +197,7 @@ namespace GeCO.Views {
             contacto2.Text =            0.ToString();
             email.Text =                "";
 
-            qualidade.SelectedItem =    "Não Definido";
+            //qualidade.SelectedItem =    "Não Definido";
         }
 
 
@@ -228,14 +232,14 @@ namespace GeCO.Views {
                 identificacaoArrow.RotateTo(0, 225);
         }
 
-        void OnQualidadeTapped(object sender, System.EventArgs e) {
+        /*void OnQualidadeTapped(object sender, System.EventArgs e) {
             qualidadeStack.IsVisible = !qualidadeStack.IsVisible;
 
             if (qualidadeArrow.Rotation == 0)
                 qualidadeArrow.RotateTo(-180, 225);
             else
                 qualidadeArrow.RotateTo(0, 225);
-        }
+        }*/
 #endregion
     }
 }

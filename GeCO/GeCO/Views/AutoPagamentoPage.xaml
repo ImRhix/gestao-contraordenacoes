@@ -40,10 +40,10 @@
                         </StackLayout>
 
 <!-- x:Name -->         <StackLayout x:Name="pagamentoStack"
-                                     IsVisible=  "false">
-                            <Grid Padding=       "15,5,15,10"
-                                  RowSpacing=    "0"
-                                  ColumnSpacing= "5">
+                                     IsVisible=     "false">
+                            <Grid Padding=          "15,5,15,10"
+                                  RowSpacing=       "0"
+                                  ColumnSpacing=    "5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" /> <!-- 00 -->
                                     <RowDefinition Height="Auto" /> <!-- 01 -->

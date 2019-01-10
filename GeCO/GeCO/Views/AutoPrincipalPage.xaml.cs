@@ -25,6 +25,9 @@ namespace GeCO.Views {
             InitializeComponent();
 
             currentAutoId = Id;
+            if (currentAutoId != 0)
+                this.Title = "Auto";
+
             isNewAuto = state;
             BindingContext = new AutoPrincipalVM();
         }
@@ -101,6 +104,7 @@ namespace GeCO.Views {
         /// Limpa o input das entries e reverte os pickers para os valores default.
         /// </summary>
         void OnApagar(object sender, System.EventArgs e) {
+            
             codProcesso.Text =              "";
             pastaFisica.Text =              "";
             data.Date =                     DateTime.Today;
@@ -120,13 +124,13 @@ namespace GeCO.Views {
 
             nome.Text =                     "";
             dataNasc.Date =                 DateTime.Today;
-            genero.SelectedItem =           "NãlistaDePessoas.ItemsSourceo Definido";
+            genero.SelectedItem =           "Não Definido";
             estadoCiv.SelectedItem =        "Não Definido";
             nacionalidade.Text =            "";
             naturalidade.Text =             "";
-            nif.Text =                      "";
-            contacto1.Text =                "";
-            contacto2.Text =                "";
+            nif.Text =                      000000000.ToString();
+            contacto1.Text =                0.ToString();
+            contacto2.Text =                0.ToString();
             email.Text =                    "";
 
             autuante.SelectedItem =         "Não Definido";
@@ -179,7 +183,7 @@ namespace GeCO.Views {
             email.Text =                pessSelecionada.Email;
                
             pessoaListView.IsVisible = false;
-            searchBox.Text = "";
+            searchBox.Text =            "";
 
         }
 
@@ -210,12 +214,10 @@ namespace GeCO.Views {
         /// </summary>
         private async void OnProximoClicked(object sender, System.EventArgs e) {
             IsEnabled = false;
-
             await loadAndSave();
 
             var page = new AutoLegislacaoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
-
             IsEnabled = true;
         }
 

@@ -8,10 +8,10 @@ namespace GeCO.Models {
     [Table("Pagamento")]
     public class Pagamento {
         
-        private DateTime _dataLimite;
-        private TimeSpan _horaPagamento;
         private int _nif;
         private int _duc;
+        private DateTime _dataLimite;
+        private TimeSpan _horaPagamento;
         private string _tipoPagamento;
         private decimal _valor;
         private DateTime _dataInicial;

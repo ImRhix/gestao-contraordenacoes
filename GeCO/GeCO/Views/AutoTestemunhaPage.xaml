@@ -253,10 +253,10 @@
 
 
                 
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <!-- ~~~~~~~~ Qualidade do Testemunha ~~~~~~~~ -->
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <Frame Style="{StaticResource FormFrame}" >
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- <Frame Style="{StaticResource FormFrame}" >
                     <StackLayout>
                         <StackLayout Style=         "{StaticResource FormHeader}">
                             <Label Text=            "Qualidade"
@@ -275,17 +275,17 @@
                                    RowSpacing=      "0"
                                    ColumnSpacing=   "5">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" /> <!-- 00 -->
-                                    <RowDefinition Height="Auto" /> <!-- 01 -->
+                                    <RowDefinition Height="Auto" /> 
+                                    <RowDefinition Height="Auto" /> 
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />  <!-- 00 -->
-                                    <ColumnDefinition Width="*" />  <!-- 01 -->
-                                    <ColumnDefinition Width="*" />  <!-- 02 -->
-                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />  
+                                    <ColumnDefinition Width="*" /> 
+                                    <ColumnDefinition Width="*" />  
+                                    <ColumnDefinition Width="*" />  
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Qualidade -->
+                                
                                 <Label Text=            "Qualidade"
                                        Style=           "{StaticResource FormTitleLabel}"
                                        Grid.Row=        "0"
@@ -301,7 +301,7 @@
                             </Grid>
                         </StackLayout>
                     </StackLayout>
-                </Frame>
+                </Frame> -->
 
 
                 
