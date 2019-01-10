@@ -10,6 +10,7 @@ namespace GeCO.Views {
         private int currentAutoId;
         private bool isNewAuto;
 
+
         public AutoResumoPage(int id, bool state) {
             InitializeComponent();
 
@@ -17,7 +18,6 @@ namespace GeCO.Views {
             isNewAuto = state;
             BindingContext = new AutoResumoVM();
         }
-
 
 
 
