@@ -42,7 +42,7 @@ namespace GeCO.ViewModels {
         /// </summary>
         public async Task ApagarAuto(int id) {
             var geral = await App.Database.GetGeral(id);
-
+        }
 
         /// <summary>
         /// Grava o pagamento e associa-o ao Auto ou atualiza um já existente.
@@ -72,16 +72,6 @@ namespace GeCO.ViewModels {
 
             await App.Database.ApagarPagamento(pag);
             await App.Database.UpdateDeletedPagamento(pagamentoId);
-        }
-
-
-            var apr = await App.Database.GetApreensao(geral.ApreensaoId);
-            await App.Database.ApagarApreensao(apr);
-
-            var pag = await App.Database.GetPagamento(geral.PagamentoId);
-            await App.Database.ApagarPagamento(pag);
-
-            await App.Database.ApagarGeral(geral);
         }
 
 
