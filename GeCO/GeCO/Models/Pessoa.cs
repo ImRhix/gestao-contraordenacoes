@@ -134,14 +134,4 @@ namespace GeCO.Models {
             }
         }
     }
-
-
-
-    [Table("QualidadeArguido")]
-    public class QualidadeArguido {
-        [PrimaryKey, AutoIncrement]
-        public int QualidadeId { get; set; }
-
-        public string QualidadeTipo { get; set; }
-    }
 }

@@ -269,19 +269,26 @@
                             </Grid>
                         </StackLayout>
                     </StackLayout>
-                </Frame>            
+                </Frame>
 
                 <!-- ~~~~~~ Botões ~~~~~~ -->
-                <StackLayout Orientation=   "Horizontal" >
-                    <Button Text=           "Anterior"
-                            Image=          "chevron_left_orange_24.png"
-                            Style=          "{StaticResource FormLeftButton}"
-                            Clicked=        "OnAnteriorClicked"/>
-                    
-                    <Button Text=           "Próximo"
-                            Image=          "chevron_right_24.png"
-                            Style=          "{StaticResource FormRightButton}"
-                            Clicked=        "OnProximoClicked"/>
+                <StackLayout>
+                    <StackLayout Orientation=   "Horizontal" >
+                        <Button Text=           "Anterior"
+                                Image=          "chevron_left_orange_24.png"
+                                Style=          "{StaticResource FormLeftButton}"
+                                Clicked=        "OnAnteriorClicked"/>
+
+                        <Button Text=           "Próximo"
+                                Image=          "chevron_right_24.png"
+                                Style=          "{StaticResource FormRightButton}"
+                                Clicked=        "OnProximoClicked"/>
+
+                    </StackLayout>
+                    <Button Text=           "Cancelar"
+                            Image=          "close_red_24.png"
+                            Style=          "{StaticResource FormCancelButton}"
+                            Clicked=        "OnCancelClicked"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

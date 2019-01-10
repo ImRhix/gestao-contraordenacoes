@@ -10,12 +10,14 @@ namespace GeCO.Views {
 
         private Pagamento _pagamento;
         private int currentAutoId, currentPagamentoId;
+        bool isNewAuto;
 
-        public AutoPagamentoPage(int id) {
+        public AutoPagamentoPage(int id, bool state) {
             InitializeComponent();
 
-            currentAutoId = id;
             BindingContext = new AutoPagamentoVM();
+            currentAutoId = id;
+            isNewAuto = state;
         }
 
 
@@ -65,7 +67,6 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
-
         /// <summary>
         /// Grava e segue em frente
         /// </summary>
@@ -80,7 +81,20 @@ namespace GeCO.Views {
             IsEnabled = true;
         }
 
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
 
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoPagamentoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         private async Task loadAndSave() {
@@ -135,6 +149,8 @@ namespace GeCO.Views {
         }
 
 
+
+#region Taps Separadores
         void OnPagamentoTapped(object sender, System.EventArgs e) {
             pagamentoStack.IsVisible = !pagamentoStack.IsVisible;
 
@@ -152,6 +168,6 @@ namespace GeCO.Views {
             else
                 custosArrow.RotateTo(0, 225);
         }
-
+#endregion
     }
 }

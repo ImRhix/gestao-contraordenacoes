@@ -73,11 +73,11 @@
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~~~~ Inibições de Conduzir ~~~~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <Frame CornerRadius="2"
-                       Padding=     "5,10,5,10"
-                       Grid.Row=    "1"
-                       Grid.Column= "0"
-                       MinimumHeightRequest="300">
+                <Frame CornerRadius=    "2"
+                       Padding=         "5,10,5,10"
+                       Grid.Row=        "1"
+                       Grid.Column=     "0"
+                       HeightRequest=   "184">
                     <StackLayout >
                         <Label Text=        "Inibições de Conduzir"
                                Style=       "{StaticResource CardHeading}" />
@@ -95,13 +95,13 @@
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Contraordenações Atribuídas ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <!--  HeightRequest="168" -->
-                <Frame CornerRadius="2"
-                       Padding=     "5,10,5,10"
-                       Grid.Row=    "2"
-                       Grid.Column= "0"
-                       MinimumHeightRequest="300">
-                    <StackLayout >
+                <Frame CornerRadius=    "2"
+                       Padding=         "5,10,5,10"
+                       Grid.Row=        "2"
+                       Grid.Column=     "0"
+                       HeightRequest=   "179">
+                  
+                    <StackLayout>
                         <Label Text=        "COs Atribuídas"
                                Style=       "{StaticResource CardHeading}" />
                         <StackLayout >
@@ -111,74 +111,69 @@
                                    Style=   "{StaticResource DetailCardText}" />
                         </StackLayout>
                     </StackLayout>
+                  
                 </Frame>
 
 
+                
+                
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~~ Contraordenações a Expirar ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <Frame CornerRadius=    "2"
-                       Padding=         "0,20,0,0"
                        BorderColor=     "{StaticResource WarningColor}"
                        BackgroundColor= "{StaticResource WarningColor}"
+                       Padding=         "0"
                        Grid.Row=        "1"
                        Grid.Column=     "1"
-                       Grid.RowSpan=    "2"
-                       MinimumHeightRequest="500">
+                       Grid.RowSpan=    "2">
                     <StackLayout>
                         <!-- ~~~~~~ ListView ~~~~~~ -->
                         <ListView x:Name=               "expirarListView"
                                   SeparatorVisibility=  "Default"
                                   SeparatorColor=       "{StaticResource SecondaryColor}"
-                                  BackgroundColor=      "{StaticResource DarkListColor}" >
+                                  BackgroundColor=      "{StaticResource DarkListColor}">
 
                             <!-- HEADER -->
                             <ListView.Header>
-                                <StackLayout >
+                                <StackLayout Padding=           "5,15,5,15"
+                                             BackgroundColor=   "{StaticResource WarningColor}">
                                     <Label Text=                "Contraordenações a Expirar"
-                                           Style=               "{StaticResource RedCardHeading}" />
-                                    <BoxView BackgroundColor=   "{StaticResource WarningColor}"
-                                             HeightRequest=     "15"
-                                             Margin=            "0,-6,0,5" />
+                                           Style=               "{StaticResource RedCardHeading}"/>
                                 </StackLayout>
                             </ListView.Header>
 
                             <!-- BODY -->
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <TextCell Text=         "{Binding ProcessoId, StringFormat='Nº Auto: {0}'}"
-                                              Detail=       "{Binding DataLimite, StringFormat='Expira a {0}'}"
-                                              TextColor=    "{StaticResource PrimaryTextColor}"
-                                              DetailColor=  "{StaticResource NormalLightTextColor}" />
+                                    <TextCell Text=             "{Binding ProcessoId, StringFormat='Nº Auto: {0}'}"
+                                              Detail=           "{Binding DataLimite, StringFormat='Expira a {0}'}"
+                                              TextColor=        "{StaticResource PrimaryTextColor}"
+                                              DetailColor=      "{StaticResource NormalLightTextColor}" />
                                 </DataTemplate>
                             </ListView.ItemTemplate>
 
                             <!-- FOOTER -->
                             <ListView.Footer>
-                                <StackLayout>
-                                    <StackLayout BackgroundColor=   "{StaticResource ContentBackgroundColor}"
-                                             VerticalOptions=   "EndAndExpand"
+                                <StackLayout BackgroundColor=   "{StaticResource ContentBackgroundColor}"
                                              Orientation=       "Horizontal"
-                                             Padding=           "0,17,0,17" >
-                                        <Label Text=            "Ver Todas"
-                                           Style=           "{StaticResource RedCardHeading}"
-                                           TextColor=       "{StaticResource WarningColor}"
-                                           BackgroundColor= "Transparent"/>
-                                        <Image Source=          "chevron_right_red_24.png"
-                                           Margin=          "0,0,15,0" />
-                                    </StackLayout>
-                                    <BoxView BackgroundColor=   "{StaticResource ContentBackgroundColor}"
-                                             HeightRequest=     "15"
-                                             Margin=            "0,-6,0,5" />
+                                             Padding=           "0,17,0,17">
+                                    <Label Text=                "Ver Todas"
+                                           Style=               "{StaticResource RedCardHeading}"
+                                           TextColor=           "{StaticResource WarningColor}"
+                                           BackgroundColor=     "Transparent"/>
+                                    <Image Source=              "chevron_right_red_24.png"
+                                           Margin=              "0,0,15,0" />
                                 </StackLayout>
                             </ListView.Footer>
                         </ListView>
+                      
                     </StackLayout>
                 </Frame>
+                
 
-
-
+              
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Decisões Contraordenatórias ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

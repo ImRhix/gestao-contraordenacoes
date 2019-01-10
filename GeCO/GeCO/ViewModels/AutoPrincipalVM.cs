@@ -32,7 +32,7 @@ namespace GeCO.ViewModels {
 
 
 
-#region REGION -> Get Ids
+        #region Get (ids)
         public async Task<Int32> GetAutoId(){
             return await App.Database.GetNextGeralId();
         }
@@ -52,10 +52,9 @@ namespace GeCO.ViewModels {
         public async Task<Int32> GetLeiId(){
             return await App.Database.GetNextLeiId();
         }
-#endregion
+        #endregion
 
-
-#region REGION -> Get (objects)
+        #region Get (objects)
         public async Task<Geral> GetGeral(int id) {
             return await App.Database.GetGeral(id);
         }
@@ -75,9 +74,9 @@ namespace GeCO.ViewModels {
         public async Task<Lei> GetLei(int id) {
             return await App.Database.GetLei(id);
         }
-#endregion
+        #endregion
 
-
+        #region Get (searchbox list)
         /// <summary>
         /// Retorna uma ObservableCollection com a seguinte informação: AutoId, CodProcesso, DataAuto, LocalId, Nome (do denunciante) e PessoaId.
         /// </summary>
@@ -105,9 +104,10 @@ namespace GeCO.ViewModels {
 
             return newPessoaOC;
         }
+        #endregion
 
 
-
+        #region Save
         /// <summary>
         /// Insere (ou atualiza) as tabelas com o input das entries. Retorna o id do Auto em questão.
         /// </summary>
@@ -142,11 +142,10 @@ namespace GeCO.ViewModels {
             geral = await App.Database.GetGeral(geral.AutoId);
             return geral;
         }
+        #endregion
 
 
-
-
-#region REGION -> Deletes
+        #region Delete
         /// <summary>
         /// Apaga todas as tabelas e a informação associada.
         /// </summary>
@@ -169,11 +168,11 @@ namespace GeCO.ViewModels {
         public async Task ApagarAutuante(Autuante autuante) {
             await App.Database.ApagarAutuante(autuante);
         }
-#endregion
+        #endregion
 
         // **********************************************************
 
- #region REGION -> gettets/setters
+        #region gettets/setters
         public Geral Geral {
             get { return _geral; }
             set {
@@ -207,6 +206,8 @@ namespace GeCO.ViewModels {
         }
         #endregion
 
+
+        #region Propriedades
         private void InicializacaoPropriedades() {
             Geral = new Geral {
                 CodProcesso = "",
@@ -249,8 +250,10 @@ namespace GeCO.ViewModels {
 
             };
         }
+        #endregion
 
-#region REGION -> Lists (entidades, placeholders, genero, estado civil)
+        
+        #region Lists (entidades, placeholders, genero, estado civil, equipamentos)
         List<String> entidades = new List<string> {
             "Não Definido",
             "DGTR",
@@ -289,6 +292,6 @@ namespace GeCO.ViewModels {
             "Voltímetro",
             "Placeholderímetro"
         };
-#endregion
+        #endregion
     }
 }

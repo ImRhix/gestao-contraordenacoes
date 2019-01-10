@@ -10,14 +10,16 @@ namespace GeCO.Views {
     public partial class AutoArguidoPage : ContentPage {
 
         private int currentAutoId, currentArguidoId;
+        private bool isNewAuto;
         private Pessoa _pessoa;
-        private QualidadeArguido _qualidadeArguido;
 
 
-        public AutoArguidoPage(int id) {
+        public AutoArguidoPage(int id, bool state) {
             InitializeComponent();
 
             BindingContext = new AutoArguidoVM();
+            
+            isNewAuto = state;
             currentAutoId = id;
         }
 
@@ -55,7 +57,7 @@ namespace GeCO.Views {
 
 
         /// <summary>
-        /// Colocar o VM.Filtered igual ao MeusAutosVM.Filterded..
+        /// Colocar o VM.Filtered igual ao MeusAutosVM.Filtered..
         /// </summary>
         async void OnTextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e) {
             if (!string.IsNullOrWhiteSpace(e.NewTextValue)) {
@@ -100,7 +102,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Guarda a pessoa e associa o id à FK TestemunhaId na tabela Geral
         /// </summary>
-        public async Task OnGuardarClicked(object sender, System.EventArgs e) {
+        public async void OnGuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 
@@ -138,12 +140,27 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoApreensaoPage(currentAutoId);
+            var page = new AutoApreensaoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
+
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
+
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoArguidoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         /// <summary>
@@ -163,12 +180,7 @@ namespace GeCO.Views {
                 Contacto2 =         Int32.Parse(contacto2.Text),
                 Email =             email.Text
             };
-
-            QualidadeArguido = new QualidadeArguido {
-                QualidadeTipo =     qualidade.ToString(),
-            };
         }
-
 
 
         /// <summary>
@@ -198,32 +210,20 @@ namespace GeCO.Views {
             contacto1.Text =            0.ToString();
             contacto2.Text =            0.ToString();
             email.Text =                "";
-
-            qualidade.SelectedItem =    "Não Definido";
         }
 
 
 #region REGION -> Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
-            set
-            {
+            set {
                 _pessoa = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public QualidadeArguido QualidadeArguido {
-            get { return _qualidadeArguido; }
-            set
-            {
-                _qualidadeArguido = value;
                 OnPropertyChanged();
             }
         }
 #endregion
 
-#region REGION -> tap nos separadores
+#region Tap Separadores
         void OnIdentificacaoTapped(object sender, System.EventArgs e) {
             identificacaoStack.IsVisible = !identificacaoStack.IsVisible;
 
@@ -231,15 +231,6 @@ namespace GeCO.Views {
                 identificacaoArrow.RotateTo(-180, 225);
             else
                 identificacaoArrow.RotateTo(0, 225);
-        }
-
-        void OnQualidadeTapped(object sender, System.EventArgs e) {
-            qualidadeStack.IsVisible = !qualidadeStack.IsVisible;
-
-            if (qualidadeArrow.Rotation == 0)
-                qualidadeArrow.RotateTo(-180, 225);
-            else
-                qualidadeArrow.RotateTo(0, 225);
         }
 #endregion
     }

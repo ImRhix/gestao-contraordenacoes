@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using Xamarin.Forms;
-using GeCO.ViewModels;
-using System.Threading.Tasks;
-using GeCO.Models;
-using System.Threading;
 using System.Diagnostics;
+using GeCO.Models;
+using GeCO.ViewModels;
+using System.Threading;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GeCO.Views {
     
@@ -19,8 +18,9 @@ namespace GeCO.Views {
         public AutoApreensaoPage(int id) {
             InitializeComponent();
 
-            currentAutoId = id;
             BindingContext = new AutoApreensaoVM();
+            currentAutoId = id;
+            isNewAuto = state;
         }
 
 
@@ -53,7 +53,7 @@ namespace GeCO.Views {
 
 
 
-        public async Task OnSelectedndexChanged(object sender, System.EventArgs e) {
+        public async void OnSelectedndexChanged(object sender, System.EventArgs e) {
             var leg = await (BindingContext as AutoApreensaoVM).GetLei(lei.SelectedIndex);
             coima.Text = ((leg.Min + leg.Max) / 2).ToString();
         }
@@ -62,7 +62,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Insere ou atualiza a tabela Geral com o id da apreensao.
         /// </summary>
-        public async Task GuardarClicked(object sender, System.EventArgs e) {
+        public async void GuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 
@@ -96,13 +96,27 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoPagamentoPage(currentAutoId);
+            var page = new AutoPagamentoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
 
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
+
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoApreensaoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         /// <summary>
@@ -151,6 +165,7 @@ namespace GeCO.Views {
 
 
 
+#region getters/setters
         public Apreensao Apreensao {
             get { return _apreensao; }
             set {
@@ -158,7 +173,10 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
+#endregion
 
+  
+#region Taps Separadores
         void OnApreensaoTapped(object sender, System.EventArgs e) {
             apreensaoStack.IsVisible = !apreensaoStack.IsVisible;
             
@@ -167,5 +185,6 @@ namespace GeCO.Views {
             else
                 apreensaoArrow.RotateTo(0, 225);
         }
+#endregion
     }
 }

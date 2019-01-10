@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-namespace GeCO.ViewModels
-{
+
+namespace GeCO.ViewModels {
     public class PropertyChangedVM : INotifyPropertyChanged {
-
-
+      
         public PropertyChangedVM() {
         }
 

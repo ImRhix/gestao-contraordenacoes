@@ -26,7 +26,7 @@
 
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <!-- ~~~~~~~~ Apreensão de Objetos ~~~~~~~~ -->
+                <!-- ~~~~~~~~~~ Apreensão de Objetos ~~~~~~~~~~ -->
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <Frame Style="{StaticResource FormFrame}" >
                     <StackLayout>
@@ -178,16 +178,23 @@
 
 
                 <!-- ~~~~~~ Botões ~~~~~~ -->
-                <StackLayout Orientation=   "Horizontal" >
-                    <Button Text=           "Anterior"
-                            Image=          "chevron_left_orange_24.png"
-                            Style=          "{StaticResource FormLeftButton}"
-                            Clicked=        "OnAnteriorClicked"/>
+                <StackLayout>
+                    <StackLayout Orientation=   "Horizontal" >
+                        <Button Text=           "Anterior"
+                                Image=          "chevron_left_orange_24.png"
+                                Style=          "{StaticResource FormLeftButton}"
+                                Clicked=        "OnAnteriorClicked"/>
                     
-                    <Button Text=           "Próximo"
-                            Image=          "chevron_right_24.png"
-                            Style=          "{StaticResource FormRightButton}"
-                            Clicked=        "OnProximoClicked"/>
+                        <Button Text=           "Próximo"
+                                Image=          "chevron_right_24.png"
+                                Style=          "{StaticResource FormRightButton}"
+                                Clicked=        "OnProximoClicked"/>
+                    
+                    </StackLayout>
+                    <Button Text=           "Cancelar"
+                            Image=          "close_red_24.png"
+                            Style=          "{StaticResource FormCancelButton}"
+                            Clicked=        "OnCancelClicked"/>
                 </StackLayout>
 
 

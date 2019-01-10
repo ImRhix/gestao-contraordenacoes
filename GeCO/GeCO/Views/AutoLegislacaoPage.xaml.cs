@@ -69,7 +69,7 @@ namespace GeCO.Views {
         /// <summary>
         /// Atualiza a tabela Geral com o id da lei selecionada.
         /// </summary>
-        public async Task GuardarClicked(object sender, System.EventArgs e) {
+        public async void GuardarClicked(object sender, System.EventArgs e) {
             await loadAndSave();
         }
 
@@ -104,13 +104,26 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoArguidoPage(currentAutoId);
+            var page = new AutoArguidoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e) {
+            IsEnabled = false;
 
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\n Pretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoLegislacaoVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         /// <summary>
@@ -138,6 +151,7 @@ namespace GeCO.Views {
             currentLeiId = leg.LeiId;
         }
 
+
         /// <summary>
         /// Limpa o texto das entries e seleciona os valores default dos dropdowns.
         /// </summary>
@@ -153,7 +167,7 @@ namespace GeCO.Views {
         }
 
 
-
+        #region Properties
         public Lei Lei {
             get { return _lei; }
             set {
@@ -161,7 +175,10 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
+        #endregion
 
+
+        #region Tap Separador
         void OnLeiTapped(object sender, System.EventArgs e) {
             leiStack.IsVisible = !leiStack.IsVisible;
 
@@ -170,5 +187,6 @@ namespace GeCO.Views {
             else
                 leiArrow.RotateTo(0, 225);
         }
+        #endregion
     }
 }

@@ -37,6 +37,12 @@ namespace GeCO.ViewModels {
         }
 
 
+        /// <summary>
+        /// Apaga o Auto (Geral) da base de dados
+        /// </summary>
+        public async Task ApagarAuto(int id) {
+            var geral = await App.Database.GetGeral(id);
+
 
         /// <summary>
         /// Grava o pagamento e associa-o ao Auto ou atualiza um já existente.
@@ -69,11 +75,21 @@ namespace GeCO.ViewModels {
         }
 
 
+            var apr = await App.Database.GetApreensao(geral.ApreensaoId);
+            await App.Database.ApagarApreensao(apr);
+
+            var pag = await App.Database.GetPagamento(geral.PagamentoId);
+            await App.Database.ApagarPagamento(pag);
+
+            await App.Database.ApagarGeral(geral);
+        }
 
 
-#region REGION -> gettets/setters
 
-    public Pagamento Pagamento {
+
+#region gettets/setters
+
+        public Pagamento Pagamento {
             get { return _pagamento; }
             set {
                 _pagamento = value;
@@ -90,6 +106,8 @@ namespace GeCO.ViewModels {
         }
 #endregion
 
+
+#region Properties
         public void InicializacaoPropriedades() {
             Pagamento = new Pagamento {
                 NIF =           0,
@@ -108,10 +126,10 @@ namespace GeCO.ViewModels {
                 Valor =         0
             };
         }
+#endregion
 
 
-#region REGION -> Lists (entidades, placeholders, genero, estado civil)
-
+#region Lists (pagamentos, custos)
         List<String> pagamentos = new List<string> {
                 "Não Definido",
                 "Monetário",
@@ -126,6 +144,5 @@ namespace GeCO.ViewModels {
                 "Tipo 3"
             };
 #endregion
-
     }
 }

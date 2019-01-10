@@ -43,58 +43,58 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
 
-                       <StackLayout x:Name="identificacaoStack"
-                                     IsVisible=     "false">
+                        <StackLayout x:Name="identificacaoStack"
+                                     IsVisible=             "false">
 
                             <SearchBar x:Name="searchBox"
-                                           TextChanged=             "OnTextChanged"
-                                           Placeholder=             "Pesquisar por nome..."
-                                           Margin=                  "0,0,15,10"
-                                           HeightRequest=           "40" />
+                                       TextChanged=         "OnTextChanged"
+                                       Placeholder=         "Pesquisar por nome..."
+                                       Margin=              "0,0,15,10"
+                                       HeightRequest=       "40" />
 
-                                <ListView x:Name="pessoaListView"
-                                          ItemSelected=             "OnPessoaSelected"
-                                          BackgroundColor=          "{StaticResource SecondaryLightColor}"
-                                          RowHeight=                "45"
-                                          IsVisible=                "false"
-                                          Margin=                   "0,0,0,15"
-                                          CachingStrategy=          "RecycleElement"> 
-                                    <!-- BODY -->
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextCell Text=         "{Binding Nome}"
-                                                      Detail=       "{Binding NIF}"
-                                                      TextColor=    "{StaticResource NormalDarkTextColor}"
-                                                      DetailColor=  "{StaticResource NormalTextColor}"/>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView> 
+                            <ListView x:Name="pessoaListView"
+                                      ItemSelected=             "OnPessoaSelected"
+                                      BackgroundColor=          "{StaticResource SecondaryLightColor}"
+                                      RowHeight=                "45"
+                                      IsVisible=                "false"
+                                      Margin=                   "0,0,0,15"
+                                      CachingStrategy=          "RecycleElement">
+                                <!-- BODY -->
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text=         "{Binding Nome}"
+                                                  Detail=       "{Binding NIF}"
+                                                  TextColor=    "{StaticResource NormalDarkTextColor}"
+                                                  DetailColor=  "{StaticResource NormalTextColor}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                            
+
                             <Grid Padding=          "15,5,15,10"
                                   RowSpacing=       "0"
                                   ColumnSpacing=    "5">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" /> <!-- 00 -->
-                                    <RowDefinition Height="Auto" /> <!-- 01 -->
-                                    <RowDefinition Height="Auto" /> <!-- 02 -->
-                                    <RowDefinition Height="Auto" /> <!-- 03 -->
-                                    <RowDefinition Height="Auto" /> <!-- 04 -->
-                                    <RowDefinition Height="Auto" /> <!-- 05 -->
-                                    <RowDefinition Height="Auto" /> <!-- 06 -->
-                                    <RowDefinition Height="Auto" /> <!-- 07 -->
-                                    <RowDefinition Height="Auto" /> <!-- 08 -->
-                                    <RowDefinition Height="Auto" /> <!-- 09 -->
-                                    <RowDefinition Height="Auto" /> <!-- 10 -->
-                                    <RowDefinition Height="Auto" /> <!-- 11 -->
-                                    <RowDefinition Height="Auto" /> <!-- 12 -->
-                                    <RowDefinition Height="Auto" /> <!-- 13 -->
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />  <!-- 00 -->
-                                    <ColumnDefinition Width="*" />  <!-- 01 -->
-                                    <ColumnDefinition Width="*" />  <!-- 02 -->
-                                    <ColumnDefinition Width="*" />  <!-- 03 -->
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Nome Completo -->
@@ -140,7 +140,7 @@
                                         Grid.Column=    "2"
                                         Grid.ColumnSpan="2" >
                                 </Picker>
-                                
+
                                 <!-- Estado Civil -->
                                 <Label Text=            "Estado Civil"
                                        Style=           "{StaticResource FormTitleLabel}"
@@ -170,7 +170,7 @@
                                        Grid.Row=        "7"
                                        Grid.Column=     "0"
                                        Grid.ColumnSpan= "2" />
-                                <!-- Naturalidade -->   <!-- No website é um picker, mas uma entry parece mais correto -->
+                                <!-- Naturalidade -->
                                 <Label 
                                        Text=            "Naturalidade"
                                        Style=           "{StaticResource FormTitleLabel}"
@@ -191,7 +191,7 @@
                                        Grid.Row=        "8"
                                        Grid.Column=     "0"
                                        Grid.ColumnSpan= "2" />
-                               <Entry x:Name="nif"
+                                <Entry x:Name="nif"
                                       Text=            "{Binding Pessoa.NIF, Mode=TwoWay}"
                                        Placeholder=     "Ex 000 000 000"
                                        Style=           "{StaticResource FormEntry}"
@@ -248,73 +248,28 @@
                             </Grid>
                         </StackLayout>
                     </StackLayout>
-                </Frame>            
-
-
-                
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <!-- ~~~~~~~~ Qualidade do Arguido ~~~~~~~~ -->
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <Frame Style="{StaticResource FormFrame}" >
-                    <StackLayout>
-                        <StackLayout Style=         "{StaticResource FormHeader}">
-                            <Label Text=            "Qualidade"
-                                   Style=           "{StaticResource FormSectionLabel}" />
-                            <Image x:Name="qualidadeArrow"
-                                   Source=          "chevron_down_blue_24.png"
-                                   HorizontalOptions="End" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnQualidadeTapped" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                        
-                        <StackLayout x:Name="qualidadeStack"
-                                     IsVisible=     "false">
-                            <Grid  Padding=         "15,5,15,10"
-                                   RowSpacing=      "0"
-                                   ColumnSpacing=   "5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" /> <!-- 00 -->
-                                    <RowDefinition Height="Auto" /> <!-- 01 -->
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />  <!-- 00 -->
-                                    <ColumnDefinition Width="*" />  <!-- 01 -->
-                                    <ColumnDefinition Width="*" />  <!-- 02 -->
-                                    <ColumnDefinition Width="*" />  <!-- 03 -->
-                                </Grid.ColumnDefinitions>
-
-                                <!-- Qualidade -->
-                                <Label Text=            "Qualidade"
-                                       Style=           "{StaticResource FormTitleLabel}"
-                                       Grid.Row=        "0"
-                                       Grid.Column=     "0"
-                                       Grid.ColumnSpan= "2" />
-                                <Picker x:Name="qualidade"
-                                        ItemsSource=    "{Binding Qualidade}"
-                                        Style=          "{StaticResource FormPicker}"
-                                        Grid.Row=       "1"
-                                        Grid.Column=    "0"
-                                        Grid.ColumnSpan="2" >
-                                </Picker>
-                            </Grid>
-                        </StackLayout>
-                    </StackLayout>
                 </Frame>
 
 
-                
+
                 <!-- ~~~~~~ Botões ~~~~~~ -->
-                <StackLayout Orientation=   "Horizontal" >
-                    <Button Text=           "Anterior"
-                            Image=          "chevron_left_orange_24.png"
-                            Style=          "{StaticResource FormLeftButton}"
-                            Clicked=        "OnAnteriorClicked"/>
-                    
-                    <Button Text=           "Próximo"
-                            Image=          "chevron_right_24.png"
-                            Style=          "{StaticResource FormRightButton}"
-                            Clicked=        "OnProximoClicked"/>
+                <StackLayout>
+                    <StackLayout Orientation=   "Horizontal" >
+                        <Button Text=           "Anterior"
+                                Image=          "chevron_left_orange_24.png"
+                                Style=          "{StaticResource FormLeftButton}"
+                                Clicked=        "OnAnteriorClicked"/>
+
+                        <Button Text=           "Próximo"
+                                Image=          "chevron_right_24.png"
+                                Style=          "{StaticResource FormRightButton}"
+                                Clicked=        "OnProximoClicked"/>
+
+                    </StackLayout>
+                    <Button Text=           "Cancelar"
+                            Image=          "close_red_24.png"
+                            Style=          "{StaticResource FormCancelButton}"
+                            Clicked=        "OnCancelClicked"/>
                 </StackLayout>
                 
             </StackLayout>

@@ -99,7 +99,6 @@ namespace GeCO.Models {
 
     [Table("CustosProcessuais")]
     public class CustosProcessuais {
-        
         [PrimaryKey, AutoIncrement]
         public int CustoId { get; set; }
 

@@ -24,7 +24,6 @@ namespace GeCO.Views {
         }
 
 
-
         protected override async void OnAppearing() {
             autos.Clear();
             autos.Add(new Auto { ProcessoId = "256/2018", DataLimite = "05/06/2018" });
@@ -38,12 +37,13 @@ namespace GeCO.Views {
 
             await UnexpectedCreationism();
 
-            await App.Database.CheckPessoa(123456789);
+            //await App.Database.CheckPessoa(123456789);
 
             base.OnAppearing();
+            Console.WriteLine(expirarListView.Height);
         }
 
-
+       
 
         async void OnAddClicked(object sender, System.EventArgs e) {
             var page = new AutoPrincipalPage(0, true);
@@ -52,14 +52,10 @@ namespace GeCO.Views {
 
 
 
-
-
-
-
         // ******************************************************************** //
 
 
-#region REGION -> Criação de 4 Autos com informação hardcoded
+        #region Criacao automatica de Autos e Pessoas (placeholders)
         private async Task UnexpectedCreationism() {
             
             var id = await App.Database.GetNextGeralId();
