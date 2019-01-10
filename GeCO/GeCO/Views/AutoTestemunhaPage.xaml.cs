@@ -9,13 +9,16 @@ namespace GeCO.Views {
     public partial class AutoTestemunhaPage : ContentPage {
         
         private int currentAutoId, currentTestemunhaId;
+        private bool isNewAuto;
         private Pessoa _pessoa;
+      
          
-        public AutoTestemunhaPage(int id) {
+        public AutoTestemunhaPage(int id, bool state) {
             InitializeComponent();
 
-            currentAutoId = id;
             BindingContext = new AutoTestemunhaVM();
+            currentAutoId = id;
+            isNewAuto = state;
         }
 
 
@@ -72,7 +75,7 @@ namespace GeCO.Views {
         /// </summary>
         void OnPessoaSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
             var pessSelecionada =       e.SelectedItem as Pessoa;
-            
+          
             currentTestemunhaId =       pessSelecionada.PessoaId;
             nome.Text =                 pessSelecionada.Nome;
             dataNasc.Date =             pessSelecionada.DataNascimento;
@@ -133,12 +136,27 @@ namespace GeCO.Views {
 
             await loadAndSave();
 
-            var page = new AutoResumoPage(currentAutoId);
+            var page = new AutoResumoPage(currentAutoId, isNewAuto);
             await Navigation.PushAsync(page);
 
             IsEnabled = true;
         }
 
+
+        /// <summary>
+        /// Fecha todas as janelas do form e volta à página inicial. Se o utilizdor desejar pode também apagar a informação do auto.
+        /// </summary>
+        async void OnCancelClicked(object sender, System.EventArgs e)  {
+            IsEnabled = false;
+
+            if (isNewAuto) {
+                bool isDeletable = await DisplayAlert("Atenção", "Está prestes a sair do formulário.\nPretende também apagar a informação já inserida?", "Sim", "Não");
+                if (isDeletable)
+                    await (BindingContext as AutoTestemunhaVM).ApagarAuto(currentAutoId);
+            }
+            await Navigation.PopToRootAsync();
+            IsEnabled = true;
+        }
 
 
         /// <summary>
@@ -189,15 +207,11 @@ namespace GeCO.Views {
             contacto1.Text =            0.ToString();
             contacto2.Text =            0.ToString();
             email.Text =                "";
-
-            //qualidade.SelectedItem =    "Não Definido";
         }
 
 
 
-
-
-#region REGION -> Properties
+#region Properties
         public Pessoa Pessoa {
             get { return _pessoa; }
             set {
@@ -205,17 +219,9 @@ namespace GeCO.Views {
                 OnPropertyChanged();
             }
         }
-
-        //public QualidadeArguido QualidadeArguido {
-        //    get { return _qualidadeArguido; }
-        //    set {
-        //        _qualidadeArguido = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 #endregion
 
-#region REGION -> tap nos separadores 
+#region Taps Separadores
         void OnIdentificacaoTapped(object sender, System.EventArgs e) {
             identificacaoStack.IsVisible = !identificacaoStack.IsVisible;
 
@@ -224,15 +230,6 @@ namespace GeCO.Views {
             else
                 identificacaoArrow.RotateTo(0, 225);
         }
-
-        /*void OnQualidadeTapped(object sender, System.EventArgs e) {
-            qualidadeStack.IsVisible = !qualidadeStack.IsVisible;
-
-            if (qualidadeArrow.Rotation == 0)
-                qualidadeArrow.RotateTo(-180, 225);
-            else
-                qualidadeArrow.RotateTo(0, 225);
-        }*/
 #endregion
     }
 }
