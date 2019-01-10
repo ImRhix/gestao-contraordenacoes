@@ -25,6 +25,7 @@ namespace GeCO.Data {
 
 
 
+
 #region REGION -> Get (IDs / PKs)
         /// <summary>
         /// Encontra a ultima linha da tabela Geral, incrementa uma unidade à PK (AutoId) e retorna o valor. 

@@ -13,23 +13,24 @@
                      Icon=      "refresh_24.png" />
     </ContentPage.ToolbarItems>
 
-    
+
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="7" BackgroundColor="{StaticResource BackgroundColor}" RowSpacing="7" ColumnSpacing="7" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" /> <!-- 188 -->
                     <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>  
+                    <!-- 188 -->
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
 
-                
+
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Contraordenações de Sistema ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -68,7 +69,7 @@
                 </Frame>
 
 
-                
+
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~~~~ Inibições de Conduzir ~~~~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -93,7 +94,8 @@
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Contraordenações Atribuídas ~~~~~~~
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> <!--  HeightRequest="168" -->
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!--  HeightRequest="168" -->
                 <Frame CornerRadius="2"
                        Padding=     "5,10,5,10"
                        Grid.Row=    "2"
@@ -102,7 +104,7 @@
                     <StackLayout >
                         <Label Text=        "COs Atribuídas"
                                Style=       "{StaticResource CardHeading}" />
-                        <StackLayout > 
+                        <StackLayout >
                             <Label Text=    "265"
                                    Style=   "{StaticResource OrangeCardText}" />
                             <Label Text=    "(67%)"
@@ -166,7 +168,7 @@
                                         <Image Source=          "chevron_right_red_24.png"
                                            Margin=          "0,0,15,0" />
                                     </StackLayout>
-                                        <BoxView BackgroundColor=   "{StaticResource ContentBackgroundColor}"
+                                    <BoxView BackgroundColor=   "{StaticResource ContentBackgroundColor}"
                                              HeightRequest=     "15"
                                              Margin=            "0,-6,0,5" />
                                 </StackLayout>
@@ -176,7 +178,7 @@
                 </Frame>
 
 
-                
+
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Decisões Contraordenatórias ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -200,13 +202,13 @@
                             <BoxView WidthRequest=      "18"
                                      Margin=            "10,5,5,5"/>
                             <Label Text=                "Não Condenatórias"
-                                   VerticalOptions=     "Center"/> 
+                                   VerticalOptions=     "Center"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-                
+
             </Grid>
         </ScrollView>
-    </ContentPage.Content>
 
+    </ContentPage.Content>
 </ContentPage>

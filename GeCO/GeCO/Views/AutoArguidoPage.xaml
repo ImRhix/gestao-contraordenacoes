@@ -316,6 +316,7 @@
                             Style=          "{StaticResource FormRightButton}"
                             Clicked=        "OnProximoClicked"/>
                 </StackLayout>
+                
             </StackLayout>
         </ScrollView>
 

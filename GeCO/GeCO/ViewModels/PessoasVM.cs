@@ -121,6 +121,8 @@ namespace GeCO.ViewModels {
         }
         #endregion
 
+
+
         public void InicializacaoPropriedades() {
             Pessoa =                new Pessoa {
                 Nome =              "",

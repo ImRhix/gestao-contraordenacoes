@@ -10,9 +10,6 @@ namespace GeCO.Views {
         
         private int currentAutoId, currentTestemunhaId;
         private Pessoa _pessoa;
-        //private QualidadeArguido _qualidadeArguido;
-
-        
          
         public AutoTestemunhaPage(int id) {
             InitializeComponent();
@@ -161,10 +158,6 @@ namespace GeCO.Views {
                 Contacto2 =         Int32.Parse(contacto2.Text),
                 Email =             email.Text
             };
-
-            //QualidadeArguido = new QualidadeArguido {
-            //    QualidadeTipo =     qualidade.ToString(),
-            //};
         }
 
 

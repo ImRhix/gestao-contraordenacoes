@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using GeCO.Models;
 namespace GeCO.ViewModels
 {
-    public class AutoApreensaoVM : PropertyChangedVM
-    {
+    public class AutoApreensaoVM : PropertyChangedVM {
+
         public List<String> Objeto => objetos;
         public List<String> Lei => leis;
         public List<String> Tipo => tipos;

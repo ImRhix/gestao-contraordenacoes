@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace GeCO.Views {
-    
+   
     public partial class AutoPrincipalPage : ContentPage {
         
         private int currentAutoId, currentLocalId, currentDenuncianteId, currentAutuanteId;

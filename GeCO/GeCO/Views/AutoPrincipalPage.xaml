@@ -35,11 +35,11 @@
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <Frame Style="{StaticResource FormFrame}">
                     <StackLayout >
-                        <StackLayout Style=         "{StaticResource FormHeader}">
-                            <Label Text=            "Geral"
-                                   Style=           "{StaticResource FormSectionLabel}" />
+                        <StackLayout Style=          "{StaticResource FormHeader}">
+                            <Label Text=             "Geral"
+                                   Style=            "{StaticResource FormSectionLabel}" />
                             <Image x:Name="geralArrow"
-                                   Source=          "chevron_down_blue_24.png"
+                                   Source=           "chevron_down_blue_24.png"
                                    HorizontalOptions="End" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGeralTapped" />

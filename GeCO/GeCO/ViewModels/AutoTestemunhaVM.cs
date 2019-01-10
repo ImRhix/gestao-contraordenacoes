@@ -20,6 +20,7 @@ namespace GeCO.ViewModels {
         private QualidadeArguido _qualidadeArguido;
 
 
+
         public AutoTestemunhaVM() {
             InicializacaoPropriedades();
         }

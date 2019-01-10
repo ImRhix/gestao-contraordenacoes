@@ -5,16 +5,14 @@ using System.Threading.Tasks;
 
 namespace GeCO.ViewModels
 {
-    public class AutoLegislacaoVM : PropertyChangedVM
-    {
+    public class AutoLegislacaoVM : PropertyChangedVM {
+
         public List<String> Titulo => titulos;
 
         private Lei _lei;
 
-        public AutoLegislacaoVM()
-        {
-            Lei = new Lei
-            {
+        public AutoLegislacaoVM() {
+            Lei = new Lei {
                 Titulo =    "",
                 Pontos =    0,
                 Descricao = "",
@@ -26,13 +24,11 @@ namespace GeCO.ViewModels
 
 
 
-        public async Task<Geral> GetGeral(int id)
-        {
+        public async Task<Geral> GetGeral(int id) {
             return await App.Database.GetGeral(id);
         }
 
-        public async Task<Lei> GetLei(int id)
-        {
+        public async Task<Lei> GetLei(int id) {
             return await App.Database.GetLei(id);
         }
 
@@ -49,8 +45,7 @@ namespace GeCO.ViewModels
         /// <summary>
         /// Na verdade não apaga lei nenhuma. Apenas altera a FK LeiId de uma certa row da tabela Geral para '0'
         /// </summary>
-        public async Task ApagarLei(int leiId, int autoId)
-        {
+        public async Task ApagarLei(int leiId, int autoId) {
             await App.Database.UpdateLei(leiId, autoId);
         }
 
@@ -58,7 +53,7 @@ namespace GeCO.ViewModels
 
 
 
-        public Lei Lei{
+        public Lei Lei {
             get { return _lei; }
             set { _lei = value; OnPropertyChanged(); }
         }

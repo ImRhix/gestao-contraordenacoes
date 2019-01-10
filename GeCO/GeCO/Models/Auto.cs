@@ -15,7 +15,6 @@ namespace GeCO.Models {
     }
 
 
-
     public class MeuAuto : PropertyChangedVM {
         public int AutoId { get; set; }
         public string CodProcesso { get; set; }

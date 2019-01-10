@@ -11,9 +11,10 @@ using System.Diagnostics;
 namespace GeCO.Views {
     
     public partial class AutoApreensaoPage : ContentPage {
-        private Apreensao _apreensao;
 
+        private Apreensao _apreensao;
         int currentAutoId, currentApreensaoId, currentLeiId;
+
 
         public AutoApreensaoPage(int id) {
             InitializeComponent();

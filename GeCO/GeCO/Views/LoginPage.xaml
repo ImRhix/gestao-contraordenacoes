@@ -49,5 +49,6 @@
                     TextColor=      "{StaticResource PrimaryTextColor}"
                     Clicked=        "OnSignInClicked"/>
         </StackLayout>
+        
     </StackLayout>
 </ContentPage>

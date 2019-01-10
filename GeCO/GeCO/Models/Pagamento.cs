@@ -19,7 +19,6 @@ namespace GeCO.Models {
         private DateTime _dataDevolucao;
 
 
-
         [PrimaryKey, AutoIncrement]
         public int PagamentoId { get; set; }
 
