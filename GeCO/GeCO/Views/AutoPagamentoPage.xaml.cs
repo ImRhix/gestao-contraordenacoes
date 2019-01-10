@@ -24,7 +24,7 @@ namespace GeCO.Views {
         protected override async void OnAppearing() {
             var geral = await (BindingContext as AutoPagamentoVM).GetGeral(currentAutoId);
             currentPagamentoId = geral.PagamentoId;
-
+            Console.WriteLine("\n\n" + currentPagamentoId + "\n\n");
 
             if (currentPagamentoId != 0) {
                 var pag = await (BindingContext as AutoPagamentoVM).GetPagamento(currentPagamentoId);

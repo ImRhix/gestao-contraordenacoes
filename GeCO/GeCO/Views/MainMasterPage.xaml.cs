@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace GeCO.Views {
+    
     public partial class MainMasterPage : MasterDetailPage {
 
         //Color colorPrimary = (Color)Application.Current.Resources["PrimaryColor"];

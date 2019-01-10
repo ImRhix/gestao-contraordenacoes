@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using GeCO.Models;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 
 namespace GeCO.ViewModels {
 
     public class AutoLegislacaoVM : PropertyChangedVM {
 
+=======
+namespace GeCO.ViewModels
+{
+    public class AutoLegislacaoVM : PropertyChangedVM
+    {
+>>>>>>> parent of 62eeb5a... bugfixing
         public List<String> Titulo => titulos;
 
         private Lei _lei;
 
-        public AutoLegislacaoVM() {
-            Lei = new Lei {
+        public AutoLegislacaoVM()
+        {
+            Lei = new Lei
+            {
                 Titulo =    "",
                 Pontos =    0,
                 Descricao = "",
@@ -24,11 +33,18 @@ namespace GeCO.ViewModels {
         }
 
 
+<<<<<<< HEAD
         public async Task<Geral> GetGeral(int id) {
+=======
+
+        public async Task<Geral> GetGeral(int id)
+        {
+>>>>>>> parent of 62eeb5a... bugfixing
             return await App.Database.GetGeral(id);
         }
 
-        public async Task<Lei> GetLei(int id) {
+        public async Task<Lei> GetLei(int id)
+        {
             return await App.Database.GetLei(id);
         }
 
@@ -48,7 +64,8 @@ namespace GeCO.ViewModels {
         /// <summary>
         /// Na verdade não apaga lei nenhuma. Apenas altera a FK LeiId de uma certa row da tabela Geral para '0'
         /// </summary>
-        public async Task ApagarLei(int leiId, int autoId) {
+        public async Task ApagarLei(int leiId, int autoId)
+        {
             await App.Database.UpdateLei(leiId, autoId);
         }
 
@@ -66,10 +83,14 @@ namespace GeCO.ViewModels {
             await App.Database.ApagarApreensao(apr);
         }
 
+<<<<<<< HEAD
 
           
           
         public Lei Lei {
+=======
+        public Lei Lei{
+>>>>>>> parent of 62eeb5a... bugfixing
             get { return _lei; }
             set { _lei = value; OnPropertyChanged(); }
         }

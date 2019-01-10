@@ -18,7 +18,6 @@ namespace GeCO.ViewModels {
         public List<String> EstadoCivil => estadoCivil;
         public List<String> Equipamentos => equipamentos;
 
-
         private Geral _geral;
         private Localizacao _localizacao;
         private Pessoa _pessoa;

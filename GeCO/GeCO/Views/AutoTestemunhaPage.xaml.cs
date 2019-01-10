@@ -11,7 +11,13 @@ namespace GeCO.Views {
         private int currentAutoId, currentTestemunhaId;
         private bool isNewAuto;
         private Pessoa _pessoa;
+<<<<<<< HEAD
       
+=======
+        //private QualidadeArguido _qualidadeArguido;
+
+        
+>>>>>>> parent of 62eeb5a... bugfixing
          
         public AutoTestemunhaPage(int id, bool state) {
             InitializeComponent();
@@ -176,6 +182,10 @@ namespace GeCO.Views {
                 Contacto2 =         Int32.Parse(contacto2.Text),
                 Email =             email.Text
             };
+
+            //QualidadeArguido = new QualidadeArguido {
+            //    QualidadeTipo =     qualidade.ToString(),
+            //};
         }
 
 

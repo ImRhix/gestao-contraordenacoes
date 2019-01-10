@@ -13,24 +13,23 @@
                      Icon=      "refresh_24.png" />
     </ContentPage.ToolbarItems>
 
-
+    
     <ContentPage.Content>
         <ScrollView>
             <Grid Padding="7" BackgroundColor="{StaticResource BackgroundColor}" RowSpacing="7" ColumnSpacing="7" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" /> <!-- 188 -->
                     <RowDefinition Height="Auto" />
-                    <!-- 188 -->
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                </Grid.RowDefinitions>  
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
 
-
+                
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Contraordenações de Sistema ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -69,7 +68,7 @@
                 </Frame>
 
 
-
+                
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~~~~ Inibições de Conduzir ~~~~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -94,6 +93,7 @@
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Contraordenações Atribuídas ~~~~~~~
+<<<<<<< HEAD
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                 <Frame CornerRadius=    "2"
                        Padding=         "5,10,5,10"
@@ -102,9 +102,18 @@
                        HeightRequest=   "179">
                   
                     <StackLayout>
+=======
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> <!--  HeightRequest="168" -->
+                <Frame CornerRadius="2"
+                       Padding=     "5,10,5,10"
+                       Grid.Row=    "2"
+                       Grid.Column= "0"
+                       MinimumHeightRequest="300">
+                    <StackLayout >
+>>>>>>> parent of 62eeb5a... bugfixing
                         <Label Text=        "COs Atribuídas"
                                Style=       "{StaticResource CardHeading}" />
-                        <StackLayout >
+                        <StackLayout > 
                             <Label Text=    "265"
                                    Style=   "{StaticResource OrangeCardText}" />
                             <Label Text=    "(67%)"
@@ -158,6 +167,7 @@
                             <ListView.Footer>
                                 <StackLayout BackgroundColor=   "{StaticResource ContentBackgroundColor}"
                                              Orientation=       "Horizontal"
+<<<<<<< HEAD
                                              Padding=           "0,17,0,17">
                                     <Label Text=                "Ver Todas"
                                            Style=               "{StaticResource RedCardHeading}"
@@ -165,6 +175,19 @@
                                            BackgroundColor=     "Transparent"/>
                                     <Image Source=              "chevron_right_red_24.png"
                                            Margin=              "0,0,15,0" />
+=======
+                                             Padding=           "0,17,0,17" >
+                                        <Label Text=            "Ver Todas"
+                                           Style=           "{StaticResource RedCardHeading}"
+                                           TextColor=       "{StaticResource WarningColor}"
+                                           BackgroundColor= "Transparent"/>
+                                        <Image Source=          "chevron_right_red_24.png"
+                                           Margin=          "0,0,15,0" />
+                                    </StackLayout>
+                                        <BoxView BackgroundColor=   "{StaticResource ContentBackgroundColor}"
+                                             HeightRequest=     "15"
+                                             Margin=            "0,-6,0,5" />
+>>>>>>> parent of 62eeb5a... bugfixing
                                 </StackLayout>
                             </ListView.Footer>
                         </ListView>
@@ -173,7 +196,12 @@
                 </Frame>
                 
 
+<<<<<<< HEAD
               
+=======
+
+                
+>>>>>>> parent of 62eeb5a... bugfixing
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 ~~~~~~~ Decisões Contraordenatórias ~~~~~~~
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -197,13 +225,13 @@
                             <BoxView WidthRequest=      "18"
                                      Margin=            "10,5,5,5"/>
                             <Label Text=                "Não Condenatórias"
-                                   VerticalOptions=     "Center"/>
+                                   VerticalOptions=     "Center"/> 
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-
+                
             </Grid>
         </ScrollView>
-
     </ContentPage.Content>
+
 </ContentPage>

@@ -203,6 +203,7 @@
                         </StackLayout>
 
 
+
                         <!-- ~~~~~~ Botões ~~~~~~ -->
                         <StackLayout Orientation=   "Horizontal" >
                             <Button Text=           "Apagar"

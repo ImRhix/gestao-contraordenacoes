@@ -5,9 +5,10 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace GeCO.Views {
-
-    public partial class DashboardPage : ContentPage {
+namespace GeCO.Views
+{
+    public partial class DashboardPage : ContentPage
+    {
         ObservableCollection<Auto> autos = new ObservableCollection<Auto>();
 
         public Geral Geral { get; set; }

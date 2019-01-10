@@ -10,12 +10,18 @@ using Xamarin.Forms;
 namespace GeCO.Views {
     
     public partial class AutoApreensaoPage : ContentPage {
-
         private Apreensao _apreensao;
+<<<<<<< HEAD
         int currentAutoId, currentApreensaoId, currentLeiId;
         bool isNewAuto;
 
         public AutoApreensaoPage(int id, bool state) {
+=======
+
+        int currentAutoId, currentApreensaoId, currentLeiId;
+
+        public AutoApreensaoPage(int id) {
+>>>>>>> parent of 62eeb5a... bugfixing
             InitializeComponent();
 
             BindingContext = new AutoApreensaoVM();

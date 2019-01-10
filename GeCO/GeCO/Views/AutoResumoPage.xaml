@@ -29,8 +29,11 @@
                         Image=          "save_24.png"
                         Style=          "{StaticResource FormFinalButton}"
                         Clicked=        "OnGuardarClicked"/>
-                
-
+                                        
+                <!--<Button Text=           ""
+                        Image=          "save_24.png"
+                        Style=          "{StaticResource FormFinalButton}"/>-->
+                                        
                 <Button Text=           "Página Anterior"
                         Image=          "chevron_left_orange_24.png"
                         Style=          "{StaticResource FormFinalBackButton}"

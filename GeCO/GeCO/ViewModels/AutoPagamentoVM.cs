@@ -68,6 +68,7 @@ namespace GeCO.ViewModels {
         /// Limpa a informação presente no ecrã e desassocia o pagamento do auto
         /// </summary>
         public async Task Desassociar_e_Apagar_Pagamento(int pagamentoId, int autoId) {
+
             var pag = await App.Database.GetPagamento(pagamentoId);
 
             await App.Database.ApagarPagamento(pag);

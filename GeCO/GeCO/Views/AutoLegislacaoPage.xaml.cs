@@ -5,9 +5,10 @@ using GeCO.ViewModels;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace GeCO.Views {
-    public partial class AutoLegislacaoPage : ContentPage {
-
+namespace GeCO.Views
+{
+    public partial class AutoLegislacaoPage : ContentPage
+    {
         private int currentAutoId, currentLeiId;
         private bool isNewAuto;
 
